@@ -15,4 +15,4 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const { channels } = gon;
-ReactDOM.render(<App channels={channels} />, document.getElementById('chat'));
+ReactDOM.render(<App channels={channels} />, document.getElementById('root'));

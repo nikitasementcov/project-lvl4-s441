@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import gon from 'gon';
+import { Provider } from 'react-redux';
+import gon from 'gon';
 
+import buildStore from './store/storeFactory';
 import App from './components/App/App.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/application.css';
@@ -14,5 +16,11 @@ if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
 
-// const { channels } = gon;
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = buildStore(gon);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);

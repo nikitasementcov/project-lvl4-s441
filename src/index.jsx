@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import gon from 'gon';
 
-import App from './components/app/App.jsx';
+import App from './components/App/App.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/application.css';
 

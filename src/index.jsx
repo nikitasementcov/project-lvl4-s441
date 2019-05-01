@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import gon from 'gon';
+// import gon from 'gon';
 
 import App from './components/app/App';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,5 +14,5 @@ if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
 
-const { channels } = gon;
-ReactDOM.render(<App channels={channels} />, document.getElementById('root'));
+// const { channels } = gon;
+ReactDOM.render(<App />, document.getElementById('root'));

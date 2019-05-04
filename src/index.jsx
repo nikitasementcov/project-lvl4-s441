@@ -6,6 +6,7 @@ import gon from 'gon';
 import buildStore from './store/storeFactory';
 import App from './components/App/App.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 import '../assets/application.css';
 
 // import faker from 'faker';

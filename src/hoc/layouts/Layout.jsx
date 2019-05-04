@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 export default function Layout({ component: Component, route, ...props }) {
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-faded">
+      <nav className="header navbar navbar-expand-lg navbar-light bg-faded border-bottom">
         <NavLink className="navbar-brand" to="/">
           {'Chat'}
         </NavLink>
@@ -27,10 +27,10 @@ export default function Layout({ component: Component, route, ...props }) {
           </ul>
         </div>
       </nav>
-      <div className="container-fluid">
+      <div className="main container-fluid">
         <Route route={route} render={() => <Component {...props} />} />
       </div>
-      <footer className="align-items-end">
+      <footer className="footer align-items-end">
         <div className="container-fluid">Footer</div>
       </footer>
     </>

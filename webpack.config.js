@@ -25,7 +25,7 @@ module.exports = {
       {
         test: /\.css$/,
         loader: 'css-loader',
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /assets/],
         query: {
           modules: true,
           localIdentName: '[name]__[local]___[hash:base64:5]',
@@ -33,7 +33,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        include: /node_modules/,
+        include: [/node_modules/, /assets/],
         use: ['css-loader'],
       },
     ],

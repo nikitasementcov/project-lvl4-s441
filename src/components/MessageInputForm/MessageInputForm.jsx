@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import cn from 'classnames';
+
+import styles from './messageInputForm.css';
 
 export default class MessageInputForm extends Component {
   constructor(props) {
@@ -7,6 +10,27 @@ export default class MessageInputForm extends Component {
   }
 
   render() {
-    return <div className="p-10 text-secondary">Form</div>;
+    const { className } = this.props;
+
+    return (
+      <div className={cn(className, { 'input-group': true, 'mb-3': true })}>
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Enter your message"
+        />
+        <div className="input-group-append">
+          <button
+            className={cn(styles.button, {
+              btn: true,
+              'btn-outline-secondary': true,
+            })}
+            type="button"
+          >
+            {'Send'}
+          </button>
+        </div>
+      </div>
+    );
   }
 }

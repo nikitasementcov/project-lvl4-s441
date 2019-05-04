@@ -14,9 +14,11 @@ class ChannelsList extends Component {
     const classes = cn(className);
     return (
       <div className={classes}>
-        <ul>
-          {_.map(channels.byId, ch => (
-            <li key={ch.id}>{ch.name}</li>
+        <ul className="list-group">
+          {_.map(channels.byId, channel => (
+            <li className="list-group-item" key={channel.id}>
+              {channel.name}
+            </li>
           ))}
         </ul>
       </div>

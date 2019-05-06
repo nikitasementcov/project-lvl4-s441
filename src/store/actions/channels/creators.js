@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions';
 
-export const createChannel = createAction('CHANNEL_CREATE');
-export const deleteChannel = createAction('CHANNEL_DELETE');
+export const createChannelRequest = createAction('CHANNEL_CREATE_REQUEST');
+export const createChannelSuccess = createAction('CHANNEL_CREATE_SUCCESS');
+export const createChannelFailure = createAction('CHANNEL_CREATE_FAILURE');

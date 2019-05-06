@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions';
 
-export const createMessage = createAction('MESSAGE_CREATE');
-export const removeMessage = createAction('MESSAGEK_REMOVE');
+export const createMessageRequest = createAction('MESSAGE_CREATE_REQUEST');
+export const createMessageSuccess = createAction('MESSAGE_CREATE_SUCCESS');
+export const createMessageFailure = createAction('MESSAGE_CREATE_FAILURE');

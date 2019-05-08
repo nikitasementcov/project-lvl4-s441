@@ -3,7 +3,7 @@ import cn from 'classnames';
 
 import ChannelsList from '../ChannelsList/ChannelsList';
 import MessagesList from '../MessagesList/MessagesList';
-import MessageInputForm from '../MessageInputForm/MessageInputForm';
+import MessageInput from '../MessageInput/MessageInput';
 
 import styles from './chat.css';
 
@@ -14,7 +14,7 @@ const Chat = () => {
       <MessagesList
         className={(styles.messages, { border: true, 'p-3': true })}
       />
-      <MessageInputForm className={styles.messageForm} />
+      <MessageInput classNames={styles.messageForm} />
     </div>
   );
 };

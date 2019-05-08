@@ -1,20 +1,30 @@
+/* eslint-disable import/no-mutable-exports */
+/* eslint-disable jsx-a11y/label-has-for */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
+import { Field, reduxForm } from 'redux-form';
 import cn from 'classnames';
 
 import styles from './messageInputForm.css';
 
-export default class MessageInputForm extends Component {
+@reduxForm({ form: 'message' })
+class MessageInputForm extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   render() {
-    const { className } = this.props;
+    const { handleSubmit, classNames } = this.props;
 
     return (
-      <div className={cn(className, { 'input-group': true, 'mb-3': true })}>
-        <input
+      <form
+        onSubmit={handleSubmit}
+        className={cn(classNames, { 'input-group': true })}
+      >
+        <Field
+          name="message"
+          component="input"
           type="text"
           className="form-control"
           placeholder="Enter your message"
@@ -25,12 +35,14 @@ export default class MessageInputForm extends Component {
               btn: true,
               'btn-outline-secondary': true,
             })}
-            type="button"
+            type="submit"
           >
             {'Send'}
           </button>
         </div>
-      </div>
+      </form>
     );
   }
 }
+
+export default MessageInputForm;

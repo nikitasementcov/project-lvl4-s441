@@ -2,20 +2,12 @@ import React, { Component } from 'react';
 import cn from 'classnames';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { createMessage } from '../../store/actions';
 
 const mapStateToProps = state => ({
   channels: state.domain.channels,
 });
 
-const mapDispatchToProps = dispatch => ({
-  createMessagee: (id, message) => dispatch(createMessage(id, message)),
-});
-
-@connect(
-  mapStateToProps,
-  mapDispatchToProps
-)
+@connect(mapStateToProps)
 class ChannelsList extends Component {
   render() {
     const { className, channels } = this.props;

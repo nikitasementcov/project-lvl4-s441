@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
+import { connect } from 'react-redux';
 
 import MessageInputForm from '../MessageInputForm/MessageInputForm';
+import { createMessage as createMessageAction } from '../../store/actions';
 
-class ContactPage extends Component {
+const mapDispatchToProps = dispatch => ({
+  createMessage: (channelId, message) =>
+    dispatch(createMessageAction(channelId, message)),
+});
+
+@connect(
+  null,
+  mapDispatchToProps
+)
+class MessageInput extends Component {
   handleSubmit = values => {
-    // print the form values to the console
-    console.log(values);
+    const { createMessage } = this.props;
+    createMessage(1, values.message);
   };
 
   render() {
@@ -20,4 +31,4 @@ class ContactPage extends Component {
   }
 }
 
-export default ContactPage;
+export default MessageInput;

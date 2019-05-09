@@ -14,4 +14,5 @@ export const createMessage = (channelId, message) => async dispatch => {
     dispatch(actions.createMessageFailure());
   }
 };
+
 export const removeMessage = () => {};

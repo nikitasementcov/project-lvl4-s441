@@ -13,8 +13,8 @@ export default handleActions(
       }
     ) {
       return {
-        byId: { ...state.byId, [id]: { message } },
-        allIds: { ...state.allIds, id },
+        byId: { ...state.byId, [id]: { id, message } },
+        allIds: [...state.allIds, id],
       };
     },
     [actions.messageReceived](
@@ -28,8 +28,8 @@ export default handleActions(
       }
     ) {
       return {
-        byId: { ...state.byId, [id]: { message } },
-        allIds: { ...state.allIds, id },
+        byId: { ...state.byId, [id]: { id, message } },
+        allIds: [...state.allIds, id],
       };
     },
   },

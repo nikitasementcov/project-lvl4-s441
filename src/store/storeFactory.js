@@ -20,7 +20,9 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const buildStore = gon => {
   const { channels } = gon;
-  const preloadedState = { domain: { channels: mapChannels(channels) } };
+  const preloadedState = {
+    domain: { channels: mapChannels(channels) },
+  };
   return createStore(
     rootReducer,
     preloadedState,

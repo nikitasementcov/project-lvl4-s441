@@ -3,11 +3,12 @@ import cn from 'classnames';
 import { connect } from 'react-redux';
 
 import MessageInputForm from '../MessageInputForm/MessageInputForm';
-import { createMessage as createMessageAction } from '../../store/actions';
+import { createMessage } from '../../store/actions';
+import { getUserName } from '../../cookies';
 
 const mapDispatchToProps = dispatch => ({
-  createMessage: (channelId, message) =>
-    dispatch(createMessageAction(channelId, message)),
+  handleMessageCreation: (channelId, message) =>
+    dispatch(createMessage(channelId, message)),
 });
 
 @connect(
@@ -16,8 +17,9 @@ const mapDispatchToProps = dispatch => ({
 )
 class MessageInput extends Component {
   handleSubmit = values => {
-    const { createMessage } = this.props;
-    createMessage(1, values.message);
+    const { handleMessageCreation } = this.props;
+    const message = { ...values, userName: getUserName() };
+    handleMessageCreation(1, message);
   };
 
   render() {

@@ -9,11 +9,11 @@ export default handleActions(
     [actions.createMessageSuccess](
       state,
       {
-        payload: { id, message },
+        payload: { id, message, ...rest },
       }
     ) {
       return {
-        byId: { ...state.byId, [id]: { id, message } },
+        byId: { ...state.byId, [id]: { id, message, ...rest } },
         allIds: [...state.allIds, id],
       };
     },
@@ -22,13 +22,13 @@ export default handleActions(
       {
         payload: {
           data: {
-            attributes: { id, message },
+            attributes: { id, message, ...rest },
           },
         },
       }
     ) {
       return {
-        byId: { ...state.byId, [id]: { id, message } },
+        byId: { ...state.byId, [id]: { id, message, ...rest } },
         allIds: [...state.allIds, id],
       };
     },

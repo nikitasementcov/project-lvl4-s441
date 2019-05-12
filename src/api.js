@@ -11,7 +11,7 @@ configAxios();
 
 const postMessage = (channelId, message) =>
   axios.post(`channels/${channelId}/messages`, {
-    data: { attributes: { message } },
+    data: { attributes: { ...message } },
   });
 
 export default postMessage;

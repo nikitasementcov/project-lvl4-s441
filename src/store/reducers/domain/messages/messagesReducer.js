@@ -6,17 +6,6 @@ const initialState = { byId: {}, allIds: [] };
 
 export default handleActions(
   {
-    [actions.createMessageSuccess](
-      state,
-      {
-        payload: { id, message, ...rest },
-      }
-    ) {
-      return {
-        byId: { ...state.byId, [id]: { id, message, ...rest } },
-        allIds: [...state.allIds, id],
-      };
-    },
     [actions.messageReceived](
       state,
       {
@@ -29,7 +18,7 @@ export default handleActions(
     ) {
       return {
         byId: { ...state.byId, [id]: { id, message, ...rest } },
-        allIds: [...state.allIds, id],
+        allIds: state.allIds.concat(id),
       };
     },
   },

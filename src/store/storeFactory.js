@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 
 import rootReducer from './reducers';
 
-export const mapChannels = channels => {
+export const mapItems = channels => {
   const defaultState = { byId: {}, allIds: [] };
   if (channels == null) return defaultState;
   return channels.reduce(
@@ -19,9 +19,9 @@ export const mapChannels = channels => {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const buildStore = gon => {
-  const { channels } = gon;
+  const { channels, messages } = gon;
   const preloadedState = {
-    domain: { channels: mapChannels(channels) },
+    domain: { channels: mapItems(channels), messages: mapItems(messages) },
   };
   return createStore(
     rootReducer,

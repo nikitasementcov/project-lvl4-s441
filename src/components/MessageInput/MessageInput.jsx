@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import MessageInputForm from '../MessageInputForm/MessageInputForm';
 import { createMessage } from '../../store/actions';
-import { getUserName } from '../../cookies';
+import UserContext from '../../userContext';
 
 const mapDispatchToProps = dispatch => ({
   handleMessageCreation: (channelId, message) =>
@@ -16,9 +16,12 @@ const mapDispatchToProps = dispatch => ({
   mapDispatchToProps
 )
 class MessageInput extends Component {
+  static contextType = UserContext;
+
   handleSubmit = values => {
+    const userName = this.context;
     const { handleMessageCreation } = this.props;
-    const message = { ...values, userName: getUserName() };
+    const message = { ...values, userName };
     handleMessageCreation(1, message);
   };
 
@@ -32,5 +35,4 @@ class MessageInput extends Component {
     );
   }
 }
-
 export default MessageInput;

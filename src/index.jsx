@@ -5,22 +5,22 @@ import { Provider } from 'react-redux';
 import gon from 'gon';
 import io from 'socket.io-client';
 
-import { setRandomUserName } from './cookies';
+import { setRandomUserName, getUserName } from './cookies';
 import buildStore from './store/storeFactory';
 import App from './components/App/App.jsx';
 import * as actions from './store/actions';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/application.css';
+import UserContext from './userContext';
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
 
 setRandomUserName();
-
 const store = buildStore(gon);
-
+const userName = getUserName();
 const socket = io();
 socket.on('newMessage', data => {
   const action = actions.messageReceived(data);
@@ -28,8 +28,10 @@ socket.on('newMessage', data => {
 });
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <UserContext.Provider value={userName}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </UserContext.Provider>,
   document.getElementById('root')
 );

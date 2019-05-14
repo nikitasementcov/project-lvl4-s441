@@ -20,6 +20,9 @@
 .messages {
   grid-row: 1;
   grid-column: 2;
+
+  max-height: 600px;
+  overflow: auto;
 }
 
 .messageForm {

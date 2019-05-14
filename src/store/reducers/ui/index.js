@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
-import channelsUIReducer from './channels/channelsUIReducer';
+import channels from './channels/channelsUIReducer';
+import messages from './messages/messagesUIReducer';
 
-export default combineReducers({ channelsUIReducer });
+export default combineReducers({ channels, messages });

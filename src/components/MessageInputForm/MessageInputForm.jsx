@@ -16,7 +16,7 @@ class MessageInputForm extends Component {
 
   render() {
     const { handleSubmit, classNames } = this.props;
-    const selfClassNames = 'input-group d-flex align-items-center';
+    const selfClassNames = 'input-group';
     return (
       <form onSubmit={handleSubmit} className={cn(classNames, selfClassNames)}>
         <Field
@@ -36,12 +36,6 @@ class MessageInputForm extends Component {
           >
             {'Send'}
           </button>
-        </div>
-        <div
-          className="spinner-border spinner-border-sm text-dark mx-2"
-          role="status"
-        >
-          <span className="sr-only">Loading...</span>
         </div>
       </form>
     );

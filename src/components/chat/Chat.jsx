@@ -12,7 +12,7 @@ const Chat = () => {
     <div className={cn(styles.chat, 'my-3')}>
       <ChannelsList className={cn(styles.channels)} />
       <MessagesList
-        className={(styles.messages, { border: true, 'p-3': true })}
+        className={cn(styles.messages, { border: true, 'p-3': true })}
       />
       <MessageInput classNames={styles.messageForm} />
     </div>

@@ -19,9 +19,13 @@ export const mapItems = channels => {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const buildStore = gon => {
-  const { channels, messages } = gon;
+  const { channels, messages, currentChannelId } = gon;
   const preloadedState = {
-    domain: { channels: mapItems(channels), messages: mapItems(messages) },
+    domain: {
+      channels: mapItems(channels),
+      messages: mapItems(messages),
+    },
+    app: { currentChannelId },
   };
   return createStore(
     rootReducer,

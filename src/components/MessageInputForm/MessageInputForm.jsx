@@ -1,6 +1,3 @@
-/* eslint-disable import/no-mutable-exports */
-/* eslint-disable jsx-a11y/label-has-for */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import cn from 'classnames';
@@ -17,6 +14,7 @@ class MessageInputForm extends Component {
   render() {
     const { handleSubmit, classNames } = this.props;
     const selfClassNames = 'input-group';
+
     return (
       <form onSubmit={handleSubmit} className={cn(classNames, selfClassNames)}>
         <Field

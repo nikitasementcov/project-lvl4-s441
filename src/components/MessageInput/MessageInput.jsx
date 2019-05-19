@@ -8,6 +8,7 @@ import UserContext from '../../userContext';
 
 const mapStateToProps = state => ({
   newMessageLoading: state.ui.messages.newMessageLoading,
+  currentChannelId: state.app.currentChannelId,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -24,9 +25,9 @@ class MessageInput extends Component {
 
   handleSubmit = values => {
     const userName = this.context;
-    const { handleMessageCreation } = this.props;
+    const { handleMessageCreation, currentChannelId } = this.props;
     const message = { ...values, userName };
-    handleMessageCreation(1, message);
+    handleMessageCreation(currentChannelId, message);
   };
 
   render() {

@@ -5,6 +5,7 @@ import cn from 'classnames';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { changeChannel as changeChannelAction } from '../../store/actions';
+import ChannelCreationForm from '../ChannelCreationForm/ChannelCreationForm';
 
 const mapStateToProps = state => ({
   channels: state.domain.channels,
@@ -45,6 +46,7 @@ class ChannelsList extends Component {
             </li>
           ))}
         </ul>
+        <ChannelCreationForm />
       </div>
     );
   }

@@ -22,8 +22,14 @@ setRandomUserName();
 const store = buildStore(gon);
 const userName = getUserName();
 const socket = io();
+
 socket.on('newMessage', data => {
   const action = actions.messageReceived(data);
+  store.dispatch(action);
+});
+
+socket.on('newChannel', data => {
+  const action = actions.channelReceived(data);
   store.dispatch(action);
 });
 

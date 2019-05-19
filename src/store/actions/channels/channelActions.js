@@ -1,6 +1,20 @@
 import * as actions from './creators';
+import { postChannel } from '../../../api';
 
-export const createChannel = () => {};
+export const createChannel = name => async dispatch => {
+  dispatch(actions.createChannelRequest(name));
+  try {
+    dispatch(actions.createChannelSuccess);
+    const {
+      data: {
+        data: { attributes: channel },
+      },
+    } = await postChannel(name);
+    dispatch(actions.createChannelSuccess(channel));
+  } catch (e) {
+    dispatch(actions.createChannelFailure(e));
+  }
+};
 
 export const removeChannel = () => {};
 

@@ -9,9 +9,11 @@ function configAxios() {
 
 configAxios();
 
-const postMessage = (channelId, message) =>
+export const postMessage = (channelId, message) =>
   axios.post(`channels/${channelId}/messages`, {
     data: { attributes: { ...message } },
   });
 
-export default postMessage;
+export const postChannel = name => {
+  axios.post('channels', { data: { attributes: { name } } });
+};

@@ -11,7 +11,7 @@ import App from './components/App/App.jsx';
 import * as actions from './store/actions';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../assets/application.css';
+import '../assets/css/application.css';
 import UserContext from './userContext';
 
 if (process.env.NODE_ENV !== 'production') {

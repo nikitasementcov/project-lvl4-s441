@@ -1,5 +1,5 @@
 import * as actions from './creators';
-import { postChannel } from '../../../api';
+import { postChannel } from '../../api';
 
 export const createChannel = name => async dispatch => {
   dispatch(actions.createChannelRequest(name));

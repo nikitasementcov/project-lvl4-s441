@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { connect } from 'react-redux';
 
 import MessageInputForm from '../MessageInputForm/MessageInputForm';
-import { createMessage } from '../../store/actions';
+import { createMessage } from '../../actions';
 import UserContext from '../../userContext';
 
 const mapStateToProps = state => ({

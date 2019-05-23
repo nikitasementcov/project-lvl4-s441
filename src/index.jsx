@@ -6,9 +6,9 @@ import gon from 'gon';
 import io from 'socket.io-client';
 
 import { setRandomUserName, getUserName } from './cookies';
-import buildStore from './store/storeFactory';
+import buildStore from './storeFactory';
 import App from './components/App/App.jsx';
-import * as actions from './store/actions';
+import * as actions from './actions';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/css/application.css';

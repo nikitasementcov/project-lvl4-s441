@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import Layout from './hoc/layouts/Layout';
 import Chat from './components/chat/Chat';
+import Layout from './components/Layout/Layout';
 
 const Routes = props => (
   <BrowserRouter>

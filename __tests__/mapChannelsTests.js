@@ -1,4 +1,4 @@
-import { mapItems } from '../src/store/storeFactory';
+import { mapItems } from '../src/storeFactory';
 
 const channels = [
   { id: 1, name: 'general', removable: false },

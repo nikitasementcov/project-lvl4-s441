@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import cn from 'classnames';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { changeChannel as changeChannelAction } from '../../store/actions';
+import { changeChannel as changeChannelAction } from '../../actions';
 import ChannelCreationForm from '../ChannelCreationForm/ChannelCreationForm';
 
 import TrashIcon from '../icons/TrashIcon';

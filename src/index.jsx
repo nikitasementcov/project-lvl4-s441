@@ -33,6 +33,16 @@ socket.on('newChannel', data => {
   store.dispatch(action);
 });
 
+socket.on('removeChannel', data => {
+  const action = actions.channelDeleted(data);
+  store.dispatch(action);
+});
+
+socket.on('renameChannel', data => {
+  const action = actions.channelUpdated(data);
+  store.dispatch(action);
+});
+
 ReactDOM.render(
   <UserContext.Provider value={userName}>
     <Provider store={store}>

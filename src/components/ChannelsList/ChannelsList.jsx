@@ -4,9 +4,12 @@ import React, { Component } from 'react';
 import cn from 'classnames';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { changeChannel as changeChannelAction } from '../../actions';
+import {
+  changeChannel as changeChannelAction,
+  deleteChannel as deleteChannelAction,
+  updateChannel as updateChannelAction,
+} from '../../actions';
 import ChannelCreationForm from '../ChannelCreationForm/ChannelCreationForm';
-
 import TrashIcon from '../icons/TrashIcon';
 import EditIcon from '../icons/EditIcon';
 
@@ -17,6 +20,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   changeChannel: id => dispatch(changeChannelAction(id)),
+  deleteChannel: id => dispatch(deleteChannelAction(id)),
+  updateChannel: id => dispatch(updateChannelAction(id)),
 });
 
 @connect(
@@ -28,6 +33,18 @@ class ChannelsList extends Component {
     const { changeChannel } = this.props;
     e.preventDefault();
     changeChannel(id);
+  };
+
+  handleChannelDeletion = id => e => {
+    const { deleteChannel } = this.props;
+    e.stopPropagation();
+    deleteChannel(id);
+  };
+
+  handleChannelUpdating = id => e => {
+    const { updateChannel } = this.props;
+    e.stopPropagation();
+    updateChannel(id);
   };
 
   render() {
@@ -46,8 +63,18 @@ class ChannelsList extends Component {
           onClick={this.handleChannelChange(channel.id)}
         >
           <span>{channel.name}</span>
-          <EditIcon fill={isActiveChannel ? '#fff' : null} />
-          <TrashIcon fill={isActiveChannel ? '#fff' : null} />
+          <button
+            type="button"
+            onClick={this.handleChannelUpdating(channel.id)}
+          >
+            <EditIcon fill={isActiveChannel ? '#fff' : null} />
+          </button>
+          <button
+            type="button"
+            onClick={this.handleChannelDeletion(channel.id)}
+          >
+            <TrashIcon fill={isActiveChannel ? '#fff' : null} />
+          </button>
         </li>
       );
     };

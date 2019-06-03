@@ -6,7 +6,7 @@ import gon from 'gon';
 import io from 'socket.io-client';
 
 import { setRandomUserName, getUserName } from './cookies';
-import buildStore from './storeFactory';
+import buildStore from './buildStore';
 import App from './components/App/App.jsx';
 import * as actions from './actions';
 

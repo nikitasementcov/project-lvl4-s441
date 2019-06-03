@@ -6,7 +6,7 @@ import gon from 'gon';
 import io from 'socket.io-client';
 
 import { setRandomUserName, getUserName } from './cookies';
-import buildStore from './storeFactory';
+import buildStore from './buildStore';
 import App from './components/App/App.jsx';
 import * as actions from './actions';
 
@@ -30,6 +30,16 @@ socket.on('newMessage', data => {
 
 socket.on('newChannel', data => {
   const action = actions.channelReceived(data);
+  store.dispatch(action);
+});
+
+socket.on('removeChannel', data => {
+  const action = actions.channelDeleted(data);
+  store.dispatch(action);
+});
+
+socket.on('renameChannel', data => {
+  const action = actions.channelUpdated(data);
   store.dispatch(action);
 });
 

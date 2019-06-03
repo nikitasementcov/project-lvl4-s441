@@ -17,3 +17,11 @@ export const postMessage = (channelId, message) =>
 export const postChannel = name => {
   axios.post('channels', { data: { attributes: { name } } });
 };
+
+export const deleteChannel = id => {
+  axios.delete(`channels/${id}`);
+};
+
+export const patchChannel = id => {
+  axios.patch(`channels/${id}`, { data: { attributes: { name: 'changed' } } });
+};

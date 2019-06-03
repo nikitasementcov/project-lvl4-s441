@@ -12,6 +12,12 @@ export default handleActions(
         currentChannelId: id,
       };
     },
+    [actions.channelDeleted](state) {
+      return {
+        ...state,
+        currentChannelId: state.defaultChannelId,
+      };
+    },
   },
   initialState
 );

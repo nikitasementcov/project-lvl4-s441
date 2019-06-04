@@ -18,6 +18,21 @@ export default handleActions(
         currentChannelId: state.defaultChannelId,
       };
     },
+    [actions.channelReceived](
+      state,
+      {
+        payload: {
+          data: {
+            attributes: { id },
+          },
+        },
+      }
+    ) {
+      return {
+        ...state,
+        currentChannelId: id,
+      };
+    },
   },
   initialState
 );

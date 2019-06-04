@@ -25,7 +25,11 @@ const buildStore = gon => {
       channels: mapItems(channels),
       messages: mapItems(messages),
     },
-    app: { currentChannelId, defaultChannelId: currentChannelId },
+    app: {
+      currentChannelId,
+      defaultChannelId: currentChannelId,
+      isConfirmModalShown: true,
+    },
   };
   return createStore(
     rootReducer,

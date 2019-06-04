@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router';
 import { NavLink } from 'react-router-dom';
+import ConfirmModal from '../ConfirmModal/ConfirmModal';
 
 export default function Layout({ component: Component, route, ...props }) {
   return (
@@ -30,6 +31,7 @@ export default function Layout({ component: Component, route, ...props }) {
       <div className="main container-fluid">
         <Route route={route} render={() => <Component {...props} />} />
       </div>
+      <ConfirmModal />
       <footer className="footer align-items-end">
         <div className="container-fluid">Footer</div>
       </footer>

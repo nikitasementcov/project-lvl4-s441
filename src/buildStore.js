@@ -26,9 +26,18 @@ const buildStore = gon => {
       messages: mapItems(messages),
     },
     app: {
-      currentChannelId,
-      defaultChannelId: currentChannelId,
-      isConfirmModalShown: true,
+      channels: {
+        currentChannelId,
+        defaultChannelId: currentChannelId,
+      },
+      confirmModal: {
+        isShown: false,
+        title: null,
+        body: null,
+        footer: null,
+        confirmActionType: null,
+        confirmActionPayload: null,
+      },
     },
   };
   return createStore(

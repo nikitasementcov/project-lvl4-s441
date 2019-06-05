@@ -7,7 +7,7 @@ import Message from '../Message/Message';
 
 const mapStateToProps = state => ({
   messages: state.domain.messages.byId, // TODO: selector
-  currentChannelId: state.app.currentChannelId,
+  currentChannelId: state.app.channels.currentChannelId,
 });
 
 @connect(mapStateToProps)

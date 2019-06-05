@@ -1,46 +1,51 @@
-import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import React, { Component } from 'react';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { connect } from 'react-redux';
 
-import { showConfirmModal, hideConfirmModal } from '../../actions';
+import { hideConfirmModal, confirm } from '../../actions';
 
 @connect(
   ({ app }) => ({
-    isConfirmModalShown: app.isConfirmModalShown,
+    isShown: app.confirmModal.isShown,
+    title: app.confirmModal.title,
+    body: app.confirmModal.body,
+    footer: app.confirmModal.footer,
+    confirmActionType: app.confirmModal.confirmActionType,
+    confirmActionPayload: app.confirmModal.confirmPayload,
   }),
   {
-    showConfirmModal,
     hideConfirmModal,
+    confirm,
   }
 )
-class ConfirmModal extends React.Component {
-  render = () => {
+class ConfirmModal extends Component {
+  render() {
     const {
-      isConfirmModalShown,
+      isShown,
       hideConfirmModal: hideHandler,
-      showConfirmModal: showHandler,
+      confirm: confirmHandler,
     } = this.props;
+
     return (
-      <Modal show={isConfirmModalShown} onHide={hideHandler} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          <p>Modal body text goes here.</p>
-        </Modal.Body>
-
-        <Modal.Footer>
-          <Button variant="secondary" onClick={hideHandler}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={showHandler}>
-            Save changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <div>
+        <Button color="danger" onClick={hideHandler}>
+          Label
+        </Button>
+        <Modal isOpen={isShown} toggle={hideHandler}>
+          <ModalHeader toggle={hideHandler}>Modal title</ModalHeader>
+          <ModalBody>Lorem</ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={confirmHandler}>
+              Do Something
+            </Button>
+            <Button color="secondary" onClick={hideHandler}>
+              Cancel
+            </Button>
+          </ModalFooter>
+        </Modal>
+      </div>
     );
-  };
+  }
 }
 
 export default ConfirmModal;

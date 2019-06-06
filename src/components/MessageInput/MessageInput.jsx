@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
 import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
 
-import MessageInputForm from '../MessageInputForm/MessageInputForm';
 import { createMessage } from '../../actions';
 import UserContext from '../../userContext';
+
+import styles from './messageInput.css';
 
 const mapStateToProps = state => ({
   newMessageLoading: state.ui.messages.newMessageLoading,
@@ -16,6 +18,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(createMessage(channelId, message)),
 });
 
+@reduxForm({ form: 'message' })
 @connect(
   mapStateToProps,
   mapDispatchToProps
@@ -24,11 +27,40 @@ class MessageInput extends Component {
   static contextType = UserContext;
 
   handleSubmit = values => {
+    const { handleMessageCreation, currentChannelId, reset } = this.props;
     const userName = this.context;
-    const { handleMessageCreation, currentChannelId } = this.props;
     const message = { ...values, userName };
-    handleMessageCreation(currentChannelId, message);
+    handleMessageCreation(currentChannelId, message).then(() => reset());
   };
+
+  renderForm() {
+    const { handleSubmit } = this.props;
+    return (
+      <form
+        onSubmit={handleSubmit(this.handleSubmit)}
+        className="input-group mb-3"
+      >
+        <Field
+          name="message"
+          component="input"
+          type="text"
+          className="form-control"
+          placeholder="Enter your message"
+        />
+        <div className="input-group-append">
+          <button
+            className={cn(styles.button, {
+              btn: true,
+              'btn-outline-secondary': true,
+            })}
+            type="submit"
+          >
+            {'Send'}
+          </button>
+        </div>
+      </form>
+    );
+  }
 
   render() {
     const { classNames, newMessageLoading } = this.props;
@@ -47,10 +79,7 @@ class MessageInput extends Component {
     const containerSelfClasses = 'd-flex align-items-center';
     return (
       <div className={cn(classNames, containerSelfClasses)}>
-        <MessageInputForm
-          onSubmit={this.handleSubmit}
-          className="input-group mb-3"
-        />
+        {this.renderForm()}
         {loader}
       </div>
     );

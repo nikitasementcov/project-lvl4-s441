@@ -10,7 +10,6 @@ In progress...
 * Loading indicator on channel updating and deletion
 * Fix initial state on channel update form
 * Validation of empty inputs
-* Join message form components
 * Fix styles
 * Use normalizer
 * Testing

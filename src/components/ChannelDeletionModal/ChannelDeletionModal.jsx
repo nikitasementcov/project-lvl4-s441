@@ -2,31 +2,35 @@ import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { connect } from 'react-redux';
 
-import { hideConfirmModal, deleteChannel } from '../../actions';
+import { hideChannelDeletionModal, deleteChannel } from '../../actions';
 
 @connect(
   ({ app }) => ({
-    isShown: app.confirmModal.isShown,
-    channelId: app.confirmModal.channelId,
+    isShown: app.channelDeletionModal.isShown,
+    channelId: app.channelDeletionModal.channelId,
   }),
   {
-    hideConfirmModal,
+    hideChannelDeletionModal,
     deleteChannel,
   }
 )
-class ConfirmModal extends Component {
+class ChannelDeletionModal extends Component {
   deleteChannelHandler = id => async e => {
     const {
       deleteChannel: deleteChannelAction,
-      hideConfirmModal: hideConfirmModalAction,
+      hideChannelDeletionModal: hideChannelDeletionModalAction,
     } = this.props;
     e.preventDefault();
     await deleteChannelAction(id);
-    hideConfirmModalAction();
+    hideChannelDeletionModalAction();
   };
 
   render() {
-    const { channelId, isShown, hideConfirmModal: hideHandler } = this.props;
+    const {
+      channelId,
+      isShown,
+      hideChannelDeletionModalAction: hideHandler,
+    } = this.props;
 
     return (
       <div>
@@ -50,4 +54,4 @@ class ConfirmModal extends Component {
   }
 }
 
-export default ConfirmModal;
+export default ChannelDeletionModal;

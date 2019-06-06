@@ -7,7 +7,7 @@ import _ from 'lodash';
 import {
   changeChannel as changeChannelAction,
   updateChannel as updateChannelAction,
-  showConfirmModal as showConfirmModalAction,
+  showChannelDeletionModal as showChannelDeletionModalAction,
 } from '../../actions';
 
 import ChannelCreationForm from '../ChannelCreationForm/ChannelCreationForm';
@@ -22,7 +22,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   changeChannel: id => dispatch(changeChannelAction(id)),
   updateChannel: id => dispatch(updateChannelAction(id)),
-  showConfirmModal: id => dispatch(showConfirmModalAction(id)),
+  showChannelDeletionModal: id => dispatch(showChannelDeletionModalAction(id)),
 });
 
 @connect(
@@ -37,9 +37,9 @@ class ChannelsList extends Component {
   };
 
   handleChannelDeletion = id => e => {
-    const { showConfirmModal } = this.props;
+    const { showChannelDeletionModal } = this.props;
     e.stopPropagation();
-    showConfirmModal(id);
+    showChannelDeletionModal(id);
   };
 
   handleChannelUpdating = id => e => {

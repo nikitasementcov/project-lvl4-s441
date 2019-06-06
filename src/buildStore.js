@@ -30,7 +30,7 @@ const buildStore = gon => {
         currentChannelId,
         defaultChannelId: currentChannelId,
       },
-      confirmModal: {
+      channelDeletionModal: {
         isShown: false,
         channelId: null,
       },

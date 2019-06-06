@@ -6,14 +6,14 @@ const initialState = {};
 
 export default handleActions(
   {
-    [actions.showConfirmModal](state, { payload: id }) {
+    [actions.showChannelDeletionModal](state, { payload: id }) {
       return {
         ...state,
         isShown: true,
         channelId: id,
       };
     },
-    [actions.hideConfirmModal](state) {
+    [actions.hideChannelDeletionModal](state) {
       return {
         ...state,
         isShown: false,

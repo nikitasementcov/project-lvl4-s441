@@ -1,5 +1,8 @@
 import { createAction } from 'redux-actions';
 
-export const showConfirmModal = createAction('CONFIRM_MODAL_SHOW');
-export const hideConfirmModal = createAction('CONFIRM_MODAL_HIDE');
-export const confirm = createAction('CONFIRM_MODAL_CONFIRM');
+export const showChannelDeletionModal = createAction(
+  'CHANNEL_DELETION_MODAL_SHOW'
+);
+export const hideChannelDeletionModal = createAction(
+  'CHANNEL_DELETION_MODAL_HIDE'
+);

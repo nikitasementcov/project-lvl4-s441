@@ -19,5 +19,5 @@ export const postChannel = name =>
 
 export const deleteChannel = id => axios.delete(`channels/${id}`);
 
-export const patchChannel = id =>
-  axios.patch(`channels/${id}`, { data: { attributes: { name: 'changed' } } });
+export const patchChannel = (id, { name }) =>
+  axios.patch(`channels/${id}`, { data: { attributes: { name } } });

@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { connect } from 'react-redux';
+import { reduxForm, Field } from 'redux-form';
 
 import {
   updateChannel as updateChannelAction,
   hideChannelEditingModal as hideChannelEditingModalAction,
 } from '../../actions';
 
+@reduxForm({ form: 'channelEditing', enableReinitialize: true })
 @connect(
   ({ app }) => ({
     isShown: app.channelEditingModal.isShown,
-    channelId: app.channelEditingModal.channelId,
-    channelName: app.channelEditingModal.channelName,
+    id: app.channelEditingModal.channelId,
+    name: app.channelEditingModal.channelName,
+    initialValues: { name: app.channelEditingModal.channelName },
   }),
   {
     updateChannelAction,
@@ -19,10 +22,9 @@ import {
   }
 )
 class ChannelEditingModal extends Component {
-  updateChannelHandler = id => async e => {
-    const { updateChannelAction: updateChannel } = this.props;
-    e.preventDefault();
-    await updateChannel(id);
+  handleSubmit = async ({ name }) => {
+    const { updateChannelAction: updateChannel, reset, id } = this.props;
+    await updateChannel(id, { name }).then(() => reset());
     this.hideModalHandler();
   };
 
@@ -34,7 +36,7 @@ class ChannelEditingModal extends Component {
   };
 
   render() {
-    const { isShown, channelId, channelName } = this.props;
+    const { isShown, name, handleSubmit } = this.props;
 
     return (
       <div>
@@ -42,22 +44,22 @@ class ChannelEditingModal extends Component {
           <ModalHeader toggle={this.hideModalHandler}>
             Channel Editing
           </ModalHeader>
-          <ModalBody>
-            Do you really want to update
-            {` '${channelName}' `}
-            channel?
-          </ModalBody>
-          <ModalFooter>
-            <Button
-              color="primary"
-              onClick={this.updateChannelHandler(channelId)}
-            >
-              Update
-            </Button>
-            <Button color="secondary" onClick={this.hideModalHandler}>
-              Cancel
-            </Button>
-          </ModalFooter>
+          <form onSubmit={handleSubmit(this.handleSubmit)}>
+            <ModalBody>
+              Do you really want to update
+              {` '${name}' `}
+              channel?
+              <Field name="name" component="input" type="text" />
+            </ModalBody>
+            <ModalFooter>
+              <Button color="primary" type="submit">
+                Update
+              </Button>
+              <Button color="secondary" onClick={this.hideModalHandler}>
+                Cancel
+              </Button>
+            </ModalFooter>
+          </form>
         </Modal>
       </div>
     );

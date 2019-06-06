@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import Chat from './components/chat/Chat';
+import Chat from './components/Chat/Chat';
 import Layout from './components/Layout/Layout';
 
 const Routes = props => (

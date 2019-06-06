@@ -32,11 +32,7 @@ const buildStore = gon => {
       },
       confirmModal: {
         isShown: false,
-        title: null,
-        body: null,
-        footer: null,
-        confirmActionType: null,
-        confirmActionPayload: null,
+        channelId: null,
       },
     },
   };

@@ -6,10 +6,11 @@ const initialState = {};
 
 export default handleActions(
   {
-    [actions.showConfirmModal](state) {
+    [actions.showConfirmModal](state, { payload: id }) {
       return {
         ...state,
         isShown: true,
+        channelId: id,
       };
     },
     [actions.hideConfirmModal](state) {

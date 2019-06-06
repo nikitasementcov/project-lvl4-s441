@@ -6,9 +6,8 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import {
   changeChannel as changeChannelAction,
-  deleteChannel as deleteChannelAction,
   updateChannel as updateChannelAction,
-  showConfirmModal,
+  showConfirmModal as showConfirmModalAction,
 } from '../../actions';
 
 import ChannelCreationForm from '../ChannelCreationForm/ChannelCreationForm';
@@ -22,9 +21,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   changeChannel: id => dispatch(changeChannelAction(id)),
-  deleteChannel: id => dispatch(deleteChannelAction(id)),
   updateChannel: id => dispatch(updateChannelAction(id)),
-  showConfirmModal: () => dispatch(showConfirmModal()),
+  showConfirmModal: id => dispatch(showConfirmModalAction(id)),
 });
 
 @connect(
@@ -39,13 +37,9 @@ class ChannelsList extends Component {
   };
 
   handleChannelDeletion = id => e => {
-    const {
-      deleteChannel,
-      showConfirmModal: showConfirmModalHandler,
-    } = this.props;
+    const { showConfirmModal } = this.props;
     e.stopPropagation();
-    showConfirmModalHandler();
-    // deleteChannel(id);
+    showConfirmModal(id);
   };
 
   handleChannelUpdating = id => e => {

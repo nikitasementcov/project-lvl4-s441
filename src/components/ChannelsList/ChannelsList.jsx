@@ -65,18 +65,22 @@ class ChannelsList extends Component {
           onClick={this.handleChannelChange(channel.id)}
         >
           <span>{channel.name}</span>
-          <button
-            type="button"
-            onClick={this.handleChannelUpdating(channel.id)}
-          >
-            <EditIcon fill={isActiveChannel ? '#fff' : null} />
-          </button>
-          <button
-            type="button"
-            onClick={this.handleChannelDeletion(channel.id, channel.name)}
-          >
-            <TrashIcon fill={isActiveChannel ? '#fff' : null} />
-          </button>
+          {channel.removable ? (
+            <>
+              <button
+                type="button"
+                onClick={this.handleChannelUpdating(channel.id)}
+              >
+                <EditIcon fill={isActiveChannel ? '#fff' : null} />
+              </button>
+              <button
+                type="button"
+                onClick={this.handleChannelDeletion(channel.id, channel.name)}
+              >
+                <TrashIcon fill={isActiveChannel ? '#fff' : null} />
+              </button>
+            </>
+          ) : null}
         </li>
       );
     };

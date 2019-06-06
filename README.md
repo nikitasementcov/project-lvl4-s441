@@ -4,3 +4,15 @@
 In progress...
 
 [Chat is here](https://react-chat-ddrgis.herokuapp.com/)
+
+### TODO:
+* Error handling
+* Loading indicator on channel updating and deletion
+* Fix initial state on channel update form
+* Validation of empty inputs
+* Join message form components
+* Fix styles
+* Use normalizer
+* Testing
+* Add second page or remove router
+* Clean up dependencies (and bootstrap CDN)

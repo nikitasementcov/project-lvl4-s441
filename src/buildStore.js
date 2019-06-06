@@ -35,6 +35,10 @@ const buildStore = gon => {
         channelId: null,
         channelName: null,
       },
+      alertModal: {
+        isShown: false,
+        message: null,
+      },
     },
   };
   return createStore(

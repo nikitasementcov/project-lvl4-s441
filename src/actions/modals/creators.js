@@ -6,3 +6,6 @@ export const showChannelDeletionModal = createAction(
 export const hideChannelDeletionModal = createAction(
   'CHANNEL_DELETION_MODAL_HIDE'
 );
+
+export const showAlertModal = createAction('ALERT_MODAL_SHOW');
+export const hideAlertModal = createAction('ALERT_MODAL_HIDE');

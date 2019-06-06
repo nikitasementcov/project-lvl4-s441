@@ -2,6 +2,7 @@ import React from 'react';
 import { Route } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import ChannelDeletionModal from '../ChannelDeletionModal/ChannelDeletionModal';
+import AlertModal from '../AlertModal/AlertModal';
 
 export default function Layout({ component: Component, route, ...props }) {
   return (
@@ -32,6 +33,7 @@ export default function Layout({ component: Component, route, ...props }) {
         <Route route={route} render={() => <Component {...props} />} />
       </div>
       <ChannelDeletionModal />
+      <AlertModal />
       <footer className="footer align-items-end">
         <div className="container-fluid">Footer</div>
       </footer>

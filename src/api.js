@@ -14,14 +14,10 @@ export const postMessage = (channelId, message) =>
     data: { attributes: { ...message } },
   });
 
-export const postChannel = name => {
+export const postChannel = name =>
   axios.post('channels', { data: { attributes: { name } } });
-};
 
-export const deleteChannel = id => {
-  axios.delete(`channels/${id}`);
-};
+export const deleteChannel = id => axios.delete(`channels/${id}`);
 
-export const patchChannel = id => {
-  axios.patch(`channels/${id}`, { data: { attributes: { name: 'changed' } } });
-};
+export const patchChannel = (id, { name }) =>
+  axios.patch(`channels/${id}`, { data: { attributes: { name } } });

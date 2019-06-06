@@ -6,22 +6,25 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import {
   changeChannel as changeChannelAction,
-  deleteChannel as deleteChannelAction,
-  updateChannel as updateChannelAction,
+  showChannelDeletionModal as showChannelDeletionModalAction,
+  showChannelEditingModal as showChannelEditingModalAction,
 } from '../../actions';
+
 import ChannelCreationForm from '../ChannelCreationForm/ChannelCreationForm';
 import TrashIcon from '../icons/TrashIcon';
 import EditIcon from '../icons/EditIcon';
 
 const mapStateToProps = state => ({
   channels: state.domain.channels,
-  currentChannelId: state.app.currentChannelId,
+  currentChannelId: state.app.channels.currentChannelId,
 });
 
 const mapDispatchToProps = dispatch => ({
   changeChannel: id => dispatch(changeChannelAction(id)),
-  deleteChannel: id => dispatch(deleteChannelAction(id)),
-  updateChannel: id => dispatch(updateChannelAction(id)),
+  showChannelDeletionModal: (id, channelName) =>
+    dispatch(showChannelDeletionModalAction({ id, channelName })),
+  showChannelEditingModal: (id, channelName) =>
+    dispatch(showChannelEditingModalAction({ id, channelName })),
 });
 
 @connect(
@@ -35,16 +38,16 @@ class ChannelsList extends Component {
     changeChannel(id);
   };
 
-  handleChannelDeletion = id => e => {
-    const { deleteChannel } = this.props;
+  handleChannelDeletion = (id, name) => e => {
+    const { showChannelDeletionModal } = this.props;
     e.stopPropagation();
-    deleteChannel(id);
+    showChannelDeletionModal(id, name);
   };
 
-  handleChannelUpdating = id => e => {
-    const { updateChannel } = this.props;
+  handleChannelUpdating = (id, name) => e => {
+    const { showChannelEditingModal } = this.props;
     e.stopPropagation();
-    updateChannel(id);
+    showChannelEditingModal(id, name);
   };
 
   render() {
@@ -63,18 +66,22 @@ class ChannelsList extends Component {
           onClick={this.handleChannelChange(channel.id)}
         >
           <span>{channel.name}</span>
-          <button
-            type="button"
-            onClick={this.handleChannelUpdating(channel.id)}
-          >
-            <EditIcon fill={isActiveChannel ? '#fff' : null} />
-          </button>
-          <button
-            type="button"
-            onClick={this.handleChannelDeletion(channel.id)}
-          >
-            <TrashIcon fill={isActiveChannel ? '#fff' : null} />
-          </button>
+          {channel.removable ? (
+            <>
+              <button
+                type="button"
+                onClick={this.handleChannelUpdating(channel.id, channel.name)}
+              >
+                <EditIcon fill={isActiveChannel ? '#fff' : null} />
+              </button>
+              <button
+                type="button"
+                onClick={this.handleChannelDeletion(channel.id, channel.name)}
+              >
+                <TrashIcon fill={isActiveChannel ? '#fff' : null} />
+              </button>
+            </>
+          ) : null}
         </li>
       );
     };

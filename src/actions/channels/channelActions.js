@@ -26,7 +26,7 @@ export const deleteChannel = id => async dispatch => {
     await deleteChannelRequest(id);
     dispatch(actions.deleteChannelSuccess(id));
   } catch (e) {
-    dispatch(actions.deleteChannelFailure(e));
+    dispatch(actions.deleteChannelFailure(e.message));
   }
 };
 
@@ -35,7 +35,7 @@ export const changeChannel = id => async dispatch => {
   try {
     dispatch(actions.changeChannelSuccess(id));
   } catch (e) {
-    dispatch(actions.changeChannelFailure());
+    dispatch(actions.changeChannelFailure(e));
   }
 };
 

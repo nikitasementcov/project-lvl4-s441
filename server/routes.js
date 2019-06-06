@@ -49,6 +49,10 @@ export default (router, io) => {
     })
     .delete('/channels/:id', ctx => {
       const channelId = Number(ctx.params.id);
+      const channel = state.channels.find(c => c.id === channelId);
+      if (channel && !channel.removable) {
+        throw new Error();
+      }
       state.channels = state.channels.filter(c => c.id !== channelId);
       state.messages = state.messages.filter(m => m.channelId !== channelId);
       ctx.status = 204;

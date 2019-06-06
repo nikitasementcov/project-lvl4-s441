@@ -6,6 +6,8 @@ import MessagesList from '../MessagesList/MessagesList';
 import MessageInput from '../MessageInput/MessageInput';
 
 import styles from './chat.css';
+import ChannelDeletionModal from '../ChannelDeletionModal/ChannelDeletionModal';
+import ChannelEditingModal from '../ChannelEditingModal/ChannelEditingModal';
 
 const Chat = () => {
   return (
@@ -15,6 +17,8 @@ const Chat = () => {
         className={cn(styles.messages, { border: true, 'p-3': true })}
       />
       <MessageInput classNames={styles.messageForm} />
+      <ChannelDeletionModal />
+      <ChannelEditingModal />
     </div>
   );
 };

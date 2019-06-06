@@ -15,3 +15,5 @@ In progress...
 * Testing
 * Add second page or remove router
 * Clean up dependencies (and bootstrap CDN)
+* Autoscrolling
+* Message dates

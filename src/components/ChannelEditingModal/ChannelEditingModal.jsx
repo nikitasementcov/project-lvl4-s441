@@ -37,7 +37,6 @@ class ChannelEditingModal extends Component {
 
   render() {
     const { isShown, name, handleSubmit } = this.props;
-
     return (
       <div>
         <Modal isOpen={isShown} toggle={this.hideModalHandler}>

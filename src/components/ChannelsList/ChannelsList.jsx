@@ -54,29 +54,29 @@ class ChannelsList extends Component {
     const { className, channels, currentChannelId } = this.props;
     const classes = cn(className);
 
-    const renderChannel = channel => {
-      const isActiveChannel = currentChannelId === channel.id;
+    const renderChannel = ({ id, name, removable }) => {
+      const isActiveChannel = currentChannelId === id;
       return (
         <li
           className={cn({
             'list-group-item': true,
             active: isActiveChannel,
           })}
-          key={channel.id}
-          onClick={this.handleChannelChange(channel.id)}
+          key={id}
+          onClick={this.handleChannelChange(id)}
         >
-          <span>{channel.name}</span>
-          {channel.removable ? (
+          <span>{name}</span>
+          {removable ? (
             <>
               <button
                 type="button"
-                onClick={this.handleChannelUpdating(channel.id, channel.name)}
+                onClick={this.handleChannelUpdating(id, name)}
               >
                 <EditIcon fill={isActiveChannel ? '#fff' : null} />
               </button>
               <button
                 type="button"
-                onClick={this.handleChannelDeletion(channel.id, channel.name)}
+                onClick={this.handleChannelDeletion(id, name)}
               >
                 <TrashIcon fill={isActiveChannel ? '#fff' : null} />
               </button>

@@ -2,37 +2,42 @@ import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { connect } from 'react-redux';
 
-import { hideChannelDeletionModal, deleteChannel } from '../../actions';
+import {
+  hideChannelDeletionModal as hideChannelDeletionModalAction,
+  deleteChannel as deleteChannelAction,
+} from '../../actions';
 
 @connect(
-  ({ app }) => ({
-    isShown: app.channelDeletionModal.isShown,
-    channelId: app.channelDeletionModal.channelId,
-    channelName: app.channelDeletionModal.channelName,
+  ({
+    app: {
+      channelDeletionModal: { isShown, channelId, channelName },
+    },
+  }) => ({
+    isShown,
+    channelId,
+    channelName,
   }),
   {
-    hideChannelDeletionModal,
-    deleteChannel,
+    hideChannelDeletionModalAction,
+    deleteChannelAction,
   }
 )
 class ChannelDeletionModal extends Component {
-  deleteChannelHandler = id => async e => {
-    const { deleteChannel: deleteChannelAction } = this.props;
-    e.preventDefault();
-    await deleteChannelAction(id);
+  deleteChannelHandler = id => async () => {
+    const { deleteChannelAction: deleteChannel } = this.props;
+    await deleteChannel(id);
     this.hideModalHandler();
   };
 
   hideModalHandler = () => {
     const {
-      hideChannelDeletionModal: hideChannelDeletionModalAction,
+      hideChannelDeletionModalAction: hideChannelDeletionModal,
     } = this.props;
-    hideChannelDeletionModalAction();
+    hideChannelDeletionModal();
   };
 
   render() {
     const { isShown, channelId, channelName } = this.props;
-
     return (
       <div>
         <Modal isOpen={isShown} toggle={this.hideModalHandler}>

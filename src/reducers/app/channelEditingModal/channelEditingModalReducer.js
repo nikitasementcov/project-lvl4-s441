@@ -2,7 +2,11 @@ import { handleActions } from 'redux-actions';
 
 import * as actions from '../../../actions/modals/creators';
 
-const initialState = {};
+const initialState = {
+  isShown: false,
+  channelId: null,
+  channelName: null,
+};
 
 export default handleActions(
   {

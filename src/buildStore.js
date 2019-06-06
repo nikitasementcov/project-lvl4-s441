@@ -30,20 +30,6 @@ const buildStore = gon => {
         currentChannelId,
         defaultChannelId: currentChannelId,
       },
-      channelDeletionModal: {
-        isShown: false,
-        channelId: null,
-        channelName: null,
-      },
-      alertModal: {
-        isShown: false,
-        message: null,
-      },
-      channelEditingModal: {
-        isShown: false,
-        channelId: null,
-        channelName: null,
-      },
     },
   };
   return createStore(

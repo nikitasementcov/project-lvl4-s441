@@ -33,6 +33,7 @@ const buildStore = gon => {
       channelDeletionModal: {
         isShown: false,
         channelId: null,
+        channelName: null,
       },
     },
   };

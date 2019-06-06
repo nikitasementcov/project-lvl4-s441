@@ -22,7 +22,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   changeChannel: id => dispatch(changeChannelAction(id)),
   updateChannel: id => dispatch(updateChannelAction(id)),
-  showChannelDeletionModal: id => dispatch(showChannelDeletionModalAction(id)),
+  showChannelDeletionModal: (id, channelName) =>
+    dispatch(showChannelDeletionModalAction({ id, channelName })),
 });
 
 @connect(
@@ -36,10 +37,10 @@ class ChannelsList extends Component {
     changeChannel(id);
   };
 
-  handleChannelDeletion = id => e => {
+  handleChannelDeletion = (id, name) => e => {
     const { showChannelDeletionModal } = this.props;
     e.stopPropagation();
-    showChannelDeletionModal(id);
+    showChannelDeletionModal(id, name);
   };
 
   handleChannelUpdating = id => e => {
@@ -72,7 +73,7 @@ class ChannelsList extends Component {
           </button>
           <button
             type="button"
-            onClick={this.handleChannelDeletion(channel.id)}
+            onClick={this.handleChannelDeletion(channel.id, channel.name)}
           >
             <TrashIcon fill={isActiveChannel ? '#fff' : null} />
           </button>

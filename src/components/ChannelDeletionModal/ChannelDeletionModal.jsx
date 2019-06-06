@@ -8,6 +8,7 @@ import { hideChannelDeletionModal, deleteChannel } from '../../actions';
   ({ app }) => ({
     isShown: app.channelDeletionModal.isShown,
     channelId: app.channelDeletionModal.channelId,
+    channelName: app.channelDeletionModal.channelName,
   }),
   {
     hideChannelDeletionModal,
@@ -16,27 +17,33 @@ import { hideChannelDeletionModal, deleteChannel } from '../../actions';
 )
 class ChannelDeletionModal extends Component {
   deleteChannelHandler = id => async e => {
-    const {
-      deleteChannel: deleteChannelAction,
-      hideChannelDeletionModal: hideChannelDeletionModalAction,
-    } = this.props;
+    const { deleteChannel: deleteChannelAction } = this.props;
     e.preventDefault();
     await deleteChannelAction(id);
+    this.hideModalHandler();
+  };
+
+  hideModalHandler = () => {
+    const {
+      hideChannelDeletionModal: hideChannelDeletionModalAction,
+    } = this.props;
     hideChannelDeletionModalAction();
   };
 
   render() {
-    const {
-      channelId,
-      isShown,
-      hideChannelDeletionModalAction: hideHandler,
-    } = this.props;
+    const { isShown, channelId, channelName } = this.props;
 
     return (
       <div>
-        <Modal isOpen={isShown} toggle={hideHandler}>
-          <ModalHeader toggle={hideHandler}>Modal title</ModalHeader>
-          <ModalBody>Lorem</ModalBody>
+        <Modal isOpen={isShown} toggle={this.hideModalHandler}>
+          <ModalHeader toggle={this.hideModalHandler}>
+            Channel Deletion
+          </ModalHeader>
+          <ModalBody>
+            Do you really want to delete
+            {` '${channelName}' `}
+            channel?
+          </ModalBody>
           <ModalFooter>
             <Button
               color="primary"
@@ -44,7 +51,7 @@ class ChannelDeletionModal extends Component {
             >
               Delete
             </Button>
-            <Button color="secondary" onClick={hideHandler}>
+            <Button color="secondary" onClick={this.hideModalHandler}>
               Cancel
             </Button>
           </ModalFooter>

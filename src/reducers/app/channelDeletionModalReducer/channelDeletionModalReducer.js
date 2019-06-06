@@ -6,11 +6,17 @@ const initialState = {};
 
 export default handleActions(
   {
-    [actions.showChannelDeletionModal](state, { payload: id }) {
+    [actions.showChannelDeletionModal](
+      state,
+      {
+        payload: { id, channelName },
+      }
+    ) {
       return {
         ...state,
         isShown: true,
         channelId: id,
+        channelName,
       };
     },
     [actions.hideChannelDeletionModal](state) {

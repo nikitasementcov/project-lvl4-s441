@@ -9,3 +9,10 @@ export const hideChannelDeletionModal = createAction(
 
 export const showAlertModal = createAction('ALERT_MODAL_SHOW');
 export const hideAlertModal = createAction('ALERT_MODAL_HIDE');
+
+export const showChannelEditingModal = createAction(
+  'CHANNEL_EDITING_MODAL_SHOW'
+);
+export const hideChannelEditingModal = createAction(
+  'CHANNEL_EDITING_MODAL_HIDE'
+);

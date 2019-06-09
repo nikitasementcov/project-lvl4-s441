@@ -8,7 +8,6 @@ import {
   hideChannelEditingModal as hideChannelEditingModalAction,
 } from '../../actions';
 
-@reduxForm({ form: 'channelEditing', enableReinitialize: true })
 @connect(
   ({ app }) => ({
     isShown: app.channelEditingModal.isShown,
@@ -21,6 +20,7 @@ import {
     hideChannelEditingModalAction,
   }
 )
+@reduxForm({ form: 'channelEditing', enableReinitialize: true })
 class ChannelEditingModal extends Component {
   handleSubmit = async ({ name }) => {
     const { updateChannelAction: updateChannel, reset, id } = this.props;

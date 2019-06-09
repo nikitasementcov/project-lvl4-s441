@@ -16,4 +16,3 @@ In progress...
 * Clean up dependencies (and bootstrap CDN)
 * Auto scrolling
 * Message dates
-* Use .env and webpack.DefinePlugin instead of config.js

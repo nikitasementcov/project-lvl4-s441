@@ -29,7 +29,7 @@ export default () => {
   // app.use(serve(path.join(__dirname, '..', 'public')));
   if (isDevelopment) {
     koaWebpack({
-      config: webpackConfig,
+      config: webpackConfig(),
     }).then(middleware => {
       app.use(middleware);
     });

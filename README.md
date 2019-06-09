@@ -8,7 +8,6 @@ In progress...
 ### TODO:
 * Error handling
 * Loading indicator on channel updating and deletion
-* Fix initial state on channel update form
 * Validation of empty inputs
 * Fix styles
 * Use normalizer

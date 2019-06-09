@@ -15,5 +15,6 @@ In progress...
 * Testing
 * Add second page or remove router
 * Clean up dependencies (and bootstrap CDN)
-* Autoscrolling
+* Auto scrolling
 * Message dates
+* Use .env and webpack.DefinePlugin instead of config.js

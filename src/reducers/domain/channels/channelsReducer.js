@@ -14,7 +14,7 @@ export default handleActions(
             attributes: { id, name, ...rest },
           },
         },
-      }
+      },
     ) {
       return {
         byId: { ...state.byId, [id]: { id, name, ...rest } },
@@ -27,7 +27,7 @@ export default handleActions(
         payload: {
           data: { id },
         },
-      }
+      },
     ) {
       return {
         byId: update(state.byId, { $unset: [id] }),
@@ -42,7 +42,7 @@ export default handleActions(
             attributes: { id, name, ...rest },
           },
         },
-      }
+      },
     ) {
       return {
         byId: update(state.byId, { [id]: { $set: { id, name, ...rest } } }),
@@ -50,5 +50,5 @@ export default handleActions(
       };
     },
   },
-  initialState
+  initialState,
 );

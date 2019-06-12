@@ -5,4 +5,9 @@ import domain from './domain';
 import ui from './ui';
 import app from './app';
 
-export default combineReducers({ domain, ui, app, form: formReducer });
+export default combineReducers({
+  domain,
+  ui,
+  app,
+  form: formReducer,
+});

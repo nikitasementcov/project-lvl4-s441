@@ -26,7 +26,7 @@ export default handleActions(
             attributes: { id },
           },
         },
-      }
+      },
     ) {
       return {
         ...state,
@@ -34,5 +34,5 @@ export default handleActions(
       };
     },
   },
-  initialState
+  initialState,
 );

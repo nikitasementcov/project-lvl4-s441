@@ -14,7 +14,7 @@ export default handleActions(
       state,
       {
         payload: { id, channelName },
-      }
+      },
     ) {
       return {
         ...state,
@@ -30,5 +30,5 @@ export default handleActions(
       };
     },
   },
-  initialState
+  initialState,
 );

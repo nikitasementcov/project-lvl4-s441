@@ -9,15 +9,12 @@ function configAxios() {
 
 configAxios();
 
-export const postMessage = (channelId, message) =>
-  axios.post(`channels/${channelId}/messages`, {
-    data: { attributes: { ...message } },
-  });
+export const postMessage = (channelId, message) => axios.post(`channels/${channelId}/messages`, {
+  data: { attributes: { ...message } },
+});
 
-export const postChannel = name =>
-  axios.post('channels', { data: { attributes: { name } } });
+export const postChannel = name => axios.post('channels', { data: { attributes: { name } } });
 
 export const deleteChannel = id => axios.delete(`channels/${id}`);
 
-export const patchChannel = (id, { name }) =>
-  axios.patch(`channels/${id}`, { data: { attributes: { name } } });
+export const patchChannel = (id, { name }) => axios.patch(`channels/${id}`, { data: { attributes: { name } } });

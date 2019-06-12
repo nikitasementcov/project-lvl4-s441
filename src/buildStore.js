@@ -11,7 +11,7 @@ export const mapItems = channels => {
       byId: { ...acc.byId, [current.id]: current },
       allIds: [...acc.allIds, current.id],
     }),
-    defaultState
+    defaultState,
   );
 };
 
@@ -35,7 +35,7 @@ const buildStore = gon => {
   return createStore(
     rootReducer,
     preloadedState,
-    composeEnhancers(applyMiddleware(thunk))
+    composeEnhancers(applyMiddleware(thunk)),
   );
 };
 

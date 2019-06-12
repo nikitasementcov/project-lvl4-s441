@@ -6,8 +6,5 @@ import ui from './ui';
 import app from './app';
 
 export default combineReducers({
-  domain,
-  ui,
-  app,
-  form: formReducer,
+  domain, ui, app, form: formReducer,
 });

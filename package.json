@@ -19,6 +19,17 @@
     "build": "npm run build-app && npm run build-server",
     "postinstall": "npm run build"
   },
+  "jest": {
+    "verbose": true,
+    "collectCoverage": true,
+    "notify": true,
+    "collectCoverageFrom": [
+      "src/**"
+    ],
+    "coverageReporters": [
+      "lcov"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ddrgis/project-lvl4-s441.git"

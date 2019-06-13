@@ -13,7 +13,7 @@
     "start": "npx nodemon --exec npx babel-node server/bin/slack.js",
     "test": "npx jest",
     "test-watch": "jest --watchAll",
-    "lint": "./node_modules/.bin/eslint ./src",
+    "lint": "npx eslint ./src",
     "build-server": "babel server --out-dir dist --source-maps inline --env production",
     "build-app": "npx webpack -p --env production",
     "build": "npm run build-app && npm run build-server",

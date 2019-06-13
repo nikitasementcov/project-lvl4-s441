@@ -15,6 +15,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
+  "plugins": ["react"],
   "rules": {
     "arrow-parens": ["error", "as-needed"]
   }

@@ -7,7 +7,7 @@
     "hexlet": "dist/bin/hexlet.js"
   },
   "engines": {
-    "node": "9"
+    "node": "10"
   },
   "scripts": {
     "start": "make start",

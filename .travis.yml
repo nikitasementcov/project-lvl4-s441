@@ -6,7 +6,9 @@ language: node_js
 node_js:
   - "8.10.0"
 # cache: npm
-before_install: if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
+before_install: 
+  - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
+  - npm install -g npx
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter

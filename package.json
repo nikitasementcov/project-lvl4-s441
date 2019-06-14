@@ -10,14 +10,14 @@
     "node": "9"
   },
   "scripts": {
-    "start": "npx nodemon --exec npx babel-node server/bin/slack.js",
-    "test": "npx jest",
-    "test-watch": "jest --watchAll",
-    "lint": "npx eslint ./src",
-    "build-server": "babel server --out-dir dist --source-maps inline --env production",
-    "build-app": "npx webpack -p --env production",
-    "build": "npm run build-app && npm run build-server",
-    "postinstall": "npm run build"
+    "start": "make start",
+    "test": "make test",
+    "test-watch": "make test-watch",
+    "lint": "make lint",
+    "build": "make build",
+    "build-server": "make build-server",
+    "build-app": "make build-app",
+    "postinstall": "make build"
   },
   "jest": {
     "verbose": true,

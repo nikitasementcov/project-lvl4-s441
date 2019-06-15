@@ -1,7 +1,7 @@
 import * as actions from './creators';
 import { postMessage } from '../../api';
 
-export const createMessage = (channelId, message) => async (dispatch) => {
+export const createMessage = (channelId, message) => async dispatch => {
   dispatch(actions.createMessageRequest());
   try {
     const {

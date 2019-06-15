@@ -18,7 +18,7 @@ export const mapItems = items => {
 // eslint-disable-next-line no-underscore-dangle
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const buildStore = gon => {
+const storeFactory = gon => {
   const { channels, messages, currentChannelId } = gon;
   const preloadedState = {
     domain: {
@@ -39,4 +39,4 @@ const buildStore = gon => {
   );
 };
 
-export default buildStore;
+export default storeFactory;

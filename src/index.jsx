@@ -6,7 +6,7 @@ import gon from 'gon';
 import io from 'socket.io-client';
 
 import { setRandomUserName, getUserName } from './cookies';
-import buildStore from './buildStore';
+import storeFactory from './storeFactory';
 import App from './components/App/App.jsx';
 import * as actions from './actions';
 
@@ -19,7 +19,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 setRandomUserName();
-const store = buildStore(gon);
+const store = storeFactory(gon);
 const userName = getUserName();
 const socket = io();
 

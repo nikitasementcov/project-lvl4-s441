@@ -3,10 +3,10 @@ import thunk from 'redux-thunk';
 
 import rootReducer from './reducers';
 
-export const mapItems = channels => {
+export const mapItems = items => {
   const defaultState = { byId: {}, allIds: [] };
-  if (channels == null) return defaultState;
-  return channels.reduce(
+  if (items == null) return defaultState;
+  return items.reduce(
     (acc, current) => ({
       byId: { ...acc.byId, [current.id]: current },
       allIds: [...acc.allIds, current.id],

@@ -15,7 +15,7 @@ export default handleActions(
             attributes: { id, message, ...rest },
           },
         },
-      },
+      }
     ) {
       return {
         byId: { ...state.byId, [id]: { id, message, ...rest } },
@@ -28,14 +28,14 @@ export default handleActions(
         payload: {
           data: { id },
         },
-      },
+      }
     ) {
       const byId = _.omitBy(state.byId, message => message.channelId === id);
       return {
         byId,
-        allIds: _.keys(byId),
+        allIds: _.keys(byId).map(Number),
       };
     },
   },
-  initialState,
+  initialState
 );

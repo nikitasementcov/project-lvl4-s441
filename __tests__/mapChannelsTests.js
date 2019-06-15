@@ -10,15 +10,6 @@ const messages = [
   { id: 2, name: 'message#2', removable: 'NS' },
 ];
 
-test('Should Return empty byId and allIds When empty array pass', () =>
-  expect(mapItems([])).toEqual({ byId: {}, allIds: [] }));
-
-test('Should Return empty byId and allIds When null pass', () =>
-  expect(mapItems(null)).toEqual({ byId: {}, allIds: [] }));
-
-test('Should Return empty byId and allIds When undefined pass', () =>
-  expect(mapItems()).toEqual({ byId: {}, allIds: [] }));
-
 test('Should Map channels to byId object', () => {
   const mappedChannels = mapItems(channels);
   expect.anything(mappedChannels.byId);
@@ -42,3 +33,12 @@ test('Should Map messages to byId object', () => {
     2: { id: 2, name: 'message#2', removable: 'NS' },
   });
 });
+
+test('Should Return empty byId and allIds When empty array pass', () =>
+  expect(mapItems([])).toEqual({ byId: {}, allIds: [] }));
+
+test('Should Return empty byId and allIds When null pass', () =>
+  expect(mapItems(null)).toEqual({ byId: {}, allIds: [] }));
+
+test('Should Return empty byId and allIds When undefined pass', () =>
+  expect(mapItems()).toEqual({ byId: {}, allIds: [] }));

@@ -7,7 +7,7 @@ import io from 'socket.io-client';
 
 import { setRandomUserName, getUserName } from './cookies';
 import storeFactory from './storeFactory';
-import App from './components/App/App.jsx';
+import App from './components/App/App';
 import * as actions from './actions';
 
 import 'bootstrap/dist/css/bootstrap.min.css';

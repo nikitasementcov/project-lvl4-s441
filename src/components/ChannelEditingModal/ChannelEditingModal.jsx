@@ -18,7 +18,7 @@ import {
   {
     updateChannelAction,
     hideChannelEditingModalAction,
-  }
+  },
 )
 @reduxForm({ form: 'channelEditing', enableReinitialize: true })
 class ChannelEditingModal extends Component {

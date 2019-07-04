@@ -2,6 +2,7 @@ import '@babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+// eslint-disable-next-line import/no-unresolved
 import gon from 'gon';
 import io from 'socket.io-client';
 
@@ -49,5 +50,5 @@ ReactDOM.render(
       <App />
     </Provider>
   </UserContext.Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );

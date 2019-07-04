@@ -18,7 +18,7 @@ import { hideAlertModal as hideAlertModalAction } from '../../actions';
   }),
   {
     hideAlertModalAction,
-  }
+  },
 )
 class AlertModal extends Component {
   hideModalHandler = () => {

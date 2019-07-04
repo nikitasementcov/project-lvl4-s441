@@ -19,9 +19,6 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    'arrow-parens': ['error', 'as-needed'],
     'react/prop-types': 'off',
-    'comma-dangle': 'off',
-    'implicit-arrow-linebreak': 'off',
   },
 };

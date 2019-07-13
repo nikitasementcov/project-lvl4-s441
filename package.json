@@ -88,8 +88,9 @@
     "socket.io-client": "^2.2.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.27.1",
-    "webpack-cli": "^3.1.2",
-
+    "webpack-cli": "^3.1.2"
+  },
+  "devDependencies": {
     "acorn": "^6.1.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
@@ -110,8 +111,5 @@
     "prettier": "^1.17.0",
     "react-test-renderer": "^16.8.6",
     "redux-devtools-extension": "^2.13.8"
-  },
-  "devDependencies": {
-
   }
 }

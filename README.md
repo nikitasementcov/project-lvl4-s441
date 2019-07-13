@@ -18,3 +18,4 @@ In progress...
 - Clean up dependencies (and bootstrap CDN)
 - Auto scrolling
 - Message dates
+- Fix heroku build (enable pruning of dev dependencies)

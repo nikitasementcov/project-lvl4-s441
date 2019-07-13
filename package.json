@@ -10,7 +10,8 @@
     "node": "10"
   },
   "scripts": {
-    "start": "./node_modules/.bin/nodemon --exec ./node_modules/.bin/babel-node server/bin/slack.js",
+    "start": "make start",
+    "heroku-start": "make heroku-start",
     "test": "make test",
     "test-watch": "make test-watch",
     "lint": "make lint",

@@ -14,7 +14,7 @@ start:
 	./node_modules/.bin/nodemon --exec ./node_modules/.bin/babel-node server/bin/slack.js
 
 heroku-start:
-	npx nodemon --exec npx babel-node server/bin/slack.js
+	npx babel-node server/bin/slack.js
 
 lint:
 	./node_modules/.bin/eslint ./src --ext .js,.jsx

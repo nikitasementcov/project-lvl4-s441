@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import gon from 'gon';
 import io from 'socket.io-client';
 
-import { trySetRandomUserName, getUserName } from './cookies';
+import { initRandomUserName, getUserName } from './cookies';
 import storeFactory from './storeFactory';
 import App from './components/App/App';
 import * as actions from './actions';
@@ -19,7 +19,7 @@ if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
 
-trySetRandomUserName();
+initRandomUserName();
 const store = storeFactory(gon);
 const userName = getUserName();
 const socket = io();

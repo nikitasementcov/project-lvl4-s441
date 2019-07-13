@@ -20,7 +20,7 @@ module.exports = () => {
       [`process.env.${variable}`]: JSON.stringify(fileEnvVars[variable]),
       ...acc,
     }),
-    {}
+    {},
   );
   return {
     mode,
@@ -49,16 +49,9 @@ module.exports = () => {
         {
           test: /\.css$/,
           loader: 'css-loader',
-          exclude: [/node_modules/, /assets/],
-          query: {
-            modules: true,
-            localIdentName: '[name]__[local]___[hash:base64:5]',
+          options: {
+            modules: false,
           },
-        },
-        {
-          test: /\.css$/,
-          include: [/node_modules/, /assets/],
-          use: ['css-loader'],
         },
       ],
     },

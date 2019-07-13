@@ -10,10 +10,10 @@ import { setRandomUserName, getUserName } from './cookies';
 import storeFactory from './storeFactory';
 import App from './components/App/App';
 import * as actions from './actions';
+import UserContext from './userContext';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/css/application.css';
-import UserContext from './userContext';
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';

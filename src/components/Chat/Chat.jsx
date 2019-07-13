@@ -1,21 +1,17 @@
 import React from 'react';
-import cn from 'classnames';
-
 import ChannelsList from '../ChannelsList/ChannelsList';
 import MessagesList from '../MessagesList/MessagesList';
 import MessageInput from '../MessageInput/MessageInput';
-
-import styles from './chat.css';
 import ChannelDeletionModal from '../ChannelDeletionModal/ChannelDeletionModal';
 import ChannelEditingModal from '../ChannelEditingModal/ChannelEditingModal';
 
+import './chat.css';
+
 const Chat = () => (
-  <div className={cn(styles.chat, 'my-3')}>
-    <ChannelsList className={cn(styles.channels)} />
-    <MessagesList
-      className={cn(styles.messages, { border: true, 'p-3': true })}
-    />
-    <MessageInput classNames={styles.messageForm} />
+  <div className="my-3 chat">
+    <ChannelsList className="channels" />
+    <MessagesList className="messages border p-3" />
+    <MessageInput classNames="messageForm" />
     <ChannelDeletionModal />
     <ChannelEditingModal />
   </div>

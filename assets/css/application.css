@@ -1,31 +1,12 @@
-html {
-  position: relative;
-  min-height: 100%;
+body {
+  padding-bottom: 60px;
 }
 
-#root {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.main {
-  flex-grow: 1;
-}
-
-.footer {
-  margin-top: auto;
+footer {
+  position: absolute;
+  bottom: 0;
   height: 60px;
-  line-height: 60px;
+  width: 100%;
+  padding-top: 20px;
   background-color: #f5f5f5;
-}
-
-.main,
-.footer,
-.header {
-  flex-shrink: 0;
-}
-
-.fade.in {
-  opacity: 1;
 }

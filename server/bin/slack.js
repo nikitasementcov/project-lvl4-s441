@@ -1,4 +1,4 @@
-import getApp from '..';
+import getApp from '../index';
 
 const port = process.env.PORT || 4000;
 // eslint-disable-next-line no-console

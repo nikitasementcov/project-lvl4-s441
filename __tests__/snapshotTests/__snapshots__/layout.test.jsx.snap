@@ -2,51 +2,53 @@
 
 exports[`renders correctly 1`] = `
 Array [
-  <nav
-    className="header navbar navbar-expand-lg navbar-light bg-faded border-bottom"
-  >
-    <a
-      aria-current="page"
-      className="navbar-brand active"
-      href="/"
-      onClick={[Function]}
-      style={Object {}}
+  <header>
+    <nav
+      className="header navbar navbar-expand-lg navbar-light bg-faded border-bottom"
     >
-      Chat
-    </a>
-    <button
-      className="navbar-toggler"
-      data-target="#navbarSupportedContent"
-      data-toggle="collapse"
-      type="button"
-    >
-      <span
-        className="navbar-toggler-icon"
-      />
-    </button>
-    <div
-      className="collapse navbar-collapse"
-    >
-      <ul
-        className="navbar-nav mr-auto"
+      <a
+        aria-current="page"
+        className="navbar-brand active"
+        href="/"
+        onClick={[Function]}
+        style={Object {}}
       >
-        <li
-          className="nav-item active"
+        Chat
+      </a>
+      <button
+        className="navbar-toggler"
+        data-target="#navbarSupportedContent"
+        data-toggle="collapse"
+        type="button"
+      >
+        <span
+          className="navbar-toggler-icon"
+        />
+      </button>
+      <div
+        className="collapse navbar-collapse"
+      >
+        <ul
+          className="navbar-nav mr-auto"
         >
-          <a
-            aria-current="page"
-            className="nav-link active"
-            href="/"
-            onClick={[Function]}
-            style={Object {}}
+          <li
+            className="nav-item active"
           >
-            Home
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>,
-  <div
+            <a
+              aria-current="page"
+              className="nav-link active"
+              href="/"
+              onClick={[Function]}
+              style={Object {}}
+            >
+              Home
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>,
+  <main
     className="main container-fluid"
   />,
   <div />,

@@ -1,7 +1,7 @@
 import { handleActions } from 'redux-actions';
 import _ from 'lodash';
 
-import * as actions from '../../../actions';
+import * as actions from '../actions';
 
 const initialState = { byId: {}, allIds: [] };
 

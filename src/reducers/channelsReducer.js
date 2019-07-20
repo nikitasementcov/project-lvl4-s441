@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 import update from 'immutability-helper';
-import * as actions from '../../../actions/channels/creators';
+import * as actions from '../actions/channels/creators';
 
 const initialState = { byId: {}, allIds: [] };
 

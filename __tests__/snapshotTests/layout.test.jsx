@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import { MemoryRouter } from 'react-router-dom';
 import Layout from '../../src/components/Layout';
 
-jest.mock('../../src/components/AlertModal/AlertModal', () => () => <div />);
+jest.mock('../../src/components/AlertModal', () => () => <div />);
 
 it('renders correctly', () => {
   const mockComponent = () => <></>;

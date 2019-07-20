@@ -11,7 +11,7 @@ export const mapItems = items => {
       byId: { ...acc.byId, [current.id]: current },
       allIds: [...acc.allIds, current.id],
     }),
-    defaultState
+    defaultState,
   );
 };
 
@@ -21,10 +21,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const storeFactory = gon => {
   const { channels, messages, currentChannelId } = gon;
   const preloadedState = {
-    domain: {
-      channels: mapItems(channels),
-      messages: mapItems(messages),
-    },
+    channels: mapItems(channels),
+    messages: mapItems(messages),
     app: {
       channels: {
         currentChannelId,
@@ -35,7 +33,7 @@ const storeFactory = gon => {
   return createStore(
     rootReducer,
     preloadedState,
-    composeEnhancers(applyMiddleware(thunk))
+    composeEnhancers(applyMiddleware(thunk)),
   );
 };
 

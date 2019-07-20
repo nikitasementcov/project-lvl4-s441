@@ -7,7 +7,7 @@ import { createMessage } from '../actions';
 import UserContext from '../userContext';
 
 const mapStateToProps = state => ({
-  newMessageLoading: state.ui.messages.newMessageLoading,
+  newMessageLoading: state.ui.newMessageLoading,
   currentChannelId: state.app.channels.currentChannelId,
 });
 

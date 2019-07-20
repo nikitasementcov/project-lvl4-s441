@@ -15,7 +15,7 @@ import TrashIcon from './icons/TrashIcon';
 import EditIcon from './icons/EditIcon';
 
 const mapStateToProps = state => ({
-  channels: state.domain.channels,
+  channels: state.channels,
   currentChannelId: state.app.channels.currentChannelId,
 });
 

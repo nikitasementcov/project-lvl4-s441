@@ -50,10 +50,8 @@ describe('mapItems function should map items from backend correctly', () => {
 describe('storeFactory should create store with backend data', () => {
   it('Should contains empty objects if there is no data from backend', () => {
     const emptyState = {
-      domain: {
-        channels: emptyStateObject,
-        messages: emptyStateObject,
-      },
+      channels: emptyStateObject,
+      messages: emptyStateObject,
     };
     const actualState = storeFactory.default({}).getState();
     expect(actualState).toMatchObject(emptyState);

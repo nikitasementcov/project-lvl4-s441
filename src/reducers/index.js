@@ -1,10 +1,15 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
-import domain from './domain';
-import ui from './ui';
+import ui from './uiReducer';
 import app from './app';
+import channels from './channelsReducer';
+import messages from './messagesReducer';
 
 export default combineReducers({
-  domain, ui, app, form: formReducer,
+  channels,
+  messages,
+  ui,
+  app,
+  form: formReducer,
 });

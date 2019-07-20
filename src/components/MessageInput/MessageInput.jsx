@@ -6,8 +6,6 @@ import { Field, reduxForm } from 'redux-form';
 import { createMessage } from '../../actions';
 import UserContext from '../../userContext';
 
-import styles from './messageInput.css';
-
 const mapStateToProps = state => ({
   newMessageLoading: state.ui.messages.newMessageLoading,
   currentChannelId: state.app.channels.currentChannelId,
@@ -21,7 +19,7 @@ const mapDispatchToProps = dispatch => ({
 @reduxForm({ form: 'message' })
 @connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )
 class MessageInput extends Component {
   static contextType = UserContext;
@@ -49,10 +47,7 @@ class MessageInput extends Component {
         />
         <div className="input-group-append">
           <button
-            className={cn(styles.button, {
-              btn: true,
-              'btn-outline-secondary': true,
-            })}
+            className="btn new-message-button btn-outline-secondary"
             type="submit"
           >
             {'Send'}

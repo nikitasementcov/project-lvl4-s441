@@ -34,9 +34,6 @@ export default function Layout({ component: Component, route, ...props }) {
         <Route route={route} render={() => <Component {...props} />} />
       </main>
       <AlertModal />
-      <footer className="footer align-items-end">
-        <div className="container-fluid">Footer</div>
-      </footer>
     </>
   );
 }

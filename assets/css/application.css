@@ -1,12 +1,32 @@
-body {
-  padding-bottom: 60px;
+.chat {
+  display: grid;
+  max-height: 90vh;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 8fr 1fr;
+  grid-template-areas:
+    'channels messages'
+    'channels messages'
+    'channels message-input';
+  grid-gap: 10px 10px;
 }
 
-footer {
-  position: absolute;
-  bottom: 0;
-  height: 60px;
-  width: 100%;
-  padding-top: 20px;
-  background-color: #f5f5f5;
+.channels {
+  grid-row: 1;
+  grid-column: 1;
+  overflow: auto;
+}
+
+.messages {
+  grid-row: 1 / 2;
+  grid-column: 2;
+  overflow: auto;
+}
+
+.messageForm {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.new-message-button {
+  max-height: 38px;
 }

@@ -1,12 +1,12 @@
 import '@babel/polyfill';
+// eslint-disable-next-line import/no-unresolved
+import gon from 'gon';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-// eslint-disable-next-line import/no-unresolved
-import gon from 'gon';
 import io from 'socket.io-client';
 
-import { initRandomUserName, getUserName } from './cookies';
+import { initRandomUserName, getCurrentUserName } from './userManager';
 import storeFactory from './storeFactory';
 import App from './components/App';
 import * as actions from './actions';
@@ -21,7 +21,8 @@ if (process.env.NODE_ENV !== 'production') {
 
 initRandomUserName();
 const store = storeFactory(gon);
-const userName = getUserName();
+const userName = getCurrentUserName();
+
 const socket = io();
 
 socket.on('newMessage', data => {

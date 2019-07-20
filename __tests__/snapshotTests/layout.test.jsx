@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { MemoryRouter } from 'react-router-dom';
-import Layout from '../../src/components/Layout/Layout';
+import Layout from '../../src/components/Layout';
 
 jest.mock('../../src/components/AlertModal/AlertModal', () => () => <div />);
 

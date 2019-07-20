@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import {
   hideChannelDeletionModal as hideChannelDeletionModalAction,
   deleteChannel as deleteChannelAction,
-} from '../../actions';
+} from '../actions';
 
 @connect(
   ({

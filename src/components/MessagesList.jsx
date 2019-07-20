@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
-import Message from '../Message/Message';
+import Message from './Message';
 
 const mapStateToProps = state => ({
   messages: state.domain.messages.byId, // TODO: selector

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router';
 import { NavLink } from 'react-router-dom';
-import AlertModal from '../AlertModal/AlertModal';
+import AlertModal from './AlertModal';
 
 export default function Layout({ component: Component, route, ...props }) {
   return (

@@ -6,7 +6,7 @@ import { reduxForm, Field } from 'redux-form';
 import {
   updateChannel as updateChannelAction,
   hideChannelEditingModal as hideChannelEditingModalAction,
-} from '../../actions';
+} from '../actions';
 
 @connect(
   ({ app }) => ({

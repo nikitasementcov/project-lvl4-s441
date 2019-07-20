@@ -8,11 +8,11 @@ import {
   changeChannel as changeChannelAction,
   showChannelDeletionModal as showChannelDeletionModalAction,
   showChannelEditingModal as showChannelEditingModalAction,
-} from '../../actions';
+} from '../actions';
 
-import ChannelCreationForm from '../ChannelCreationForm/ChannelCreationForm';
-import TrashIcon from '../icons/TrashIcon';
-import EditIcon from '../icons/EditIcon';
+import ChannelCreationForm from './ChannelCreationForm';
+import TrashIcon from './icons/TrashIcon';
+import EditIcon from './icons/EditIcon';
 
 const mapStateToProps = state => ({
   channels: state.domain.channels,

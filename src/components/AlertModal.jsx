@@ -9,7 +9,7 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 
-import { hideAlertModal as hideAlertModalAction } from '../../actions';
+import { hideAlertModal as hideAlertModalAction } from '../actions';
 
 @connect(
   ({ app }) => ({

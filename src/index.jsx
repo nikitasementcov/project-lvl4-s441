@@ -8,7 +8,7 @@ import io from 'socket.io-client';
 
 import { initRandomUserName, getUserName } from './cookies';
 import storeFactory from './storeFactory';
-import App from './components/App/App';
+import App from './components/App';
 import * as actions from './actions';
 import UserContext from './userContext';
 

@@ -9,8 +9,8 @@ import {
 
 @connect(
   ({
-    app: {
-      channelDeletionModal: { isShown, channelId, channelName },
+    modals: {
+      channelDeletion: { isShown, channelId, channelName },
     },
   }) => ({
     isShown,
@@ -20,7 +20,7 @@ import {
   {
     hideChannelDeletionModalAction,
     deleteChannelAction,
-  }
+  },
 )
 class ChannelDeletionModal extends Component {
   deleteChannelHandler = id => async () => {

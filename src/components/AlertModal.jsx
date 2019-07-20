@@ -12,9 +12,9 @@ import { connect } from 'react-redux';
 import { hideAlertModal as hideAlertModalAction } from '../actions';
 
 @connect(
-  ({ app }) => ({
-    isShown: app.alertModal.isShown,
-    message: app.alertModal.message,
+  ({ modals }) => ({
+    isShown: modals.alert.isShown,
+    message: modals.alert.message,
   }),
   {
     hideAlertModalAction,

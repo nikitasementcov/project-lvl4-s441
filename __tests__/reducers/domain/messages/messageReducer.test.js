@@ -1,4 +1,4 @@
-import messageReducer from '../../../../src/reducers/messagesReducer';
+import messageReducer from '../../../../src/reducers/messages';
 import * as creators from '../../../../src/actions/messages/creators';
 import { channelDeleted } from '../../../../src/actions/channels/creators';
 

@@ -24,10 +24,8 @@ const storeFactory = gon => {
     channels: mapItems(channels),
     messages: mapItems(messages),
     app: {
-      channels: {
-        currentChannelId,
-        defaultChannelId: currentChannelId,
-      },
+      currentChannelId,
+      defaultChannelId: currentChannelId,
     },
   };
   return createStore(

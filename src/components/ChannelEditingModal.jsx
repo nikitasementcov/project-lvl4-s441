@@ -9,11 +9,11 @@ import {
 } from '../actions';
 
 @connect(
-  ({ app }) => ({
-    isShown: app.channelEditingModal.isShown,
-    id: app.channelEditingModal.channelId,
-    name: app.channelEditingModal.channelName,
-    initialValues: { name: app.channelEditingModal.channelName },
+  ({ modals }) => ({
+    isShown: modals.channelEditing.isShown,
+    id: modals.channelEditing.channelId,
+    name: modals.channelEditing.channelName,
+    initialValues: { name: modals.channelEditing.channelName },
   }),
   {
     updateChannelAction,

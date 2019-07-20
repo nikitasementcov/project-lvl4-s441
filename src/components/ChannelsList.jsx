@@ -16,7 +16,7 @@ import EditIcon from './icons/EditIcon';
 
 const mapStateToProps = state => ({
   channels: state.channels,
-  currentChannelId: state.app.channels.currentChannelId,
+  currentChannelId: state.app.currentChannelId,
 });
 
 const mapDispatchToProps = dispatch => ({

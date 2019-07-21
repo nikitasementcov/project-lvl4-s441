@@ -14,7 +14,7 @@ In progress...
 - Fix styles
 - Use normalizer
 - Testing
-- Add second page or remove router
+- ~~Add second page or remove router~~
 - Clean up dependencies (and bootstrap CDN)
 - Auto scrolling
 - Fix heroku build (enable pruning of dev dependencies)

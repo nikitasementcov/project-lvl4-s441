@@ -1,16 +1,12 @@
 import React from 'react';
-import { Route } from 'react-router';
-import { NavLink } from 'react-router-dom';
 import AlertModal from './AlertModal';
 
-export default function Layout({ component: Component, route, ...props }) {
+export default function Layout({ component: Component, ...props }) {
   return (
     <>
       <header>
         <nav className="header navbar navbar-expand-lg navbar-light bg-faded border-bottom">
-          <NavLink className="navbar-brand" to="/">
-            {'Chat'}
-          </NavLink>
+          <div className="navbar-brand">React Chat</div>
           <button
             type="button"
             className="navbar-toggler"
@@ -19,19 +15,10 @@ export default function Layout({ component: Component, route, ...props }) {
           >
             <span className="navbar-toggler-icon" />
           </button>
-          <div className="collapse navbar-collapse">
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
-                <NavLink className="nav-link" to="/">
-                  {'Home'}
-                </NavLink>
-              </li>
-            </ul>
-          </div>
         </nav>
       </header>
       <main className="main container-fluid">
-        <Route route={route} render={() => <Component {...props} />} />
+        <Component {...props} />
       </main>
       <AlertModal />
     </>

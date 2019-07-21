@@ -6,15 +6,11 @@ Array [
     <nav
       className="header navbar navbar-expand-lg navbar-light bg-faded border-bottom"
     >
-      <a
-        aria-current="page"
-        className="navbar-brand active"
-        href="/"
-        onClick={[Function]}
-        style={Object {}}
+      <div
+        className="navbar-brand"
       >
-        Chat
-      </a>
+        React Chat
+      </div>
       <button
         className="navbar-toggler"
         data-target="#navbarSupportedContent"
@@ -25,27 +21,6 @@ Array [
           className="navbar-toggler-icon"
         />
       </button>
-      <div
-        className="collapse navbar-collapse"
-      >
-        <ul
-          className="navbar-nav mr-auto"
-        >
-          <li
-            className="nav-item active"
-          >
-            <a
-              aria-current="page"
-              className="nav-link active"
-              href="/"
-              onClick={[Function]}
-              style={Object {}}
-            >
-              Home
-            </a>
-          </li>
-        </ul>
-      </div>
     </nav>
   </header>,
   <main

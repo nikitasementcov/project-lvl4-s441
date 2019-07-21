@@ -47,10 +47,10 @@ class MessageInput extends Component {
         />
         <div className="input-group-append">
           <button
-            className="btn new-message-button btn-outline-secondary"
+            className="btn new-message-button btn-primary"
             type="submit"
           >
-            {'Send'}
+            Send
           </button>
         </div>
       </form>

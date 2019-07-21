@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import { Button, Form, Label } from 'reactstrap';
 
 import { addChannel } from '../actions/channels/channelActions';
 
@@ -11,7 +12,7 @@ const mapDispatchToProps = dispatch => ({
 @reduxForm({ form: 'channelCreation' })
 @connect(
   null,
-  mapDispatchToProps
+  mapDispatchToProps,
 )
 class ChannelCreationForm extends React.Component {
   handleSubmit = ({ name }) => {
@@ -22,10 +23,28 @@ class ChannelCreationForm extends React.Component {
   render() {
     const { handleSubmit } = this.props;
     return (
-      <form onSubmit={handleSubmit(this.handleSubmit)}>
-        <Field name="name" component="input" type="text" />
-        <button type="submit">Create</button>
-      </form>
+      <Form
+        inline
+        onSubmit={handleSubmit(this.handleSubmit)}
+        className="position-sticky"
+      >
+        <Label for="name">Create new channel:</Label>
+        <Field
+          name="name"
+          component="input"
+          type="text"
+          className="form-control w-100 my-2"
+          placeholder="Name"
+        />
+        <Button
+          outline
+          color="primary"
+          type="submit"
+          className="new-channel-button col-md-12 "
+        >
+          Create
+        </Button>
+      </Form>
     );
   }
 }

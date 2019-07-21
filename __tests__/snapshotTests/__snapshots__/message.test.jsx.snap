@@ -1,9 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<div>
-  name
-  : 
+<div
+  className="mb-1"
+>
+  <span
+    className="font-weight-bold"
+  >
+    name
+    : 
+  </span>
   hello
 </div>
 `;

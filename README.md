@@ -7,7 +7,6 @@ In progress...
 [Chat is here](https://react-chat-ddrgis.herokuapp.com/)
 
 ### TODO:
-
 - Error handling
 - Loading indicator on channel updating and deletion
 - Validation of empty inputs, validate max length of channel or make channel name cliping
@@ -15,10 +14,14 @@ In progress...
 - Testing (up to 80% coverage)
 - Clean up dependencies (and bootstrap CDN)
 - Auto scrolling
-- Move form of channel creation under the channel list, make scroll only for channel list
 - Fix heroku build (enable pruning of dev dependencies)
 - ~~Add second page or remove router~~
 - ~~Fix styles~~
+
+### TODO (Styles):
+- Move form of channel creation under the channel list, make scroll only for channel list
+- Align icons
+- Styles of modals
 
 ### Ideas:
 

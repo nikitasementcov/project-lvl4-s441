@@ -10,15 +10,17 @@ In progress...
 
 - Error handling
 - Loading indicator on channel updating and deletion
-- Validation of empty inputs
-- Fix styles
+- Validation of empty inputs, validate max length of channel or make channel name cliping
 - Use normalizer
-- Testing
-- ~~Add second page or remove router~~
+- Testing (up to 80% coverage)
 - Clean up dependencies (and bootstrap CDN)
 - Auto scrolling
+- Move form of channel creation under the channel list, make scroll only for channel list
 - Fix heroku build (enable pruning of dev dependencies)
+- ~~Add second page or remove router~~
+- ~~Fix styles~~
 
 ### Ideas:
+
 - Message dates
 - Authorization via Auth0

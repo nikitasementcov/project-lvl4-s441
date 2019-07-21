@@ -1,18 +1,15 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-
+import _ from 'lodash';
 import rootReducer from './reducers';
 
 export const mapItems = items => {
   const defaultState = { byId: {}, allIds: [] };
   if (items == null) return defaultState;
-  return items.reduce(
-    (acc, current) => ({
-      byId: { ...acc.byId, [current.id]: current },
-      allIds: [...acc.allIds, current.id],
-    }),
-    defaultState,
-  );
+  return {
+    byId: _.keyBy(items, 'id'),
+    allIds: items.map(item => item.id),
+  };
 };
 
 // eslint-disable-next-line no-underscore-dangle

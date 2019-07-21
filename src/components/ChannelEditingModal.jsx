@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 
 import {
-  updateChannel as updateChannelAction,
+  renameChannel as renameChannelAction,
   hideChannelEditingModal as hideChannelEditingModalAction,
 } from '../actions';
 
@@ -16,15 +16,15 @@ import {
     initialValues: { name: modals.channelEditing.channelName },
   }),
   {
-    updateChannelAction,
+    renameChannelAction,
     hideChannelEditingModalAction,
   },
 )
 @reduxForm({ form: 'channelEditing', enableReinitialize: true })
 class ChannelEditingModal extends Component {
   handleSubmit = async ({ name }) => {
-    const { updateChannelAction: updateChannel, reset, id } = this.props;
-    await updateChannel(id, { name }).then(() => reset());
+    const { renameChannelAction: renameChannel, reset, id } = this.props;
+    await renameChannel(id, { name }).then(() => reset());
     this.hideModalHandler();
   };
 

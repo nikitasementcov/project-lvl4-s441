@@ -1,5 +1,5 @@
 import * as actions from './creators';
-import { postMessage } from '../../api';
+import { addMessage } from '../../api';
 
 export const createMessage = (channelId, message) => async dispatch => {
   dispatch(actions.createMessageRequest());
@@ -8,7 +8,7 @@ export const createMessage = (channelId, message) => async dispatch => {
       data: {
         data: { attributes },
       },
-    } = await postMessage(channelId, message);
+    } = await addMessage(channelId, message);
     dispatch(actions.createMessageSuccess(attributes));
   } catch (e) {
     dispatch(actions.createMessageFailure());

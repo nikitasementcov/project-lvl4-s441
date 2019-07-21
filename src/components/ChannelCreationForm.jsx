@@ -2,10 +2,10 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 
-import { createChannel } from '../actions/channels/channelActions';
+import { addChannel } from '../actions/channels/channelActions';
 
 const mapDispatchToProps = dispatch => ({
-  handleChannelCreation: name => dispatch(createChannel(name)),
+  handleChannelCreation: name => dispatch(addChannel(name)),
 });
 
 @reduxForm({ form: 'channelCreation' })

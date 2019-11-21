@@ -17,19 +17,16 @@ const mapDispatchToProps = dispatch => ({
 });
 
 @reduxForm({ form: 'message' })
-@connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)
+@connect(mapStateToProps, mapDispatchToProps)
 class MessageInput extends Component {
-  static contextType = UserContext;
-
   handleSubmit = values => {
     const { handleMessageCreation, currentChannelId, reset } = this.props;
     const userName = this.context;
     const message = { ...values, userName };
     handleMessageCreation(currentChannelId, message).then(() => reset());
   };
+
+  static contextType = UserContext;
 
   renderForm() {
     const { handleSubmit } = this.props;
@@ -46,10 +43,7 @@ class MessageInput extends Component {
           placeholder="Enter your message"
         />
         <div className="input-group-append">
-          <button
-            className="btn new-message-button btn-primary"
-            type="submit"
-          >
+          <button className="btn new-message-button btn-primary" type="submit">
             Send
           </button>
         </div>
@@ -80,4 +74,5 @@ class MessageInput extends Component {
     );
   }
 }
+
 export default MessageInput;

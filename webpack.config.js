@@ -63,6 +63,6 @@ module.exports = () => {
         },
       ],
     },
-    plugins: [new webpack.DefinePlugin()],
+    plugins: [new webpack.DefinePlugin(dotEnvVariables)],
   };
 };

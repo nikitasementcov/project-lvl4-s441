@@ -18,6 +18,8 @@ import '../assets/css/application.css';
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
+
+console.log('env.API_URL:', process.env.API_URL);
 initRandomUserName();
 const store = storeFactory(gon);
 const userName = getCurrentUserName();

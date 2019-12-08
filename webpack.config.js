@@ -28,6 +28,7 @@ function getDotEnvVariables() {
   );
 }
 
+console.log('env.API_URL:', process.env.API_URL);
 module.exports = () => {
   const dotEnvVariables = getDotEnvVariables();
   return {

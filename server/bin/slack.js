@@ -2,4 +2,4 @@ import getApp from '..';
 
 const port = process.env.PORT || 4000;
 // eslint-disable-next-line no-console
-getApp().listen(port, () => console.log(`port: ${port}`));
+getApp().listen(port, () => console.log(`port: ${port}, API_URL: ${process.env.API_URL}`));

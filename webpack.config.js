@@ -1,29 +1,29 @@
 const webpack = require('webpack');
 const dotenv = require('dotenv');
-const fs = require('fs');
 const path = require('path');
 
-function getPathToEnvFile(mode) {
+const DEVELOPMENT_ENV_NAME = 'development';
+
+function getPathToEnvFile(environment) {
   const currentPath = path.join(__dirname);
-  const basePath = `${currentPath}/.env`;
-  const modePath = `${basePath}.${mode}`;
-  const finalPath = fs.existsSync(modePath) ? modePath : basePath;
-  return finalPath;
+  const productionPath = `${currentPath}/.env`
+  if (environment !== DEVELOPMENT_ENV_NAME) return productionPath;
+  return `${productionPath}.${environment}`;
 }
 
 module.exports = () => {
-  const mode = process.env.NODE_ENV || 'development';
-  const finalPath = getPathToEnvFile(mode);
-  const fileEnvVars = dotenv.config({ path: finalPath }).parsed;
-  const formattedEnvVars = Object.keys(fileEnvVars).reduce(
+  const environment = process.env.NODE_ENV || DEVELOPMENT_ENV_NAME;
+  const envFilePath = getPathToEnvFile(environment);
+  const envVars = dotenv.config({ path: envFilePath }).parsed;
+  const formattedEnvVars = Object.keys(envVars).reduce(
     (acc, variable) => ({
-      [`process.env.${variable}`]: JSON.stringify(fileEnvVars[variable]),
+      [`process.env.${variable}`]: JSON.stringify(envVars[variable]),
       ...acc,
     }),
     {},
   );
   return {
-    mode,
+    mode: environment,
     entry: [`${__dirname}/src/index.jsx`],
     externals: {
       gon: 'gon',

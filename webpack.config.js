@@ -1,27 +1,35 @@
 const webpack = require('webpack');
 const dotenv = require('dotenv');
 const path = require('path');
+const fs = require('fs');
 
 const DEVELOPMENT_ENV_NAME = 'development';
+const environment = process.env.NODE_ENV || DEVELOPMENT_ENV_NAME;
 
-function getPathToEnvFile(environment) {
+function getPathToEnvFile() {
   const currentPath = path.join(__dirname);
-  const productionPath = `${currentPath}/.env`
+  const productionPath = `${currentPath}/.env`;
   if (environment !== DEVELOPMENT_ENV_NAME) return productionPath;
   return `${productionPath}.${environment}`;
 }
 
-module.exports = () => {
-  const environment = process.env.NODE_ENV || DEVELOPMENT_ENV_NAME;
+function getDotEnvVariables() {
   const envFilePath = getPathToEnvFile(environment);
+  if (!fs.existsSync(envFilePath)) {
+    return {};
+  }
   const envVars = dotenv.config({ path: envFilePath }).parsed;
-  const formattedEnvVars = Object.keys(envVars).reduce(
+  return Object.keys(envVars).reduce(
     (acc, variable) => ({
       [`process.env.${variable}`]: JSON.stringify(envVars[variable]),
       ...acc,
     }),
     {},
   );
+}
+
+module.exports = () => {
+  const dotEnvVariables = getDotEnvVariables();
   return {
     mode: environment,
     entry: [`${__dirname}/src/index.jsx`],
@@ -55,6 +63,6 @@ module.exports = () => {
         },
       ],
     },
-    plugins: [new webpack.DefinePlugin(formattedEnvVars)],
+    plugins: [new webpack.DefinePlugin(dotEnvVariables)],
   };
 };

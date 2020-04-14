@@ -10,15 +10,12 @@
     "node": "10"
   },
   "scripts": {
-    "start": "make start",
-    "heroku-start": "make heroku-start",
-    "test": "make test",
-    "test-watch": "make test-watch",
-    "lint": "make lint",
-    "build": "make build",
-    "build-server": "make build-server",
-    "build-app": "make build-app",
-    "postinstall": "make build"
+    "test": "jest",
+    "build-server": "babel server --out-dir dist --source-maps inline && cp -r server/views dist/views",
+    "build-app": "npx webpack -p --env production",
+    "build": "npm run build-app && npm run build-server",
+    "start": "dist/bin/slack.js",
+    "postinstall": "npm run build"
   },
   "jest": {
     "verbose": true,
@@ -88,7 +85,8 @@
     "socket.io-client": "^2.3.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
   },
   "devDependencies": {
     "acorn": "^6.4.1",

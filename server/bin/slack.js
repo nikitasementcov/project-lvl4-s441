@@ -1,5 +1,9 @@
+#! /usr/bin/env node
+
 import getApp from '..';
 
-const port = process.env.PORT || 4000;
-// eslint-disable-next-line no-console
-getApp().listen(port, () => console.log(`port: ${port}, API_URL: ${process.env.API_URL}`));
+const port = process.env.PORT || 5000;
+const app = getApp({ port });
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Server has been started on ${port}`);
+});

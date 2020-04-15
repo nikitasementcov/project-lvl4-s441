@@ -82,7 +82,6 @@
     "webpack-dev-server": "^3.10.3"
   },
   "devDependencies": {
-    "acorn": "^6.4.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^23.6.0",
@@ -92,12 +91,8 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
-    "flow-bin": "^0.89.0",
-    "flow-typed": "^2.6.2",
-    "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
     "jest-cli": "^23.6.0",
-    "jest-css-modules": "^2.1.0",
     "nodemon": "^1.19.4",
     "prettier": "^1.19.1",
     "react-test-renderer": "^16.13.1",

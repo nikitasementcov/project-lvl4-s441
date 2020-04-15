@@ -1,6 +1,9 @@
 install:
 	npm install
 
+heroku-start:
+   heroku local -f Procfile.dev
+
 start:
 	heroku local -f Procfile.dev
 

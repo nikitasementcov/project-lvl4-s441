@@ -1,1 +1,2 @@
-web: make heroku-start
+web: make start-backend
+frontend: make start-frontend

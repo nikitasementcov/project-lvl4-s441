@@ -2,7 +2,7 @@ install:
 	npm install
 
 start:
-	heroku local -f Procfile.dev
+	heroku local -f Procfile
 
 start-backend:
 	npx nodemon --exec npx babel-node server/bin/slack.js

@@ -19,6 +19,7 @@ if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
 
+// eslint-disable-next-line no-console
 console.log('env.API_URL:', process.env.API_URL);
 initRandomUserName();
 const store = storeFactory(gon);

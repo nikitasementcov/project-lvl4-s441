@@ -26,9 +26,7 @@ exports[`renders correctly 1`] = `
   <main
     className="main container-fluid"
   >
-    <mockComponent
-      path="/"
-    />
+    <mockComponent />
   </main>
   <Component />
 </Fragment>

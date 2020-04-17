@@ -6,6 +6,6 @@ jest.mock('../../src/components/AlertModal', () => () => <div />);
 
 it('renders correctly', () => {
   const mockComponent = () => <></>;
-  const wrapper = shallow(<Layout path="/" component={mockComponent} />);
+  const wrapper = shallow(<Layout component={mockComponent} />);
   expect(wrapper).toMatchSnapshot();
 });

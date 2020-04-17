@@ -1,7 +1,7 @@
 import React from 'react';
 import AlertModal from './AlertModal';
 
-export default function Layout({ component: Component, ...props }) {
+export default function Layout({ component: Component }) {
   return (
     <>
       <header>
@@ -18,7 +18,7 @@ export default function Layout({ component: Component, ...props }) {
         </nav>
       </header>
       <main className="main container-fluid">
-        <Component {...props} />
+        <Component />
       </main>
       <AlertModal />
     </>

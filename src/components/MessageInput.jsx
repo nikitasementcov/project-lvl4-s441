@@ -27,8 +27,6 @@ class MessageInput extends Component {
     reset();
   };
 
-  static contextType = UserContext;
-
   renderForm() {
     const { handleSubmit } = this.props;
     return (
@@ -75,5 +73,7 @@ class MessageInput extends Component {
     );
   }
 }
+
+MessageInput.contextType = UserContext;
 
 export default MessageInput;

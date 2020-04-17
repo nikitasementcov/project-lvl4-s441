@@ -15,10 +15,11 @@ const mapDispatchToProps = dispatch => ({
   mapDispatchToProps,
 )
 class ChannelCreationForm extends React.Component {
-  handleSubmit = ({ name }) => {
+  handleSubmit = async ({ name }) => {
     const { handleChannelCreation, reset } = this.props;
-    handleChannelCreation(name).then(() => reset());
-  };
+    await handleChannelCreation(name);
+    reset();
+  }
 
   render() {
     const { handleSubmit } = this.props;

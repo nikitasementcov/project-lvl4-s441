@@ -24,7 +24,8 @@ import {
 class ChannelEditingModal extends Component {
   handleSubmit = async ({ name }) => {
     const { renameChannelAction: renameChannel, reset, id } = this.props;
-    await renameChannel(id, { name }).then(() => reset());
+    await renameChannel(id, { name });
+    reset();
     this.hideModalHandler();
   };
 

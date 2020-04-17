@@ -19,11 +19,12 @@ const mapDispatchToProps = dispatch => ({
 @reduxForm({ form: 'message' })
 @connect(mapStateToProps, mapDispatchToProps)
 class MessageInput extends Component {
-  handleSubmit = values => {
+  handleSubmit = async values => {
     const { handleMessageCreation, currentChannelId, reset } = this.props;
     const userName = this.context;
     const message = { ...values, userName };
-    handleMessageCreation(currentChannelId, message).then(() => reset());
+    await handleMessageCreation(currentChannelId, message);
+    reset();
   };
 
   static contextType = UserContext;

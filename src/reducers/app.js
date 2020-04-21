@@ -1,23 +1,15 @@
-import { handleActions } from 'redux-actions';
+import { createSlice } from '@reduxjs/toolkit';
 
-import * as actions from '../actions/channels/creators';
-
-const initialState = {};
-
-export default handleActions(
-  {
-    [actions.changeChannelSuccess](state, { payload: id }) {
-      return {
-        ...state,
-        currentChannelId: id,
-      };
-    },
-    [actions.channelDeleted](state) {
-      return {
-        ...state,
-        currentChannelId: state.defaultChannelId,
-      };
-    },
+export default createSlice({
+  name: 'app',
+  reducers: {
+    changeChannelSuccess: (state, { payload: id }) => ({
+      ...state,
+      currentChannelId: id,
+    }),
+    channelDeleted: state => ({
+      ...state,
+      currentChannelId: state.defaultChannelId,
+    }),
   },
-  initialState,
-);
+});

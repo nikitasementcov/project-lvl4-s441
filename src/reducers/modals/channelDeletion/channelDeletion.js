@@ -1,34 +1,22 @@
-import { handleActions } from 'redux-actions';
+import { createSlice } from '@reduxjs/toolkit';
 
-import * as actions from '../../../actions/modals/creators';
-
-const initialState = {
-  isShown: false,
-  channelId: null,
-  channelName: null,
-};
-
-export default handleActions(
-  {
-    [actions.showChannelDeletionModal](
-      state,
-      {
-        payload: { id, channelName },
-      },
-    ) {
-      return {
-        ...state,
-        isShown: true,
-        channelId: id,
-        channelName,
-      };
-    },
-    [actions.hideChannelDeletionModal](state) {
-      return {
-        ...state,
-        isShown: false,
-      };
-    },
+export default createSlice({
+  name: 'channelDeletion',
+  initialState: {
+    isShown: false,
+    channelId: null,
+    channelName: null,
   },
-  initialState,
-);
+  reducers: {
+    show: (state, { payload: { id, channelName } }) => ({
+      ...state,
+      isShown: true,
+      channelId: id,
+      channelName,
+    }),
+    hide: state => ({
+      ...state,
+      isShown: false,
+    }),
+  },
+});

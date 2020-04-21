@@ -1,24 +1,16 @@
-import { handleActions } from 'redux-actions';
-import * as actions from '../actions';
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  newMessageLoading: false,
-};
-
-export default handleActions(
-  {
-    [actions.createMessageRequest](state) {
-      return {
-        ...state,
-        newMessageLoading: true,
-      };
+export default createSlice({
+  name: 'ui',
+  initialState: {
+    newMessageLoading: false,
+  },
+  reducers: {
+    createMessageRequest: state => {
+      return { ...state, newMessageLoading: true };
     },
-    [actions.createMessageSuccess](state) {
-      return {
-        ...state,
-        newMessageLoading: false,
-      };
+    createMessageSuccess: state => {
+      return { ...state, newMessageLoading: false };
     },
   },
-  initialState,
-);
+});

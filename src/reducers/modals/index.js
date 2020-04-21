@@ -5,7 +5,7 @@ import channelEditing from './channelEditing/channelEditing';
 import alert from './alert/alert';
 
 export default combineReducers({
-  alert,
-  channelDeletion,
-  channelEditing,
+  alert: alert.reducer,
+  channelDeletion: channelDeletion.reducer,
+  channelEditing: channelEditing.reducer,
 });

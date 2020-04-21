@@ -1,12 +1,11 @@
-import { handleActions } from 'redux-actions';
+import { createSlice } from '@reduxjs/toolkit';
 import update from 'immutability-helper';
-import * as actions from '../actions/channels/creators';
 
-const initialState = { byId: {}, allIds: [] };
-
-export default handleActions(
-  {
-    [actions.channelReceived](
+export default createSlice({
+  name: 'channel',
+  initialState: { byId: {}, allIds: [] },
+  reducers: {
+    received: (
       state,
       {
         payload: {
@@ -15,26 +14,26 @@ export default handleActions(
           },
         },
       },
-    ) {
+    ) => {
       return {
         byId: { ...state.byId, [id]: { id, name, ...rest } },
         allIds: state.allIds.concat(id),
       };
     },
-    [actions.channelDeleted](
+    deleted: (
       state,
       {
         payload: {
           data: { id },
         },
       },
-    ) {
+    ) => {
       return {
         byId: update(state.byId, { $unset: [id] }),
         allIds: state.allIds.filter(channelId => channelId !== id),
       };
     },
-    [actions.channelUpdated](
+    updated: (
       state,
       {
         payload: {
@@ -43,12 +42,11 @@ export default handleActions(
           },
         },
       },
-    ) {
+    ) => {
       return {
         byId: update(state.byId, { [id]: { $set: { id, name, ...rest } } }),
         allIds: state.allIds,
       };
     },
   },
-  initialState,
-);
+});

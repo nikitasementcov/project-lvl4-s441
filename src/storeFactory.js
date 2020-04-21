@@ -1,5 +1,4 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
+import { configureStore } from '@reduxjs/toolkit';
 import _ from 'lodash';
 import rootReducer from './reducers';
 
@@ -12,9 +11,6 @@ export const mapItems = items => {
   };
 };
 
-// eslint-disable-next-line no-underscore-dangle
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
 const storeFactory = gon => {
   const { channels, messages, currentChannelId } = gon;
   const preloadedState = {
@@ -25,11 +21,10 @@ const storeFactory = gon => {
       defaultChannelId: currentChannelId,
     },
   };
-  return createStore(
-    rootReducer,
+  return configureStore({
+    reducer: rootReducer,
     preloadedState,
-    composeEnhancers(applyMiddleware(thunk)),
-  );
+  });
 };
 
 export default storeFactory;

@@ -7,10 +7,11 @@ import { Provider } from 'react-redux';
 import io from 'socket.io-client';
 
 import { initRandomUserName, getCurrentUserName } from './userManager';
-import storeFactory from './storeFactory';
+import storeFactory from './store/storeFactory';
 import App from './components/App';
-import * as actions from './actions';
 import UserContext from './userContext';
+import channels from './store/channels';
+import actions from './actions';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/css/application.css';
@@ -31,7 +32,7 @@ socket.on('newMessage', data => {
 });
 
 socket.on('newChannel', data => {
-  const action = actions.channelReceived(data);
+  const action = channels.actions.receive(data);
   store.dispatch(action);
 });
 

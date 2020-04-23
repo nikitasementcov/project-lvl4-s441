@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
-import channelSlice from './channels';
+import channelSlice from '../store/channels';
 
 export default createSlice({
   name: 'message',
@@ -21,7 +21,7 @@ export default createSlice({
     },
   },
   extraReducers: {
-    [channelSlice.actions.deleted]: (
+    [channelSlice.actions.delete]: (
       state,
       {
         payload: {

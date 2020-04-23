@@ -1,11 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import update from 'immutability-helper';
+import { addChannel as addChannelRequest } from '../api';
 
-export default createSlice({
+export const addChannel = createAsyncThunk('channel/addChannel', async name => {
+  const {
+    data: {
+      data: { attributes: channel },
+    },
+  } = await addChannelRequest(name);
+  return channel;
+});
+
+const channelsSlice = createSlice({
   name: 'channel',
   initialState: { byId: {}, allIds: [] },
   reducers: {
-    received: (
+    receive: (
       state,
       {
         payload: {
@@ -20,7 +30,7 @@ export default createSlice({
         allIds: state.allIds.concat(id),
       };
     },
-    deleted: (
+    delete: (
       state,
       {
         payload: {
@@ -33,7 +43,7 @@ export default createSlice({
         allIds: state.allIds.filter(channelId => channelId !== id),
       };
     },
-    updated: (
+    update: (
       state,
       {
         payload: {
@@ -50,3 +60,4 @@ export default createSlice({
     },
   },
 });
+export default channelsSlice;

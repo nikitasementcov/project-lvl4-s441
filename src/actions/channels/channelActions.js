@@ -6,24 +6,6 @@
 // } from '../../api';
 // import channelsSlice from '../../reducers/channels';
 //
-// export const addChannel = createAsyncThunk(actions.receive, async name => {
-//   const {
-//     data: {
-//       data: { attributes: channel },
-//     },
-//   } = await addChannelRequest(name);
-//   return channel;
-// });
-//
-// export const deleteChannel = id => async dispatch => {
-//   dispatch(actions.delete);
-//   try {
-//     await deleteChannelRequest(id);
-//     // dispatch(actions.deleteChannelSuccess(id));
-//   } catch (e) {
-//     // dispatch(actions.deleteChannelFailure(e.message));
-//   }
-// };
 //
 // export const changeChannel = id => async dispatch => {
 //   // dispatch(actions.changeChannelRequest);

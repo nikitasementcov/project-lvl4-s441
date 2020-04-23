@@ -15,6 +15,7 @@ import ChannelCreationForm from './ChannelCreationForm';
 import TrashIcon from './icons/TrashIcon';
 import EditIcon from './icons/EditIcon';
 import IconButton from './icons/IconButton';
+import { deleteChannel } from '../store/channels';
 
 const mapStateToProps = state => ({
   channels: state.channels,
@@ -27,12 +28,10 @@ const mapDispatchToProps = dispatch => ({
     dispatch(showChannelDeletionModalAction({ id, channelName })),
   showChannelEditingModal: (id, channelName) =>
     dispatch(showChannelEditingModalAction({ id, channelName })),
+  deleteChannelTEST: id => dispatch(deleteChannel(id)),
 });
 
-@connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)
+@connect(mapStateToProps, mapDispatchToProps)
 class ChannelsList extends Component {
   handleChannelChange = id => e => {
     const { changeChannel } = this.props;
@@ -41,9 +40,12 @@ class ChannelsList extends Component {
   };
 
   handleChannelDeletion = (id, name) => e => {
-    const { showChannelDeletionModal } = this.props;
+    const { deleteChannelTEST } = this.props;
     e.stopPropagation();
-    showChannelDeletionModal(id, name);
+    deleteChannelTEST(id);
+    // const { showChannelDeletionModal } = this.props;
+    //
+    // showChannelDeletionModal(id, name);
   };
 
   handleChannelUpdating = (id, name) => e => {

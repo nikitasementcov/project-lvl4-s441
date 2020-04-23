@@ -37,7 +37,7 @@ socket.on('newChannel', data => {
 });
 
 socket.on('removeChannel', data => {
-  const action = actions.channelDeleted(data);
+  const action = channels.actions.delete(data);
   store.dispatch(action);
 });
 

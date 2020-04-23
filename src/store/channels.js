@@ -1,15 +1,21 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import update from 'immutability-helper';
-import { addChannel as addChannelRequest } from '../api';
+import {
+  addChannel as addChannelRequest,
+  deleteChannel as deleteChannelRequest,
+} from '../api';
 
 export const addChannel = createAsyncThunk('channel/addChannel', async name => {
-  const {
-    data: {
-      data: { attributes: channel },
-    },
-  } = await addChannelRequest(name);
-  return channel;
+  await addChannelRequest(name);
 });
+
+export const deleteChannel = createAsyncThunk(
+  'channel/deleteChannel',
+  async id => {
+    await deleteChannelRequest(id);
+    return id;
+  },
+);
 
 const channelsSlice = createSlice({
   name: 'channel',
@@ -60,4 +66,5 @@ const channelsSlice = createSlice({
     },
   },
 });
+
 export default channelsSlice;

@@ -42,7 +42,7 @@ socket.on('removeChannel', data => {
 });
 
 socket.on('renameChannel', data => {
-  const action = actions.channelUpdated(data);
+  const action = channels.actions.update(data);
   store.dispatch(action);
 });
 

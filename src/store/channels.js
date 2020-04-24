@@ -3,6 +3,7 @@ import update from 'immutability-helper';
 import {
   addChannel as addChannelRequest,
   deleteChannel as deleteChannelRequest,
+  updateChannel as updateChannelRequest,
 } from '../api';
 
 export const addChannel = createAsyncThunk('channel/addChannel', async name => {
@@ -14,6 +15,14 @@ export const deleteChannel = createAsyncThunk(
   async id => {
     await deleteChannelRequest(id);
     return id;
+  },
+);
+
+export const updateChannel = createAsyncThunk(
+  'channel/renameChannel',
+  async ({ id, name }) => {
+    const { data: updatedChannel } = await updateChannelRequest(id, { name });
+    return updatedChannel;
   },
 );
 

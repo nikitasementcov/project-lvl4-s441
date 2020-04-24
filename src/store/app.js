@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { deleteChannel } from '../store/channels';
+import { deleteChannel } from './channels';
 
 export default createSlice({
   name: 'app',

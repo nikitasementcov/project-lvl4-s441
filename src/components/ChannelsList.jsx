@@ -15,7 +15,7 @@ import TrashIcon from './icons/TrashIcon';
 import EditIcon from './icons/EditIcon';
 import IconButton from './icons/IconButton';
 import { deleteChannel } from '../store/channels';
-import appSlice from '../reducers/app';
+import appSlice from '../store/app';
 
 const mapStateToProps = state => ({
   channels: state.channels,

@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import _ from 'lodash';
-import rootReducer from '../reducers';
+import rootReducer from './index';
 
 export const mapItems = items => {
   const defaultState = { byId: {}, allIds: [] };

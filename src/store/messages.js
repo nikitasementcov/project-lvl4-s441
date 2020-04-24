@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
-import channelSlice from '../store/channels';
+import channelSlice from './channels';
 
 export default createSlice({
   name: 'message',

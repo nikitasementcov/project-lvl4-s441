@@ -1,6 +1,20 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import _ from 'lodash';
-import rootReducer from './index';
+import { reducer as formReducer } from 'redux-form';
+import uiSlice from './ui';
+import appSlice from './app';
+import messagesSlice from './messages';
+import modalsReducer from './modals';
+import channelsSlice from './channels';
+
+const rootReducer = combineReducers({
+  channels: channelsSlice.reducer,
+  messages: messagesSlice.reducer,
+  ui: uiSlice.reducer,
+  app: appSlice.reducer,
+  modals: modalsReducer,
+  form: formReducer,
+});
 
 export const mapItems = items => {
   const defaultState = { byId: {}, allIds: [] };

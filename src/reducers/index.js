@@ -4,7 +4,7 @@ import { reducer as formReducer } from 'redux-form';
 import ui from './ui';
 import app from '../store/app';
 import messages from './messages';
-import modals from './modals';
+import modals from '../store/modals';
 import channels from '../store/channels';
 
 export default combineReducers({

@@ -5,17 +5,17 @@ import cn from 'classnames';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { Row, Col } from 'reactstrap';
+
 import {
-  changeChannel as changeChannelAction,
   showChannelDeletionModal as showChannelDeletionModalAction,
   showChannelEditingModal as showChannelEditingModalAction,
 } from '../actions';
-
 import ChannelCreationForm from './ChannelCreationForm';
 import TrashIcon from './icons/TrashIcon';
 import EditIcon from './icons/EditIcon';
 import IconButton from './icons/IconButton';
 import { deleteChannel } from '../store/channels';
+import appSlice from '../reducers/app';
 
 const mapStateToProps = state => ({
   channels: state.channels,
@@ -23,12 +23,13 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  changeChannel: id => dispatch(changeChannelAction(id)),
+  changeChannel: id => dispatch(appSlice.actions.changeChannel(id)),
   showChannelDeletionModal: (id, channelName) =>
     dispatch(showChannelDeletionModalAction({ id, channelName })),
   showChannelEditingModal: (id, channelName) =>
     dispatch(showChannelEditingModalAction({ id, channelName })),
-  deleteChannelTEST: id => dispatch(deleteChannel(id)),
+  // TODO: use modal window
+  deleteChannelWithoutModal: id => dispatch(deleteChannel(id)),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -39,13 +40,10 @@ class ChannelsList extends Component {
     changeChannel(id);
   };
 
-  handleChannelDeletion = (id, name) => e => {
-    const { deleteChannelTEST } = this.props;
+  handleChannelDeletion = id => e => {
+    const { deleteChannelWithoutModal } = this.props;
     e.stopPropagation();
-    deleteChannelTEST(id);
-    // const { showChannelDeletionModal } = this.props;
-    //
-    // showChannelDeletionModal(id, name);
+    deleteChannelWithoutModal(id);
   };
 
   handleChannelUpdating = (id, name) => e => {

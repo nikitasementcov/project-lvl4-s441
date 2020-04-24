@@ -6,16 +6,7 @@
 // } from '../../api';
 // import channelsSlice from '../../reducers/channels';
 //
-//
-// export const changeChannel = id => async dispatch => {
-//   // dispatch(actions.changeChannelRequest);
-//   try {
-//     // dispatch(actions.changeChannelSuccess(id));
-//   } catch (e) {
-//     // dispatch(actions.changeChannelFailure(e));
-//   }
-// };
-//
+
 // export const renameChannel = (id, attributes) => async dispatch => {
 //   dispatch(actions.update(id, attributes));
 //   try {

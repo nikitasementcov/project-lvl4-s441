@@ -1,15 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { deleteChannel } from '../store/channels';
 
 export default createSlice({
   name: 'app',
   initialState: {},
   reducers: {
-    changeChannelSuccess: (state, { payload: id }) => ({
+    changeChannel: (state, { payload: id }) => ({
       ...state,
       currentChannelId: id,
     }),
-    // TODO: use extraReducers here?
-    channelDeleted: state => ({
+  },
+  extraReducers: {
+    [deleteChannel.fulfilled]: state => ({
       ...state,
       currentChannelId: state.defaultChannelId,
     }),

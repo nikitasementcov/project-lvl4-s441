@@ -16,6 +16,7 @@ import EditIcon from './icons/EditIcon';
 import IconButton from './icons/IconButton';
 import { deleteChannel } from '../store/channels';
 import appSlice from '../store/app';
+import channelDeletionSlice from '../store/modals/channelDeletion';
 
 const mapStateToProps = state => ({
   channels: state.channels,
@@ -25,7 +26,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   changeChannel: id => dispatch(appSlice.actions.changeChannel(id)),
   showChannelDeletionModal: (id, channelName) =>
-    dispatch(showChannelDeletionModalAction({ id, channelName })),
+    dispatch(channelDeletionSlice.actions.show({ id, channelName })),
   showChannelEditingModal: (id, channelName) =>
     dispatch(showChannelEditingModalAction({ id, channelName })),
   // TODO: use modal window
@@ -40,10 +41,11 @@ class ChannelsList extends Component {
     changeChannel(id);
   };
 
-  handleChannelDeletion = id => e => {
-    const { deleteChannelWithoutModal } = this.props;
+  handleChannelDeletion = (id, name) => e => {
+    const { deleteChannelWithoutModal, showChannelDeletionModal } = this.props;
     e.stopPropagation();
-    deleteChannelWithoutModal(id);
+    showChannelDeletionModal(id, name);
+    // deleteChannelWithoutModal(id);
   };
 
   handleChannelUpdating = (id, name) => e => {

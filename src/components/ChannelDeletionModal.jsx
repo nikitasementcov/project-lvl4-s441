@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { connect } from 'react-redux';
 
-import {
-  hideChannelDeletionModal as hideChannelDeletionModalAction,
-  deleteChannel as deleteChannelAction,
-} from '../actions';
+import channelDeletionSlice from '../store/modals/channelDeletion';
+import { deleteChannel } from '../store/channels';
 
 @connect(
   ({
@@ -17,23 +15,21 @@ import {
     channelId,
     channelName,
   }),
-  {
-    hideChannelDeletionModalAction,
-    deleteChannelAction,
-  },
+  dispatch => ({
+    hide: () => dispatch(channelDeletionSlice.actions.hide()),
+    deleteChannelAction: id => dispatch(deleteChannel(id)),
+  }),
 )
 class ChannelDeletionModal extends Component {
   deleteChannelHandler = id => async () => {
-    const { deleteChannelAction: deleteChannel } = this.props;
-    await deleteChannel(id);
+    const { deleteChannelAction } = this.props;
+    await deleteChannelAction(id);
     this.hideModalHandler();
   };
 
   hideModalHandler = () => {
-    const {
-      hideChannelDeletionModalAction: hideChannelDeletionModal,
-    } = this.props;
-    hideChannelDeletionModal();
+    const { hide } = this.props;
+    hide();
   };
 
   render() {

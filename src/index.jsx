@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import io from 'socket.io-client';
 
 import { initRandomUserName, getCurrentUserName } from './userManager';
-import storeFactory from './store/storeFactory';
+import buildStore from './store/buildStore';
 import App from './components/App';
 import UserContext from './userContext';
 import channels from './store/channels';
@@ -21,7 +21,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 initRandomUserName();
-const store = storeFactory(gon);
+const store = buildStore(gon);
 const userName = getCurrentUserName();
 
 const socket = io();

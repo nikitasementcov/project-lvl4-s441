@@ -25,7 +25,7 @@ export const mapItems = items => {
   };
 };
 
-const storeFactory = gon => {
+export default gon => {
   const { channels, messages, currentChannelId } = gon;
   const preloadedState = {
     channels: mapItems(channels),
@@ -40,5 +40,3 @@ const storeFactory = gon => {
     preloadedState,
   });
 };
-
-export default storeFactory;

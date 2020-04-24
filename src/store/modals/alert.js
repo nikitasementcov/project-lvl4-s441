@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { deleteChannel } from '../channels';
 
 export default createSlice({
   name: 'alert',
@@ -7,11 +8,6 @@ export default createSlice({
     message: null,
   },
   reducers: {
-    deleteChannelFailure: (state, { payload: message }) => ({
-      ...state,
-      isShown: true,
-      message,
-    }),
     show: (state, { payload: message }) => ({
       ...state,
       isShown: true,
@@ -20,6 +16,13 @@ export default createSlice({
     hide: state => ({
       ...state,
       isShown: false,
+    }),
+  },
+  extraReducers: {
+    [deleteChannel.fulfilled]: (state, { payload: message }) => ({
+      ...state,
+      isShown: true,
+      message,
     }),
   },
 });

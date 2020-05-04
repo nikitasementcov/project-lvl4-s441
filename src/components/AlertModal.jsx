@@ -8,22 +8,21 @@ import {
   Alert,
 } from 'reactstrap';
 import { connect } from 'react-redux';
-
-import { hideAlertModal as hideAlertModalAction } from '../actions';
+import alertModalSlice from '../store/modals/alert';
 
 @connect(
   ({ modals }) => ({
     isShown: modals.alert.isShown,
     message: modals.alert.message,
   }),
-  {
-    hideAlertModalAction,
-  },
+  dispatch => ({
+    hide: () => dispatch(alertModalSlice.actions.hide()),
+  }),
 )
 class AlertModal extends Component {
   hideModalHandler = () => {
-    const { hideAlertModalAction: hideAlertModal } = this.props;
-    hideAlertModal();
+    const { hide } = this.props;
+    hide();
   };
 
   render() {

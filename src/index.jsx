@@ -11,7 +11,7 @@ import buildStore from './store/buildStore';
 import App from './components/App';
 import UserContext from './userContext';
 import channels from './store/channels';
-import actions from './actions';
+import messages from './store/messages';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/css/application.css';
@@ -23,11 +23,10 @@ if (process.env.NODE_ENV !== 'production') {
 initRandomUserName();
 const store = buildStore(gon);
 const userName = getCurrentUserName();
-
 const socket = io();
 
 socket.on('newMessage', data => {
-  const action = actions.messageReceived(data);
+  const action = messages.actions.receive(data);
   store.dispatch(action);
 });
 

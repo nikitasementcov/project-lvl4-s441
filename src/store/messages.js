@@ -1,16 +1,32 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
 import channelSlice from './channels';
+import { addMessage } from '../api';
+
+export const createMessage = createAsyncThunk(
+  'message/create',
+  async ({ channelId, message }) => {
+    const data = await addMessage(channelId, message);
+    const {
+      data: {
+        data: { attributes },
+      },
+    } = data;
+    return attributes;
+  },
+);
 
 export default createSlice({
   name: 'message',
   initialState: { byId: {}, allIds: [] },
   reducers: {
-    received: (
+    receive: (
       state,
       {
-        data: {
-          attributes: { id, message, ...rest },
+        payload: {
+          data: {
+            attributes: { id, message, ...rest },
+          },
         },
       },
     ) => {

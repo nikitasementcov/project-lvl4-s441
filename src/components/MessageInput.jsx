@@ -1,42 +1,29 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import cn from 'classnames';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
 import { createMessage } from '../store/messages';
 import UserContext from '../userContext';
 
-const mapStateToProps = state => ({
-  newMessageLoading: state.ui.newMessageLoading,
-  currentChannelId: state.app.currentChannelId,
-});
+const MessageInput = ({ classNames, reset, handleSubmit }) => {
+  const dispatch = useDispatch();
+  const userName = useContext(UserContext);
 
-const mapDispatchToProps = dispatch => ({
-  handleMessageCreation: (channelId, message) =>
-    dispatch(createMessage({ channelId, message })),
-});
+  const { channelId, newMessageLoading } = useSelector(state => ({
+    newMessageLoading: state.ui.newMessageLoading,
+    channelId: state.app.currentChannelId,
+  }));
 
-@reduxForm({ form: 'message' })
-@connect(mapStateToProps, mapDispatchToProps)
-class MessageInput extends Component {
-  // eslint-disable-next-line react/static-property-placement
-  static contextType = UserContext;
-
-  handleSubmit = async values => {
-    const { handleMessageCreation, currentChannelId, reset } = this.props;
-    const userName = this.context;
+  const submit = async values => {
     const message = { ...values, userName };
-    await handleMessageCreation(currentChannelId, message);
+    await dispatch(createMessage({ channelId, message }));
     reset();
   };
 
-  renderForm() {
-    const { handleSubmit } = this.props;
+  const renderForm = () => {
     return (
-      <form
-        onSubmit={handleSubmit(this.handleSubmit)}
-        className="input-group mb-3"
-      >
+      <form onSubmit={handleSubmit(submit)} className="input-group mb-3">
         <Field
           name="message"
           component="input"
@@ -51,30 +38,27 @@ class MessageInput extends Component {
         </div>
       </form>
     );
-  }
+  };
 
-  render() {
-    const { classNames, newMessageLoading } = this.props;
-    const loaderSelfClasses = 'spinner-border spinner-border-sm text-dark mx-2';
-    const loader = (
-      <div
-        className={cn(loaderSelfClasses, {
-          invisible: !newMessageLoading,
-          visible: newMessageLoading,
-        })}
-        role="status"
-      >
-        <span className="sr-only">Loading...</span>
-      </div>
-    );
-    const containerSelfClasses = 'd-flex align-items-center';
-    return (
-      <div className={cn(classNames, containerSelfClasses)}>
-        {this.renderForm()}
-        {loader}
-      </div>
-    );
-  }
-}
+  const loaderSelfClasses = 'spinner-border spinner-border-sm text-dark mx-2';
+  const loader = (
+    <div
+      className={cn(loaderSelfClasses, {
+        invisible: !newMessageLoading,
+        visible: newMessageLoading,
+      })}
+      role="status"
+    >
+      <span className="sr-only">Loading...</span>
+    </div>
+  );
+  const containerSelfClasses = 'd-flex align-items-center';
+  return (
+    <div className={cn(classNames, containerSelfClasses)}>
+      {renderForm()}
+      {loader}
+    </div>
+  );
+};
 
-export default MessageInput;
+export default reduxForm({ form: 'message' })(MessageInput);

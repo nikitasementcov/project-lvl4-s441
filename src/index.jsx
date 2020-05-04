@@ -7,10 +7,11 @@ import { Provider } from 'react-redux';
 import io from 'socket.io-client';
 
 import { initRandomUserName, getCurrentUserName } from './userManager';
-import storeFactory from './storeFactory';
+import buildStore from './store/buildStore';
 import App from './components/App';
-import * as actions from './actions';
 import UserContext from './userContext';
+import channels from './store/channels';
+import messages from './store/messages';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/css/application.css';
@@ -20,28 +21,27 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 initRandomUserName();
-const store = storeFactory(gon);
+const store = buildStore(gon);
 const userName = getCurrentUserName();
-
 const socket = io();
 
 socket.on('newMessage', data => {
-  const action = actions.messageReceived(data);
+  const action = messages.actions.receive(data);
   store.dispatch(action);
 });
 
 socket.on('newChannel', data => {
-  const action = actions.channelReceived(data);
+  const action = channels.actions.receive(data);
   store.dispatch(action);
 });
 
 socket.on('removeChannel', data => {
-  const action = actions.channelDeleted(data);
+  const action = channels.actions.delete(data);
   store.dispatch(action);
 });
 
 socket.on('renameChannel', data => {
-  const action = actions.channelUpdated(data);
+  const action = channels.actions.update(data);
   store.dispatch(action);
 });
 

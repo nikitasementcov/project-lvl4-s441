@@ -19,5 +19,5 @@ export const addChannel = name =>
 
 export const deleteChannel = id => axios.delete(`channels/${id}`);
 
-export const renameChannel = (id, { name }) =>
-  axios.patch(`channels/${id}`, { data: { attributes: { name } } });
+export const updateChannel = (id, attributes) =>
+  axios.patch(`channels/${id}`, { data: { attributes } });

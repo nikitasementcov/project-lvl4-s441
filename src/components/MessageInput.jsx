@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
-import { createMessage } from '../actions';
+import { createMessage } from '../store/messages';
 import UserContext from '../userContext';
 
 const mapStateToProps = state => ({
@@ -13,12 +13,15 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   handleMessageCreation: (channelId, message) =>
-    dispatch(createMessage(channelId, message)),
+    dispatch(createMessage({ channelId, message })),
 });
 
 @reduxForm({ form: 'message' })
 @connect(mapStateToProps, mapDispatchToProps)
 class MessageInput extends Component {
+  // eslint-disable-next-line react/static-property-placement
+  static contextType = UserContext;
+
   handleSubmit = async values => {
     const { handleMessageCreation, currentChannelId, reset } = this.props;
     const userName = this.context;
@@ -73,7 +76,5 @@ class MessageInput extends Component {
     );
   }
 }
-
-MessageInput.contextType = UserContext;
 
 export default MessageInput;

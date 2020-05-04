@@ -5,16 +5,13 @@ import cn from 'classnames';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { Row, Col } from 'reactstrap';
-import {
-  changeChannel as changeChannelAction,
-  showChannelDeletionModal as showChannelDeletionModalAction,
-  showChannelEditingModal as showChannelEditingModalAction,
-} from '../actions';
-
 import ChannelCreationForm from './ChannelCreationForm';
 import TrashIcon from './icons/TrashIcon';
 import EditIcon from './icons/EditIcon';
 import IconButton from './icons/IconButton';
+import appSlice from '../store/app';
+import channelDeletionSlice from '../store/modals/channelDeletion';
+import channelEditingSlice from '../store/modals/channelEditing';
 
 const mapStateToProps = state => ({
   channels: state.channels,
@@ -22,17 +19,14 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  changeChannel: id => dispatch(changeChannelAction(id)),
+  changeChannel: id => dispatch(appSlice.actions.changeChannel(id)),
   showChannelDeletionModal: (id, channelName) =>
-    dispatch(showChannelDeletionModalAction({ id, channelName })),
+    dispatch(channelDeletionSlice.actions.show({ id, channelName })),
   showChannelEditingModal: (id, channelName) =>
-    dispatch(showChannelEditingModalAction({ id, channelName })),
+    dispatch(channelEditingSlice.actions.show({ id, channelName })),
 });
 
-@connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)
+@connect(mapStateToProps, mapDispatchToProps)
 class ChannelsList extends Component {
   handleChannelChange = id => e => {
     const { changeChannel } = this.props;

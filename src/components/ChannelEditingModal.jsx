@@ -3,10 +3,8 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 
-import {
-  renameChannel as renameChannelAction,
-  hideChannelEditingModal as hideChannelEditingModalAction,
-} from '../actions';
+import channelEditingSlice from '../store/modals/channelEditing';
+import { updateChannel } from '../store/channels';
 
 @connect(
   ({ modals }) => ({
@@ -15,25 +13,23 @@ import {
     name: modals.channelEditing.channelName,
     initialValues: { name: modals.channelEditing.channelName },
   }),
-  {
-    renameChannelAction,
-    hideChannelEditingModalAction,
-  },
+  dispatch => ({
+    renameChannelAction: (id, name) => dispatch(updateChannel(id, { name })),
+    hide: () => dispatch(channelEditingSlice.actions.hide()),
+  }),
 )
 @reduxForm({ form: 'channelEditing', enableReinitialize: true })
 class ChannelEditingModal extends Component {
   handleSubmit = async ({ name }) => {
-    const { renameChannelAction: renameChannel, reset, id } = this.props;
-    await renameChannel(id, { name });
+    const { renameChannelAction, reset, id } = this.props;
+    await renameChannelAction({ id, name });
     reset();
     this.hideModalHandler();
   };
 
   hideModalHandler = () => {
-    const {
-      hideChannelEditingModalAction: hideChannelEditingModal,
-    } = this.props;
-    hideChannelEditingModal();
+    const { hide } = this.props;
+    hide();
   };
 
   render() {

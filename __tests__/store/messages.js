@@ -1,12 +1,10 @@
-import messageReducer from '../../../../src/reducers/messages';
-import * as creators from '../../../../src/actions/messages/creators';
-import { channelDeleted } from '../../../../src/actions/channels/creators';
-
+import messagesSlice from '../../src/store/messages';
+import channelsSlice from '../../src/store/channels';
 describe('message reducer', () => {
-  it('Should Add new message When it is received and store is empty', () => {
+  it('Should Add new message When it was received and the store had been empty', () => {
     const newMessage = { id: 1, message: 'message #1' };
     const state = { byId: {}, allIds: [] };
-    const action = creators.messageReceived({
+    const action = messagesSlice.actions.receive({
       data: {
         attributes: newMessage,
       },
@@ -16,18 +14,18 @@ describe('message reducer', () => {
       byId: { 1: newMessage },
       allIds: [1],
     };
-    const actualState = messageReducer(state, action);
+    const actualState = messagesSlice.reducer(state, action);
 
     expect(actualState).toEqual(expectedState);
   });
 
-  it('Should Add new message When it is received and store is not empty', () => {
+  it('Should Add new message When it was received and the store hadn"t been empty', () => {
     const newMessage = { id: 2, message: 'message #2' };
     const state = {
       byId: { 1: { id: 1, message: 'message #1' } },
       allIds: [1],
     };
-    const action = creators.messageReceived({
+    const action = messagesSlice.actions.receive({
       data: {
         attributes: newMessage,
       },
@@ -37,12 +35,12 @@ describe('message reducer', () => {
       allIds: [1, 2],
     };
 
-    const actualState = messageReducer(state, action);
+    const actualState = messagesSlice.reducer(state, action);
 
     expect(actualState).toEqual(expectedState);
   });
 
-  it('Should Delete channel messages When channel is deleted', () => {
+  it('Should Delete channel messages After channel was deleted', () => {
     const state = {
       byId: {
         1: { id: 1, message: 'message #1', channelId: 10 },
@@ -50,7 +48,7 @@ describe('message reducer', () => {
       },
       allIds: [1, 2],
     };
-    const action = channelDeleted({
+    const action = channelsSlice.actions.delete({
       data: { id: 11 },
     });
     const expectedState = {
@@ -58,7 +56,7 @@ describe('message reducer', () => {
       allIds: [1],
     };
 
-    const actualState = messageReducer(state, action);
+    const actualState = messagesSlice.reducer(state, action);
 
     expect(actualState).toEqual(expectedState);
   });

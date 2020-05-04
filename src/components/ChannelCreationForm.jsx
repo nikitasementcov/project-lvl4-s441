@@ -3,23 +3,20 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { Button, Form, Label } from 'reactstrap';
 
-import { addChannel } from '../actions/channels/channelActions';
+import { addChannel } from '../store/channels';
 
 const mapDispatchToProps = dispatch => ({
   handleChannelCreation: name => dispatch(addChannel(name)),
 });
 
 @reduxForm({ form: 'channelCreation' })
-@connect(
-  null,
-  mapDispatchToProps,
-)
+@connect(null, mapDispatchToProps)
 class ChannelCreationForm extends React.Component {
   handleSubmit = async ({ name }) => {
     const { handleChannelCreation, reset } = this.props;
     await handleChannelCreation(name);
     reset();
-  }
+  };
 
   render() {
     const { handleSubmit } = this.props;

@@ -57,7 +57,6 @@ describe('message reducer', () => {
     };
 
     const actualState = messagesSlice.reducer(state, action);
-
     expect(actualState).toEqual(expectedState);
   });
 });

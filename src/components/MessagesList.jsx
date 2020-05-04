@@ -10,11 +10,12 @@ const MessagesList = ({ className }) => {
     messages: state.messages.byId,
     currentChannelId: state.app.currentChannelId,
   }));
-  const classes = cn(className);
-  const currentChannelMessages = _.filter(
-    messages,
-    m => m.channelId === currentChannelId,
-  ).map(m => <Message key={m.id} message={m} />);
-  return <div className={classes}>{currentChannelMessages}</div>;
+
+  const renderMessages = () =>
+    _.filter(messages, m => m.channelId === currentChannelId).map(m => (
+      <Message key={m.id} message={m} />
+    ));
+
+  return <div className={cn(className)}>{renderMessages()}</div>;
 };
 export default MessagesList;

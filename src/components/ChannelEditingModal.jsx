@@ -1,65 +1,65 @@
-import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
+import React from 'react';
+import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
 
 import channelEditingSlice from '../store/modals/channelEditing';
 import { updateChannel } from '../store/channels';
 
-@connect(
-  ({ modals }) => ({
-    isShown: modals.channelEditing.isShown,
-    id: modals.channelEditing.channelId,
-    name: modals.channelEditing.channelName,
-    initialValues: { name: modals.channelEditing.channelName },
-  }),
-  dispatch => ({
-    renameChannelAction: (id, name) => dispatch(updateChannel(id, { name })),
-    hide: () => dispatch(channelEditingSlice.actions.hide()),
-  }),
-)
-@reduxForm({ form: 'channelEditing', enableReinitialize: true })
-class ChannelEditingModal extends Component {
-  handleSubmit = async ({ name }) => {
-    const { renameChannelAction, reset, id } = this.props;
-    await renameChannelAction({ id, name });
-    reset();
-    this.hideModalHandler();
-  };
+const ChannelEditingModal = ({
+  isShown,
+  handleSubmit,
+  hide,
+  initialValues: { name },
+}) => {
+  return (
+    <div>
+      <Modal isOpen={isShown} toggle={hide}>
+        <ModalHeader toggle={hide}>Channel Editing</ModalHeader>
+        <form onSubmit={handleSubmit}>
+          <ModalBody>
+            Do you really want to update
+            {` '${name}' `}
+            channel?
+            <Field name="name" component="input" type="text" />
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" type="submit">
+              Update
+            </Button>
+            <Button color="secondary" onClick={hide}>
+              Cancel
+            </Button>
+          </ModalFooter>
+        </form>
+      </Modal>
+    </div>
+  );
+};
 
-  hideModalHandler = () => {
-    const { hide } = this.props;
+const ChannelEditingModalForm = reduxForm({
+  form: 'channelEditing',
+  enableReinitialize: true,
+})(ChannelEditingModal);
+
+export default () => {
+  const { id, isShown, name } = useSelector(({ modals }) => ({
+    id: modals.channelEditing.channelId,
+    isShown: modals.channelEditing.isShown,
+    name: modals.channelEditing.channelName,
+  }));
+  const dispatch = useDispatch();
+  const hide = () => dispatch(channelEditingSlice.actions.hide());
+  const handleSubmit = async name => {
+    await dispatch(updateChannel({ id, name }));
     hide();
   };
-
-  render() {
-    const { isShown, name, handleSubmit } = this.props;
-    return (
-      <div>
-        <Modal isOpen={isShown} toggle={this.hideModalHandler}>
-          <ModalHeader toggle={this.hideModalHandler}>
-            Channel Editing
-          </ModalHeader>
-          <form onSubmit={handleSubmit(this.handleSubmit)}>
-            <ModalBody>
-              Do you really want to update
-              {` '${name}' `}
-              channel?
-              <Field name="name" component="input" type="text" />
-            </ModalBody>
-            <ModalFooter>
-              <Button color="primary" type="submit">
-                Update
-              </Button>
-              <Button color="secondary" onClick={this.hideModalHandler}>
-                Cancel
-              </Button>
-            </ModalFooter>
-          </form>
-        </Modal>
-      </div>
-    );
-  }
-}
-
-export default ChannelEditingModal;
+  return (
+    <ChannelEditingModalForm
+      isShown={isShown}
+      initialValues={{ name }}
+      onSubmit={values => handleSubmit(values.name)}
+      hide={hide}
+    />
+  );
+};

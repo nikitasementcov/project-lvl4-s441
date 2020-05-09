@@ -25,6 +25,7 @@ const ChannelsList = ({ className }) => {
     dispatch(appSlice.actions.changeChannel(id));
   };
   const handleChannelDeletion = (id, name) => e => {
+    e.stopPropagation();
     dispatch(channelDeletionSlice.actions.show({ id, channelName: name }));
   };
   const handleChannelUpdating = (id, name) => e => {

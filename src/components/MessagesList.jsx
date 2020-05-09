@@ -1,9 +1,8 @@
 import React from 'react';
 import cn from 'classnames';
-import _ from 'lodash';
-
-import Message from './Message';
 import { useSelector } from 'react-redux';
+import _ from 'lodash';
+import Message from './Message';
 
 const MessagesList = ({ className }) => {
   const { messages, currentChannelId } = useSelector(state => ({

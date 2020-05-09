@@ -50,8 +50,8 @@ export default () => {
   }));
   const dispatch = useDispatch();
   const hide = () => dispatch(channelEditingSlice.actions.hide());
-  const handleSubmit = async name => {
-    await dispatch(updateChannel({ id, name }));
+  const handleSubmit = async newName => {
+    await dispatch(updateChannel({ id, name: newName }));
     hide();
   };
   return (

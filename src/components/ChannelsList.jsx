@@ -9,9 +9,9 @@ import ChannelCreationForm from './ChannelCreationForm';
 import TrashIcon from './icons/TrashIcon';
 import EditIcon from './icons/EditIcon';
 import IconButton from './icons/IconButton';
-import appSlice from '../store/app';
-import channelDeletionSlice from '../store/modals/channelDeletion';
-import channelEditingSlice from '../store/modals/channelEditing';
+import { actions as appActions } from '../store/app';
+import { actions as channelDeletionActions } from '../store/modals/channelDeletion';
+import { actions as channelEditingActions } from '../store/modals/channelEditing';
 
 const ChannelsList = ({ className }) => {
   const { channels, currentChannelId } = useSelector(state => ({
@@ -22,15 +22,17 @@ const ChannelsList = ({ className }) => {
   const dispatch = useDispatch();
   const handleChannelChange = id => e => {
     e.preventDefault();
-    dispatch(appSlice.actions.changeChannel(id));
+    dispatch(appActions.changeChannel(id));
   };
   const handleChannelDeletion = (id, name) => e => {
     e.stopPropagation();
-    dispatch(channelDeletionSlice.actions.show({ id, channelName: name }));
+    dispatch(
+      channelDeletionActions.showDeletionModal({ id, channelName: name }),
+    );
   };
   const handleChannelUpdating = (id, name) => e => {
     e.stopPropagation();
-    dispatch(channelEditingSlice.actions.show({ id, channelName: name }));
+    dispatch(channelEditingActions.showEditingModal({ id, channelName: name }));
   };
 
   const classes = cn(className);

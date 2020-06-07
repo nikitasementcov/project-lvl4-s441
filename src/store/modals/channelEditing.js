@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export default createSlice({
+const slice = createSlice({
   name: 'channelEditing',
   initialState: {
     isShown: false,
@@ -8,15 +8,18 @@ export default createSlice({
     channelName: null,
   },
   reducers: {
-    show: (state, { payload: { id, channelName } }) => ({
+    showEditingModal: (state, { payload: { id, channelName } }) => ({
       ...state,
       isShown: true,
       channelId: id,
       channelName,
     }),
-    hide: state => ({
+    hideEditingModal: state => ({
       ...state,
       isShown: false,
     }),
   },
 });
+
+export const { actions } = slice;
+export default slice.reducer;

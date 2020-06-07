@@ -6,19 +6,16 @@ import {
   updateChannel as updateChannelRequest,
 } from '../api';
 
-export const addChannel = createAsyncThunk('channel/addChannel', async name => {
+const addChannel = createAsyncThunk('channel/addChannel', async name => {
   await addChannelRequest(name);
 });
 
-export const deleteChannel = createAsyncThunk(
-  'channel/deleteChannel',
-  async id => {
-    await deleteChannelRequest(id);
-    return id;
-  },
-);
+const deleteChannel = createAsyncThunk('channel/deleteChannel', async id => {
+  await deleteChannelRequest(id);
+  return id;
+});
 
-export const updateChannel = createAsyncThunk(
+const updateChannel = createAsyncThunk(
   'channel/renameChannel',
   async ({ id, name }) => {
     const { data: updatedChannel } = await updateChannelRequest(id, { name });
@@ -76,4 +73,8 @@ const channelsSlice = createSlice({
   },
 });
 
-export default channelsSlice;
+const asyncActions = { addChannel, deleteChannel, updateChannel };
+const actions = channelsSlice.actions;
+
+export { actions, asyncActions };
+export default channelsSlice.reducer;

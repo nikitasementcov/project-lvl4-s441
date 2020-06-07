@@ -9,7 +9,7 @@ import {
 } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
-import alertModalSlice from '../store/modals/alert';
+import { actions } from '../store';
 
 const AlertModal = () => {
   const { isShown, message } = useSelector(({ modals }) => ({
@@ -17,7 +17,7 @@ const AlertModal = () => {
     message: modals.alert.message,
   }));
   const dispatch = useDispatch();
-  const hide = () => dispatch(alertModalSlice.actions.hide());
+  const hide = () => dispatch(actions.modals.hideAlertModal());
 
   return (
     <div>

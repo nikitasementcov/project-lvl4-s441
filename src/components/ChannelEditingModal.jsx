@@ -3,8 +3,8 @@ import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
-import channelEditingSlice from '../store/modals/channelEditing';
-import { updateChannel } from '../store/channels';
+import { actions as channelEditingActions } from '../store/modals/channelEditing';
+import { asyncActions as channelAsyncActions } from '../store/channels';
 
 const ChannelEditingModal = ({
   isShown,
@@ -49,9 +49,9 @@ export default () => {
     name: modals.channelEditing.channelName,
   }));
   const dispatch = useDispatch();
-  const hide = () => dispatch(channelEditingSlice.actions.hide());
+  const hide = () => dispatch(channelEditingActions.hideEditingModal());
   const handleSubmit = async newName => {
-    await dispatch(updateChannel({ id, name: newName }));
+    await dispatch(channelAsyncActions.updateChannel({ id, name: newName }));
     hide();
   };
   return (

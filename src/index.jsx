@@ -7,11 +7,11 @@ import { Provider } from 'react-redux';
 import io from 'socket.io-client';
 
 import { initRandomUserName, getCurrentUserName } from './userManager';
-import buildStore from './store/buildStore';
+import buildStore from './store';
 import App from './components/App';
 import UserContext from './userContext';
-import channels from './store/channels';
-import messages from './store/messages';
+import { actions as channelActions } from './store/channels';
+import { actions as messageActions } from './store/messages';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/css/application.css';
@@ -26,22 +26,22 @@ const userName = getCurrentUserName();
 const socket = io();
 
 socket.on('newMessage', data => {
-  const action = messages.actions.receive(data);
+  const action = messageActions.receive(data);
   store.dispatch(action);
 });
 
 socket.on('newChannel', data => {
-  const action = channels.actions.receive(data);
+  const action = channelActions.receive(data);
   store.dispatch(action);
 });
 
 socket.on('removeChannel', data => {
-  const action = channels.actions.delete(data);
+  const action = channelActions.delete(data);
   store.dispatch(action);
 });
 
 socket.on('renameChannel', data => {
-  const action = channels.actions.update(data);
+  const action = channelActions.update(data);
   store.dispatch(action);
 });
 

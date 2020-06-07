@@ -2,8 +2,10 @@ import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
-import channelDeletionSlice from '../store/modals/channelDeletion';
-import { deleteChannel } from '../store/channels';
+import channelDeletionSlice, {
+  actions as channelDeletionActions,
+} from '../store/modals/channelDeletion';
+import { asyncActions } from '../store/channels';
 
 const ChannelDeletionModal = () => {
   const dispatch = useDispatch();
@@ -14,9 +16,10 @@ const ChannelDeletionModal = () => {
       channelName: channelDeletion.channelName,
     }),
   );
-  const hide = () => dispatch(channelDeletionSlice.actions.hide());
+
+  const hide = () => dispatch(channelDeletionActions.hideDeletionModal());
   const deleteChannelHandler = id => async () => {
-    await dispatch(deleteChannel(id));
+    await dispatch(asyncActions.deleteChannel(id));
     hide();
   };
 

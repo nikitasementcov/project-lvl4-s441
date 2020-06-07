@@ -3,12 +3,12 @@ import { Field, reduxForm } from 'redux-form';
 import { useDispatch } from 'react-redux';
 import { Button, Form, Label } from 'reactstrap';
 
-import { addChannel } from '../store/channels';
+import { asyncActions } from '../store/channels';
 
 const ChannelCreationForm = ({ reset, handleSubmit }) => {
   const dispatch = useDispatch();
   const submit = async ({ name }) => {
-    await dispatch(addChannel(name));
+    await dispatch(asyncActions.addChannel(name));
     reset();
   };
 

@@ -1,28 +1,34 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { deleteChannel } from '../channels';
+import { asyncActions as channelAsyncActions } from '../channels';
 
-export default createSlice({
+const slice = createSlice({
   name: 'alert',
   initialState: {
     isShown: false,
     message: null,
   },
   reducers: {
-    show: (state, { payload: message }) => ({
+    showAlertModal: (state, { payload: message }) => ({
       ...state,
       isShown: true,
       message,
     }),
-    hide: state => ({
+    hideAlertModal: state => ({
       ...state,
       isShown: false,
     }),
   },
   extraReducers: {
-    [deleteChannel.fulfilled]: (state, { payload: message }) => ({
+    [channelAsyncActions.deleteChannel.fulfilled]: (
+      state,
+      { payload: message },
+    ) => ({
       ...state,
       isShown: true,
       message,
     }),
   },
 });
+
+export const { actions } = slice;
+export default slice.reducer;

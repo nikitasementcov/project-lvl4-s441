@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
-import channelSlice from './channels';
+import { asyncActions as channelAsyncActions } from './channels';
 import { addMessage } from '../api';
 
-export const createMessage = createAsyncThunk(
+const createMessage = createAsyncThunk(
   'message/create',
   async ({ channelId, message }) => {
     const data = await addMessage(channelId, message);
@@ -16,7 +16,7 @@ export const createMessage = createAsyncThunk(
   },
 );
 
-export default createSlice({
+const slice = createSlice({
   name: 'message',
   initialState: { byId: {}, allIds: [] },
   reducers: {
@@ -37,7 +37,7 @@ export default createSlice({
     },
   },
   extraReducers: {
-    [channelSlice.actions.delete]: (
+    [channelAsyncActions.deleteChannel]: (
       state,
       {
         payload: {
@@ -53,3 +53,9 @@ export default createSlice({
     },
   },
 });
+
+const asyncActions = { createMessage };
+const actions = slice.actions;
+
+export { actions, asyncActions };
+export default slice.reducer;

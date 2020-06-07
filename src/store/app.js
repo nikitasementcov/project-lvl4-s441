@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { deleteChannel } from './channels';
+import { asyncActions as channelAsyncActions } from './channels';
 
-export default createSlice({
+const slice = createSlice({
   name: 'app',
   initialState: {},
   reducers: {
@@ -11,9 +11,12 @@ export default createSlice({
     }),
   },
   extraReducers: {
-    [deleteChannel.fulfilled]: state => ({
+    [channelAsyncActions.deleteChannel.fulfilled]: state => ({
       ...state,
       currentChannelId: state.defaultChannelId,
     }),
   },
 });
+
+export const { actions } = slice;
+export default slice.reducer;

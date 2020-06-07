@@ -1,4 +1,4 @@
-import * as storeFactory from '../src/store/buildStore';
+import * as storeFactory from '../src/store';
 
 const channels = [
   { id: 1, name: 'general', removable: false },

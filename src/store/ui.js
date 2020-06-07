@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export default createSlice({
+const slice = createSlice({
   name: 'ui',
   initialState: {
     newMessageLoading: false,
@@ -14,3 +14,6 @@ export default createSlice({
     },
   },
 });
+
+export const { actions } = slice;
+export default slice.reducer;

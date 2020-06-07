@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
-import { createMessage } from '../store/messages';
+import { asyncActions as messageAsyncActions } from '../store/messages';
 import UserContext from '../userContext';
 
 const MessageInput = ({ classNames, reset, handleSubmit }) => {
@@ -17,7 +17,7 @@ const MessageInput = ({ classNames, reset, handleSubmit }) => {
 
   const submit = async values => {
     const message = { ...values, userName };
-    await dispatch(createMessage({ channelId, message }));
+    await dispatch(messageAsyncActions.createMessage({ channelId, message }));
     reset();
   };
 

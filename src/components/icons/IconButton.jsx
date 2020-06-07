@@ -4,7 +4,7 @@ import cn from 'classnames';
 const IconButton = ({ icon: Icon, fill, onClick, className }) => {
   return (
     <button
-      className={cn('icon-btn', 'p-0', className)}
+      className={cn('btn btn-default p-0', className)}
       type="button"
       onClick={onClick}
     >

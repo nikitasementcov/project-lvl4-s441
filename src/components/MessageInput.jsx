@@ -30,11 +30,6 @@ const MessageInput = ({ classNames, reset, handleSubmit, createMessage }) => {
           className="form-control"
           placeholder="Enter your message"
         />
-        <div className="input-group-append">
-          <button className="btn new-message-button btn-primary" type="submit">
-            Send
-          </button>
-        </div>
       </form>
     );
   };

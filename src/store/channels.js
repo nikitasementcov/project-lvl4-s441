@@ -74,7 +74,7 @@ const channelsSlice = createSlice({
 });
 
 const asyncActions = { addChannel, deleteChannel, updateChannel };
-const actions = channelsSlice.actions;
+const { actions } = channelsSlice;
 
 export { actions, asyncActions };
 export default channelsSlice.reducer;

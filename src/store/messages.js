@@ -55,7 +55,7 @@ const slice = createSlice({
 });
 
 const asyncActions = { createMessage };
-const actions = slice.actions;
+const { actions } = slice;
 
 export { actions, asyncActions };
 export default slice.reducer;

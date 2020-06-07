@@ -43,11 +43,15 @@ export const normalize = items => {
   };
 };
 
-export default gon => {
-  const { channels, messages, currentChannelId } = gon;
+const createStore = gon => {
+  const {
+    channels: gonChannels,
+    messages: gonMessages,
+    currentChannelId,
+  } = gon;
   const preloadedState = {
-    channels: normalize(channels),
-    messages: normalize(messages),
+    channels: normalize(gonChannels),
+    messages: normalize(gonMessages),
     app: {
       currentChannelId,
       defaultChannelId: currentChannelId,
@@ -58,3 +62,5 @@ export default gon => {
     preloadedState,
   });
 };
+
+export default createStore;

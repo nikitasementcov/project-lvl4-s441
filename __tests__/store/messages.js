@@ -1,10 +1,14 @@
-import messagesSlice from '../../src/store/messages';
-import channelsSlice from '../../src/store/channels';
+import messagesReducer, {
+  actions as messageActions,
+} from '../../src/store/messages';
+import channelsReducer, {
+  actions as channelActions,
+} from '../../src/store/channels';
 describe('message reducer', () => {
   it('Should Add new message When it was received and the store had been empty', () => {
     const newMessage = { id: 1, message: 'message #1' };
     const state = { byId: {}, allIds: [] };
-    const action = messagesSlice.actions.receive({
+    const action = messageActions.receive({
       data: {
         attributes: newMessage,
       },
@@ -14,7 +18,7 @@ describe('message reducer', () => {
       byId: { 1: newMessage },
       allIds: [1],
     };
-    const actualState = messagesSlice.reducer(state, action);
+    const actualState = messagesReducer(state, action);
 
     expect(actualState).toEqual(expectedState);
   });
@@ -25,7 +29,7 @@ describe('message reducer', () => {
       byId: { 1: { id: 1, message: 'message #1' } },
       allIds: [1],
     };
-    const action = messagesSlice.actions.receive({
+    const action = channelActions.receive({
       data: {
         attributes: newMessage,
       },
@@ -35,7 +39,7 @@ describe('message reducer', () => {
       allIds: [1, 2],
     };
 
-    const actualState = messagesSlice.reducer(state, action);
+    const actualState = channelsReducer(state, action);
 
     expect(actualState).toEqual(expectedState);
   });
@@ -48,7 +52,7 @@ describe('message reducer', () => {
       },
       allIds: [1, 2],
     };
-    const action = channelsSlice.actions.delete({
+    const action = channelActions.delete({
       data: { id: 11 },
     });
     const expectedState = {
@@ -56,7 +60,7 @@ describe('message reducer', () => {
       allIds: [1],
     };
 
-    const actualState = messagesSlice.reducer(state, action);
+    const actualState = messagesReducer(state, action);
 
     expect(actualState).toEqual(expectedState);
   });

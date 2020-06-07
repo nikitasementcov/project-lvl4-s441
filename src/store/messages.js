@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
-import { asyncActions as channelAsyncActions } from './channels';
+import { actions as channelActions } from './channels';
 import { addMessage } from '../api';
 
 const createMessage = createAsyncThunk(
@@ -37,7 +37,7 @@ const slice = createSlice({
     },
   },
   extraReducers: {
-    [channelAsyncActions.deleteChannel]: (
+    [channelActions.delete]: (
       state,
       {
         payload: {

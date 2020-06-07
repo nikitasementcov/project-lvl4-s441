@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
-import { actions } from './index';
+import { actions, asyncActions } from './index';
 
-export default () => Component => connect(null, { ...actions })(Component);
+export default () => Component =>
+  connect(null, { ...actions, ...asyncActions })(Component);

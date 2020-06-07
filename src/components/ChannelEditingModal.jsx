@@ -1,10 +1,8 @@
 import React from 'react';
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-
-import { actions as channelEditingActions } from '../store/modals/channelEditing';
-import { asyncActions as channelAsyncActions } from '../store/channels';
+import connect from '../store/connect';
 
 const ChannelEditingModal = ({
   isShown,
@@ -42,16 +40,18 @@ const ChannelEditingModalForm = reduxForm({
   enableReinitialize: true,
 })(ChannelEditingModal);
 
-export default () => {
+const ChannelEditingModalFormContainer = ({
+  hideEditingModal,
+  updateChannel,
+}) => {
   const { id, isShown, name } = useSelector(({ modals }) => ({
     id: modals.channelEditing.channelId,
     isShown: modals.channelEditing.isShown,
     name: modals.channelEditing.channelName,
   }));
-  const dispatch = useDispatch();
-  const hide = () => dispatch(channelEditingActions.hideEditingModal());
+  const hide = () => hideEditingModal();
   const handleSubmit = async newName => {
-    await dispatch(channelAsyncActions.updateChannel({ id, name: newName }));
+    await updateChannel({ id, name: newName });
     hide();
   };
   return (
@@ -63,3 +63,5 @@ export default () => {
     />
   );
 };
+
+export default connect()(ChannelEditingModalFormContainer);

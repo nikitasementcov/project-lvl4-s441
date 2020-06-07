@@ -1,14 +1,11 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { useDispatch } from 'react-redux';
 import { Button, Form, Label } from 'reactstrap';
+import connect from '../store/connect';
 
-import { asyncActions } from '../store/channels';
-
-const ChannelCreationForm = ({ reset, handleSubmit }) => {
-  const dispatch = useDispatch();
+const ChannelCreationForm = ({ reset, handleSubmit, addChannel }) => {
   const submit = async ({ name }) => {
-    await dispatch(asyncActions.addChannel(name));
+    await addChannel(name);
     reset();
   };
 
@@ -34,4 +31,6 @@ const ChannelCreationForm = ({ reset, handleSubmit }) => {
   );
 };
 
-export default reduxForm({ form: 'channelCreation' })(ChannelCreationForm);
+export default reduxForm({ form: 'channelCreation' })(
+  connect()(ChannelCreationForm),
+);

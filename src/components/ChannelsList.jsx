@@ -2,37 +2,37 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
 import cn from 'classnames';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import _ from 'lodash';
 import { Col, Row } from 'reactstrap';
 import ChannelCreationForm from './ChannelCreationForm';
 import TrashIcon from './icons/TrashIcon';
 import EditIcon from './icons/EditIcon';
 import IconButton from './icons/IconButton';
-import { actions as appActions } from '../store/app';
-import { actions as channelDeletionActions } from '../store/modals/channelDeletion';
-import { actions as channelEditingActions } from '../store/modals/channelEditing';
+import connect from '../store/connect';
 
-const ChannelsList = ({ className }) => {
+const ChannelsList = ({
+  className,
+  changeChannel,
+  showDeletionModal,
+  showEditingModal,
+}) => {
   const { channels, currentChannelId } = useSelector(state => ({
     channels: state.channels,
     currentChannelId: state.app.currentChannelId,
   }));
 
-  const dispatch = useDispatch();
   const handleChannelChange = id => e => {
     e.preventDefault();
-    dispatch(appActions.changeChannel(id));
+    changeChannel(id);
   };
   const handleChannelDeletion = (id, name) => e => {
     e.stopPropagation();
-    dispatch(
-      channelDeletionActions.showDeletionModal({ id, channelName: name }),
-    );
+    showDeletionModal({ id, channelName: name });
   };
   const handleChannelUpdating = (id, name) => e => {
     e.stopPropagation();
-    dispatch(channelEditingActions.showEditingModal({ id, channelName: name }));
+    showEditingModal({ id, channelName: name });
   };
 
   const classes = cn(className);
@@ -86,4 +86,4 @@ const ChannelsList = ({ className }) => {
   );
 };
 
-export default ChannelsList;
+export default connect()(ChannelsList);

@@ -1,13 +1,12 @@
 import React, { useContext } from 'react';
 import cn from 'classnames';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
-import { asyncActions as messageAsyncActions } from '../store/messages';
 import UserContext from '../userContext';
+import connect from '../store/connect';
 
-const MessageInput = ({ classNames, reset, handleSubmit }) => {
-  const dispatch = useDispatch();
+const MessageInput = ({ classNames, reset, handleSubmit, createMessage }) => {
   const userName = useContext(UserContext);
 
   const { channelId, newMessageLoading } = useSelector(state => ({
@@ -17,7 +16,7 @@ const MessageInput = ({ classNames, reset, handleSubmit }) => {
 
   const submit = async values => {
     const message = { ...values, userName };
-    await dispatch(messageAsyncActions.createMessage({ channelId, message }));
+    await createMessage({ channelId, message });
     reset();
   };
 
@@ -61,4 +60,4 @@ const MessageInput = ({ classNames, reset, handleSubmit }) => {
   );
 };
 
-export default reduxForm({ form: 'message' })(MessageInput);
+export default reduxForm({ form: 'message' })(connect()(MessageInput));

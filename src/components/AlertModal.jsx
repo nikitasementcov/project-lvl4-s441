@@ -7,17 +7,15 @@ import {
   ModalFooter,
   Alert,
 } from 'reactstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import connect from '../store/connect';
 
-import { actions } from '../store';
-
-const AlertModal = () => {
+const AlertModal = ({ hideAlertModal }) => {
   const { isShown, message } = useSelector(({ modals }) => ({
     isShown: modals.alert.isShown,
     message: modals.alert.message,
   }));
-  const dispatch = useDispatch();
-  const hide = () => dispatch(actions.modals.hideAlertModal());
+  const hide = () => hideAlertModal();
 
   return (
     <div>
@@ -36,4 +34,4 @@ const AlertModal = () => {
   );
 };
 
-export default AlertModal;
+export default connect()(AlertModal);

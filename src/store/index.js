@@ -23,15 +23,15 @@ const rootReducer = combineReducers({
 });
 
 export const asyncActions = {
-  channels: channelAsyncActions,
-  messages: messageAsyncActions,
+  ...channelAsyncActions,
+  ...messageAsyncActions,
 };
 export const actions = {
-  ui: uiActions,
-  app: appActions,
-  messages: messageActions,
-  modals: modalActions,
-  channels: channelActions,
+  ...uiActions,
+  ...appActions,
+  ...messageActions,
+  ...modalActions,
+  ...channelActions,
 };
 
 export const mapItems = items => {

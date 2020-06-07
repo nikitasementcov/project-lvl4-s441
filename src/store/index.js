@@ -34,7 +34,7 @@ export const actions = {
   ...channelActions,
 };
 
-export const mapItems = items => {
+export const normalize = items => {
   const defaultState = { byId: {}, allIds: [] };
   if (items == null) return defaultState;
   return {
@@ -46,8 +46,8 @@ export const mapItems = items => {
 export default gon => {
   const { channels, messages, currentChannelId } = gon;
   const preloadedState = {
-    channels: mapItems(channels),
-    messages: mapItems(messages),
+    channels: normalize(channels),
+    messages: normalize(messages),
     app: {
       currentChannelId,
       defaultChannelId: currentChannelId,

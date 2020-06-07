@@ -14,7 +14,7 @@ const emptyStateObject = { byId: {}, allIds: [] };
 
 describe('mapItems function should map items from backend correctly', () => {
   test('Should Map channels to byId object', () => {
-    const mappedChannels = storeFactory.mapItems(channels);
+    const mappedChannels = storeFactory.normalize(channels);
     expect.anything(mappedChannels.byId);
     expect(mappedChannels.byId).toEqual({
       1: { id: 1, name: 'general', removable: false },
@@ -23,13 +23,13 @@ describe('mapItems function should map items from backend correctly', () => {
   });
 
   test('Should Map channels to allIds array', () => {
-    const mappedChannels = storeFactory.mapItems(channels);
+    const mappedChannels = storeFactory.normalize(channels);
     expect.anything(mappedChannels.allIds);
     expect(mappedChannels.allIds).toEqual([1, 2]);
   });
 
   test('Should Map messages to byId object', () => {
-    const mappedChannels = storeFactory.mapItems(messages);
+    const mappedChannels = storeFactory.normalize(messages);
     expect.anything(mappedChannels.byId);
     expect(mappedChannels.byId).toEqual({
       1: { id: 1, message: 'message#1', userName: 'NS' },
@@ -38,13 +38,13 @@ describe('mapItems function should map items from backend correctly', () => {
   });
 
   test('Should Return empty byId and allIds When empty array pass', () =>
-    expect(storeFactory.mapItems([])).toEqual(emptyStateObject));
+    expect(storeFactory.normalize([])).toEqual(emptyStateObject));
 
   test('Should Return empty byId and allIds When null pass', () =>
-    expect(storeFactory.mapItems(null)).toEqual(emptyStateObject));
+    expect(storeFactory.normalize(null)).toEqual(emptyStateObject));
 
   test('Should Return empty byId and allIds When undefined pass', () =>
-    expect(storeFactory.mapItems()).toEqual(emptyStateObject));
+    expect(storeFactory.normalize()).toEqual(emptyStateObject));
 });
 
 describe('storeFactory should create store with backend data', () => {

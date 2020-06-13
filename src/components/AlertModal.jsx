@@ -11,10 +11,16 @@ import { useSelector } from 'react-redux';
 import connect from '../store/connect';
 
 const AlertModal = ({ hideAlertModal }) => {
-  const { isShown, message } = useSelector(({ modals }) => ({
-    isShown: modals.alert.isShown,
-    message: modals.alert.message,
-  }));
+  const { isShown, message } = useSelector(
+    ({
+      modals: {
+        alert: { isShown, message },
+      },
+    }) => ({
+      isShown,
+      message,
+    }),
+  );
   const hide = () => hideAlertModal();
 
   return (

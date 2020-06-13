@@ -18,16 +18,6 @@ const slice = createSlice({
       isShown: false,
     }),
   },
-  extraReducers: {
-    [channelAsyncActions.deleteChannel.fulfilled]: (
-      state,
-      { payload: message },
-    ) => ({
-      ...state,
-      isShown: true,
-      message,
-    }),
-  },
 });
 
 export const { actions } = slice;

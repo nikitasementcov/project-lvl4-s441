@@ -49,11 +49,9 @@ const ChannelsList = ({
         onClick={handleChannelChange(id)}
       >
         <Row noGutters className="justify-content-between">
-          <Col className="col-8">
-            <span className="text-capitalize">{name}</span>
-          </Col>
+          <span className="text-capitalize">{name}</span>
           {removable ? (
-            <Col className="col-4 flex-grow-0">
+            <section>
               <IconButton
                 icon={EditIcon}
                 fill={isActiveChannel ? '#fff' : null}
@@ -65,7 +63,7 @@ const ChannelsList = ({
                 fill={isActiveChannel ? '#fff' : null}
                 onClick={handleChannelDeletion(id, name)}
               />
-            </Col>
+            </section>
           ) : null}
         </Row>
       </li>

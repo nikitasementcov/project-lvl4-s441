@@ -15,10 +15,10 @@ build:
 	npm run build
 
 lint:
-	npx eslint ./src --ext .js,.jsx
+	npm run lint
 
 test:
-	npx jest
+	npm run test
 
 test-watch:
 	npx jest --watchAll

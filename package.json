@@ -11,6 +11,7 @@
   },
   "scripts": {
     "test": "jest",
+    "lint": "npx eslint ./src --ext .js,.jsx",
     "build-server": "babel server --out-dir dist --source-maps inline && cp -r server/views dist/views",
     "build-app": "npx webpack -p --env production",
     "build": "npm run build-app && npm run build-server",
@@ -27,6 +28,12 @@
     "url": "https://github.com/ddrgis/project-lvl4-s441/issues"
   },
   "homepage": "https://react-chat-ddrgis.herokuapp.com/",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm test",
+      "pre-push": "npm run lint && npm test"
+    }
+  },
   "dependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",

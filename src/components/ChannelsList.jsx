@@ -4,7 +4,7 @@ import React from 'react';
 import cn from 'classnames';
 import { useSelector } from 'react-redux';
 import _ from 'lodash';
-import { Col, Row } from 'reactstrap';
+import { Row } from 'reactstrap';
 import ChannelCreationForm from './ChannelCreationForm';
 import TrashIcon from './icons/TrashIcon';
 import EditIcon from './icons/EditIcon';

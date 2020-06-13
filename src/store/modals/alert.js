@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { asyncActions as channelAsyncActions } from '../channels';
 
 const slice = createSlice({
   name: 'alert',

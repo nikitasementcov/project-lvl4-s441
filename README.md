@@ -7,6 +7,7 @@ In progress...
 [Chat is here](https://react-chat-ddrgis.herokuapp.com/)
 
 ### TODO:
+- Extract dispatch from components
 - Error handling
 - Loading indicator on channel updating and deletion
 - Validation of empty inputs, validate max length of channel or make channel name cliping

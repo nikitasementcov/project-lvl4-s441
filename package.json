@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "dist/bin/slack.js",
-    "postinstall": "npm run build"
+    "postinstall": "make build"
   },
   "repository": {
     "type": "git",

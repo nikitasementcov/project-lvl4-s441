@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { apiUrl } from './consts';
+import routes from './routes';
 
 function configAxios() {
   axios.defaults.baseURL = apiUrl;
@@ -10,14 +11,14 @@ function configAxios() {
 configAxios();
 
 export const addMessage = (channelId, message) =>
-  axios.post(`channels/${channelId}/messages`, {
+  axios.post(routes.channelMessages(channelId), {
     data: { attributes: { ...message } },
   });
 
 export const addChannel = name =>
-  axios.post('channels', { data: { attributes: { name } } });
+  axios.post(routes.channels(), { data: { attributes: { name } } });
 
-export const deleteChannel = id => axios.delete(`channels/${id}`);
+export const deleteChannel = id => axios.delete(routes.channels(id));
 
 export const updateChannel = (id, attributes) =>
-  axios.patch(`channels/${id}`, { data: { attributes } });
+  axios.patch(routes.channels(id), { data: { attributes } });

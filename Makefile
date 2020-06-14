@@ -12,13 +12,21 @@ start-frontend:
 
 build:
 	rm -rf dist
-	npm run build
+	make build-server
+	make build-app
+
+build-server:
+	npx babel server --out-dir dist --source-maps inline
+	cp -r server/views dist/views
+
+build-app:
+	npx webpack -p --env production
 
 lint:
-	npm run lint
+	npx eslint ./src --ext .js,.jsx
 
 test:
-	npm run test
+	npx jest
 
 test-watch:
 	npx jest --watchAll

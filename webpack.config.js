@@ -3,17 +3,16 @@ const dotenv = require('dotenv');
 const path = require('path');
 const fs = require('fs');
 
-const DEVELOPMENT_ENV = 'development';
-const environment = process.env.NODE_ENV || DEVELOPMENT_ENV;
+const environment = process.env.NODE_ENV || 'development';
 
-function getPathToEnvFile() {
-  const currentPath = path.join(__dirname);
-  const productionPath = `${currentPath}/.env`;
-  if (environment !== DEVELOPMENT_ENV) return productionPath;
-  return `${productionPath}.${environment}`;
-}
+const getEnvVariables = () => {
+  const getPathToEnvFile = () => {
+    const currentPath = path.join(__dirname);
+    const productionPath = `${currentPath}/.env`;
+    if (environment !== 'development') return productionPath;
+    return `${productionPath}.${environment}`;
+  };
 
-function getDotEnvVariables() {
   const envFilePath = getPathToEnvFile(environment);
   if (!fs.existsSync(envFilePath)) {
     return {};
@@ -26,10 +25,32 @@ function getDotEnvVariables() {
     }),
     {},
   );
-}
+};
+
+const rules = [
+  {
+    test: /\.jsx?$/,
+    exclude: /node_modules/,
+    use: 'babel-loader',
+  },
+  {
+    test: /\.css$/,
+    loader: 'style-loader',
+  },
+  {
+    test: /\.css$/,
+    loader: 'css-loader',
+    options: {
+      modules: false,
+    },
+  },
+  {
+    test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
+    loader: 'file-loader?name=[name].[ext]',
+  },
+];
 
 module.exports = () => {
-  const dotEnvVariables = getDotEnvVariables();
   return {
     mode: environment,
     entry: [`${__dirname}/src/index.jsx`],
@@ -44,29 +65,8 @@ module.exports = () => {
       publicPath: '/assets/',
     },
     module: {
-      rules: [
-        {
-          test: /\.jsx?$/,
-          exclude: /node_modules/,
-          use: 'babel-loader',
-        },
-        {
-          test: /\.css$/,
-          loader: 'style-loader',
-        },
-        {
-          test: /\.css$/,
-          loader: 'css-loader',
-          options: {
-            modules: false,
-          },
-        },
-        {
-          test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
-          loader: 'file-loader?name=[name].[ext]',
-        },
-      ],
+      rules,
     },
-    plugins: [new webpack.DefinePlugin(dotEnvVariables)],
+    plugins: [new webpack.DefinePlugin(getEnvVariables())],
   };
 };

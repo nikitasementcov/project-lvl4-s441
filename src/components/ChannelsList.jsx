@@ -35,36 +35,37 @@ const ChannelsList = ({
     showEditingModal({ id, channelName: name });
   };
 
-  const classes = cn(className);
+  const renderChannelIcons = ({ id, name, isActive, removable }) =>
+    removable ? (
+      <section>
+        <IconButton
+          icon={EditIcon}
+          fill={isActive ? '#fff' : null}
+          onClick={handleChannelUpdating(id, name)}
+          className="mr-1"
+        />
+        <IconButton
+          icon={TrashIcon}
+          fill={isActive ? '#fff' : null}
+          onClick={handleChannelDeletion(id, name)}
+        />
+      </section>
+    ) : null;
 
   const renderChannel = ({ id, name, removable }) => {
-    const isActiveChannel = currentChannelId === id;
+    const isActive = currentChannelId === id;
     return (
       <li
         className={cn({
           'list-group-item': true,
-          active: isActiveChannel,
+          active: isActive,
         })}
         key={id}
         onClick={handleChannelChange(id)}
       >
         <Row noGutters className="justify-content-between">
           <span className="text-capitalize">{name}</span>
-          {removable ? (
-            <section>
-              <IconButton
-                icon={EditIcon}
-                fill={isActiveChannel ? '#fff' : null}
-                onClick={handleChannelUpdating(id, name)}
-                className="mr-1"
-              />
-              <IconButton
-                icon={TrashIcon}
-                fill={isActiveChannel ? '#fff' : null}
-                onClick={handleChannelDeletion(id, name)}
-              />
-            </section>
-          ) : null}
+          {renderChannelIcons({ id, name, isActive, removable })}
         </Row>
       </li>
     );
@@ -72,7 +73,7 @@ const ChannelsList = ({
 
   return (
     <>
-      <div className={classes}>
+      <div className={cn(className)}>
         <ul className="list-group mb-4">
           {_.map(channels.byId, renderChannel)}
         </ul>

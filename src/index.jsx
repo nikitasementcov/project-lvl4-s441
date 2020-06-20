@@ -13,7 +13,6 @@ import UserContext from './userContext';
 import { actions as channelActions } from './store/channels';
 import { actions as messageActions } from './store/messages';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/css/gridLayout.css';
 
 if (process.env.NODE_ENV !== 'production') {

@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-import { apiUrl } from './consts';
+import { API_PATH_PREFIX, HTTP_TIMEOUT } from './config';
 import routes from './routes';
 
-function configAxios() {
-  axios.defaults.baseURL = apiUrl;
-  axios.defaults.timeout = 1000;
-}
+const configAxios = () => {
+  axios.defaults.baseURL = API_PATH_PREFIX;
+  axios.defaults.timeout = HTTP_TIMEOUT;
+};
 
 configAxios();
 

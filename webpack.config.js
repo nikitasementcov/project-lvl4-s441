@@ -3,13 +3,13 @@ const dotenv = require('dotenv');
 const path = require('path');
 const fs = require('fs');
 
-const DEVELOPMENT_ENV_NAME = 'development';
-const environment = process.env.NODE_ENV || DEVELOPMENT_ENV_NAME;
+const DEVELOPMENT_ENV = 'development';
+const environment = process.env.NODE_ENV || DEVELOPMENT_ENV;
 
 function getPathToEnvFile() {
   const currentPath = path.join(__dirname);
   const productionPath = `${currentPath}/.env`;
-  if (environment !== DEVELOPMENT_ENV_NAME) return productionPath;
+  if (environment !== DEVELOPMENT_ENV) return productionPath;
   return `${productionPath}.${environment}`;
 }
 
@@ -28,7 +28,6 @@ function getDotEnvVariables() {
   );
 }
 
-console.log('env.API_URL:', process.env.API_URL);
 module.exports = () => {
   const dotEnvVariables = getDotEnvVariables();
   return {

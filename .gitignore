@@ -7,3 +7,4 @@ coverage/
 backups/
 .env
 .env.development
+.DS_Store

@@ -13,7 +13,6 @@ In progress...
 - Validation of empty inputs, validate max length of channel or make channel name clipping
 - Use normalizer
 - Testing (up to 80% coverage)
-- Clean up dependencies (and bootstrap CDN)
 - Auto scrolling
 - Fix heroku build (enable pruning of dev dependencies)
 

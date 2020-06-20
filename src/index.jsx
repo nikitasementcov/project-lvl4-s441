@@ -1,4 +1,5 @@
-import '@babel/polyfill';
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 // eslint-disable-next-line import/no-unresolved
 import gon from 'gon';
 import React from 'react';

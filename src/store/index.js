@@ -3,19 +3,19 @@ import _ from 'lodash';
 import { reducer as form } from 'redux-form';
 import ui, { actions as uiActions } from './ui';
 import app, { actions as appActions } from './app';
-import messages, {
+import messagesReducer, {
   actions as messageActions,
   asyncActions as messageAsyncActions,
 } from './messages';
 import modals, { actions as modalActions } from './modals';
-import channels, {
+import channelsReducer, {
   actions as channelActions,
   asyncActions as channelAsyncActions,
 } from './channels';
 
 const rootReducer = combineReducers({
-  channels,
-  messages,
+  channels: channelsReducer,
+  messages: messagesReducer,
   ui,
   app,
   modals,
@@ -43,15 +43,10 @@ export const normalize = items => {
   };
 };
 
-const createStore = gon => {
-  const {
-    channels: gonChannels,
-    messages: gonMessages,
-    currentChannelId,
-  } = gon;
+const createStore = ({ channels, messages, currentChannelId }) => {
   const preloadedState = {
-    channels: normalize(gonChannels),
-    messages: normalize(gonMessages),
+    channels: normalize(channels),
+    messages: normalize(messages),
     app: {
       currentChannelId,
       defaultChannelId: currentChannelId,

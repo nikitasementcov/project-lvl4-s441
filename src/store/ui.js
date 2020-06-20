@@ -1,17 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { asyncActions } from './messages';
 
 const slice = createSlice({
   name: 'ui',
   initialState: {
-    newMessageLoading: false,
+    isMessageLoading: false,
   },
-  reducers: {
-    createMessageRequest: state => {
-      return { ...state, newMessageLoading: true };
-    },
-    createMessageSuccess: state => {
-      return { ...state, newMessageLoading: false };
-    },
+  extraReducers: {
+    [asyncActions.createMessage.pending]: state => ({
+      ...state,
+      isMessageLoading: true,
+    }),
+    [asyncActions.createMessage.fulfilled]: state => ({
+      ...state,
+      isMessageLoading: false,
+    }),
+    [asyncActions.createMessage.rejected]: state => ({
+      ...state,
+      isMessageLoading: false,
+    }),
   },
 });
 

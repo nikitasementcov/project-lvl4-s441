@@ -8,6 +8,7 @@ In progress...
 
 ### TODO:
 
+- Add modal to create a channel instead of the deleted form under the channel list
 - Error handling
 - Loading indicator on channel updating and deletion
 - Validation of empty inputs, validate max length of channel or make channel name clipping
@@ -18,7 +19,8 @@ In progress...
 
 ### TODO (Styles):
 
-- Use modal to create a channel instead on the form under the channel list
+- Disable input on loading without losing focus
+- Improve adaptiveness
 - Fix styles of modals
 
 ### Ideas:

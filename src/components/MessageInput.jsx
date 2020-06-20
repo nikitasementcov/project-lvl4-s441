@@ -9,8 +9,8 @@ import connect from '../store/connect';
 const MessageInput = ({ classNames, reset, handleSubmit, createMessage }) => {
   const userName = useContext(UserContext);
 
-  const { channelId, newMessageLoading } = useSelector(state => ({
-    newMessageLoading: state.ui.newMessageLoading,
+  const { channelId, isMessageLoading } = useSelector(state => ({
+    isMessageLoading: state.ui.isMessageLoading,
     channelId: state.app.currentChannelId,
   }));
 
@@ -22,7 +22,7 @@ const MessageInput = ({ classNames, reset, handleSubmit, createMessage }) => {
 
   const renderForm = () => {
     return (
-      <form onSubmit={handleSubmit(submit)} className="input-group mb-3">
+      <form onSubmit={handleSubmit(submit)} className="input-group">
         <Field
           name="message"
           component="input"
@@ -38,15 +38,15 @@ const MessageInput = ({ classNames, reset, handleSubmit, createMessage }) => {
   const loader = (
     <div
       className={cn(loaderSelfClasses, {
-        invisible: !newMessageLoading,
-        visible: newMessageLoading,
+        invisible: !isMessageLoading,
+        visible: isMessageLoading,
       })}
       role="status"
     >
       <span className="sr-only">Loading...</span>
     </div>
   );
-  const containerSelfClasses = 'd-flex align-items-center';
+  const containerSelfClasses = 'my-3 d-flex align-items-center';
   return (
     <div className={cn(classNames, containerSelfClasses)}>
       {renderForm()}

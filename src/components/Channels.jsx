@@ -5,13 +5,12 @@ import cn from 'classnames';
 import { useSelector } from 'react-redux';
 import _ from 'lodash';
 import { Row } from 'reactstrap';
-import ChannelCreationForm from './ChannelCreationForm';
 import TrashIcon from './icons/TrashIcon';
 import EditIcon from './icons/EditIcon';
 import IconButton from './icons/IconButton';
 import connect from '../store/connect';
 
-const ChannelsList = ({
+const Channels = ({
   className,
   changeChannel,
   showDeletionModal,
@@ -78,11 +77,8 @@ const ChannelsList = ({
           {_.map(channels.byId, renderChannel)}
         </ul>
       </div>
-      <div className="new-channel">
-        <ChannelCreationForm />
-      </div>
     </>
   );
 };
 
-export default connect()(ChannelsList);
+export default connect()(Channels);

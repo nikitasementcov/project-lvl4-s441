@@ -3,8 +3,9 @@ import cn from 'classnames';
 import { useSelector } from 'react-redux';
 import _ from 'lodash';
 import Message from './Message';
+import MessageInput from './MessageInput';
 
-const MessagesList = ({ className }) => {
+const Messages = ({ className }) => {
   const { messages, currentChannelId } = useSelector(state => ({
     messages: state.messages.byId,
     currentChannelId: state.app.currentChannelId,
@@ -15,6 +16,15 @@ const MessagesList = ({ className }) => {
       <Message key={m.id} message={m} />
     ));
 
-  return <div className={cn(className)}>{renderMessages()}</div>;
+  return (
+    <section className={cn(className)}>
+      <div className="h-100 d-flex flex-column justify-content-between">
+        <div className="h-100 border rounded p-3 overflow-auto">
+          {renderMessages()}
+        </div>
+        <MessageInput />
+      </div>
+    </section>
+  );
 };
-export default MessagesList;
+export default Messages;

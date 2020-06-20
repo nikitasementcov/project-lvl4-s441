@@ -1,18 +1,18 @@
 import React from 'react';
-import ChannelsList from './ChannelsList';
-import MessagesList from './MessagesList';
-import MessageInput from './MessageInput';
+import Channels from './Channels';
+import Messages from './Messages';
 import ChannelDeletionModal from './ChannelDeletionModal';
 import ChannelEditingModal from './ChannelEditingModal';
 
 const Chat = () => (
-  <div className="my-3 chat">
-    <ChannelsList className="channels" />
-    <MessagesList className="messages border p-3" />
-    <MessageInput classNames="messageForm" />
+  <>
+    <div className="my-3 chat">
+      <Channels className="channels" />
+      <Messages className="messages" />
+    </div>
     <ChannelDeletionModal />
     <ChannelEditingModal />
-  </div>
+  </>
 );
 
 export default Chat;

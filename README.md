@@ -7,22 +7,20 @@ In progress...
 [Chat is here](https://react-chat-ddrgis.herokuapp.com/)
 
 ### TODO:
-- Extract dispatch from components
+
 - Error handling
 - Loading indicator on channel updating and deletion
-- Validation of empty inputs, validate max length of channel or make channel name cliping
+- Validation of empty inputs, validate max length of channel or make channel name clipping
 - Use normalizer
 - Testing (up to 80% coverage)
 - Clean up dependencies (and bootstrap CDN)
 - Auto scrolling
 - Fix heroku build (enable pruning of dev dependencies)
-- ~~Add second page or remove router~~
-- ~~Fix styles~~
 
 ### TODO (Styles):
-- Move form of channel creation under the channel list, make scroll only for channel list
-- Align icons
-- Styles of modals
+
+- Use modal to create a channel instead on the form under the channel list
+- Fix styles of modals
 
 ### Ideas:
 

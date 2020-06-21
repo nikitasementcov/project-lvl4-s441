@@ -13,11 +13,13 @@ import App from './components/App';
 import UserContext from './userContext';
 import { actions as channelActions } from './store/channels';
 import { actions as messageActions } from './store/messages';
+import { actions as appActions } from './store/app';
 
 import '../assets/favicon.ico';
 import '../assets/css/gridLayout.css';
+import { isProd } from './config';
 
-if (process.env.NODE_ENV !== 'production') {
+if (!isProd) {
   localStorage.debug = 'chat:*';
 }
 
@@ -37,8 +39,10 @@ socket.on('newChannel', data => {
 });
 
 socket.on('removeChannel', data => {
-  const action = channelActions.delete(data);
-  store.dispatch(action);
+  const deleteAction = channelActions.delete(data);
+  const setDefaultChannelAction = appActions.changeToDefaultChannel();
+  store.dispatch(setDefaultChannelAction);
+  store.dispatch(deleteAction);
 });
 
 socket.on('renameChannel', data => {

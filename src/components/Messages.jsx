@@ -7,13 +7,12 @@ import IconButton from './icons/IconButton';
 import EditIcon from './icons/EditIcon';
 import connect from '../store/connect';
 
-const Messages = ({ currentChannelId, showEditingModal }) => {
-  const { messages, channelsById } = useSelector(state => ({
+const Messages = ({ showEditingModal }) => {
+  const { messages, channelsById, currentChannelId } = useSelector(state => ({
     messages: state.messages.byId,
     channelsById: state.channels.byId,
+    currentChannelId: state.app.currentChannelId,
   }));
-  console.log(currentChannelId);
-  console.log(channelsById);
   const channel = channelsById[currentChannelId];
   const handleChannelUpdating = (id, name) => e => {
     e.stopPropagation();

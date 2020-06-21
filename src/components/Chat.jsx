@@ -8,8 +8,8 @@ import ChannelCreationModal from './ChannelCreationModal';
 const Chat = () => (
   <>
     <div className="my-3 chat">
-      <Channels className="channels" />
-      <Messages className="messages" />
+      <Channels />
+      <Messages />
     </div>
     <ChannelDeletionModal />
     <ChannelEditingModal />

@@ -8,10 +8,8 @@
 
 .channels {
   grid-column: 1;
-  overflow: auto;
 }
 
 .messages {
   grid-column: 2;
-  overflow: auto;
 }

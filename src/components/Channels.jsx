@@ -11,7 +11,6 @@ import IconButton from './icons/IconButton';
 import connect from '../store/connect';
 
 const Channels = ({
-  className,
   changeChannel,
   showDeletionModal,
   showEditingModal,
@@ -40,7 +39,7 @@ const Channels = ({
 
   const renderChannelIcons = ({ id, name, isActive, removable }) =>
     removable ? (
-      <section>
+      <section className="col-3 text-right">
         <IconButton
           icon={EditIcon}
           fill={isActive ? '#fff' : null}
@@ -66,8 +65,10 @@ const Channels = ({
         key={id}
         onClick={handleChannelChange(id)}
       >
-        <Row noGutters className="justify-content-between">
-          <span className="text-capitalize">{name}</span>
+        <Row noGutters>
+          <span className="col-9 text-nowrap text-truncate text-capitalize">
+            {name}
+          </span>
           {renderChannelIcons({ id, name, isActive, removable })}
         </Row>
       </li>
@@ -75,17 +76,15 @@ const Channels = ({
   };
 
   return (
-    <section className={className}>
+    <section className="channels overflow-hidden d-flex flex-column">
       <div className="d-flex justify-content-between mb-3">
         <h4 className="mb-0">Channels</h4>
-        <Button close onClick={handleHeaderClick}>
+        <Button close className="mr-2" onClick={handleHeaderClick}>
           <span>+</span>
         </Button>
       </div>
-      <div>
-        <ul className="list-group mb-4">
-          {_.map(channels.byId, renderChannel)}
-        </ul>
+      <div className="h-100 overflow-auto">
+        <ul className="list-group">{_.map(channels.byId, renderChannel)}</ul>
       </div>
     </section>
   );

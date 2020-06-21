@@ -10,7 +10,7 @@ In progress...
 
 - Error handling
 - Loading indicator on channel updating and deletion
-- Validation of empty inputs, validate max length of channel or make channel name clipping
+- Validate max length of channel or make channel name clipping
 - Use normalizer
 - Testing (up to 80% coverage)
 - Auto scrolling

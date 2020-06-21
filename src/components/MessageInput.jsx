@@ -8,15 +8,16 @@ import connect from '../store/connect';
 
 const MessageInput = ({ classNames, reset, handleSubmit, createMessage }) => {
   const userName = useContext(UserContext);
-
   const { channelId, isMessageLoading } = useSelector(state => ({
     isMessageLoading: state.ui.isMessageLoading,
     channelId: state.app.currentChannelId,
   }));
 
-  const submit = async values => {
-    const message = { ...values, userName };
-    await createMessage({ channelId, message });
+  const submit = async ({ message }) => {
+    if (!message) {
+      return;
+    }
+    await createMessage({ channelId, message: { message, userName } });
     reset();
   };
 

@@ -4,6 +4,7 @@ const path = require('path');
 const fs = require('fs');
 
 const environment = process.env.NODE_ENV || 'development';
+const isProduction = environment === 'production';
 
 const getEnvVariables = () => {
   const getPathToEnvFile = () => {
@@ -68,5 +69,6 @@ module.exports = () => {
       rules,
     },
     plugins: [new webpack.DefinePlugin(getEnvVariables())],
+    devtool: !isProduction ? 'inline-source-map' : false,
   };
 };

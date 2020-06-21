@@ -47,7 +47,7 @@ const MessageInput = ({ classNames, reset, handleSubmit, createMessage }) => {
       <span className="sr-only">Loading...</span>
     </div>
   );
-  const containerSelfClasses = 'my-3 d-flex align-items-center';
+  const containerSelfClasses = 'd-flex align-items-center';
   return (
     <div className={cn(classNames, containerSelfClasses)}>
       {renderForm()}

@@ -62,7 +62,7 @@ const Channels = ({ changeChannel, showDeletionModal, showCreationModal }) => {
     <section className="channels overflow-hidden d-flex flex-column">
       <div className="d-flex justify-content-between mb-3">
         <h4 className="mb-0">Channels</h4>
-        <Button close className="mr-2" onClick={handleChannelCreation}>
+        <Button close onClick={handleChannelCreation}>
           <span>+</span>
         </Button>
       </div>

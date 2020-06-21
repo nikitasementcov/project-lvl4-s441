@@ -8,6 +8,7 @@ In progress...
 
 ### TODO:
 
+- README
 - Error handling
 - Loading indicator on channel updating and deletion
 - Validate max length of channel or make channel name clipping
@@ -24,5 +25,8 @@ In progress...
 
 ### Ideas:
 
-- Message dates
+- Use optimistic updates
+- Add message dates
 - Authorization via Auth0
+- SSR
+- Running in k8s

@@ -6,16 +6,10 @@ import { useSelector } from 'react-redux';
 import _ from 'lodash';
 import { Button, Row } from 'reactstrap';
 import TrashIcon from './icons/TrashIcon';
-import EditIcon from './icons/EditIcon';
 import IconButton from './icons/IconButton';
 import connect from '../store/connect';
 
-const Channels = ({
-  changeChannel,
-  showDeletionModal,
-  showEditingModal,
-  showCreationModal,
-}) => {
+const Channels = ({ changeChannel, showDeletionModal, showCreationModal }) => {
   const { channels, currentChannelId } = useSelector(state => ({
     channels: state.channels,
     currentChannelId: state.app.currentChannelId,
@@ -29,10 +23,6 @@ const Channels = ({
     e.stopPropagation();
     showDeletionModal({ id, channelName: name });
   };
-  const handleChannelUpdating = (id, name) => e => {
-    e.stopPropagation();
-    showEditingModal({ id, channelName: name });
-  };
   const handleHeaderClick = () => {
     showCreationModal();
   };
@@ -40,12 +30,6 @@ const Channels = ({
   const renderChannelIcons = ({ id, name, isActive, removable }) =>
     removable ? (
       <section className="col-3 text-right">
-        <IconButton
-          icon={EditIcon}
-          fill={isActive ? '#fff' : null}
-          onClick={handleChannelUpdating(id, name)}
-          className="mr-1"
-        />
         <IconButton
           icon={TrashIcon}
           fill={isActive ? '#fff' : null}

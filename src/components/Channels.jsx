@@ -15,15 +15,14 @@ const Channels = ({ changeChannel, showDeletionModal, showCreationModal }) => {
     currentChannelId: state.app.currentChannelId,
   }));
 
-  const handleChannelChange = id => e => {
-    e.preventDefault();
+  const handleChannelChange = id => () => {
     changeChannel(id);
   };
   const handleChannelDeletion = (id, name) => e => {
     e.stopPropagation();
     showDeletionModal({ id, channelName: name });
   };
-  const handleHeaderClick = () => {
+  const handleChannelCreation = () => {
     showCreationModal();
   };
 
@@ -63,7 +62,7 @@ const Channels = ({ changeChannel, showDeletionModal, showCreationModal }) => {
     <section className="channels overflow-hidden d-flex flex-column">
       <div className="d-flex justify-content-between mb-3">
         <h4 className="mb-0">Channels</h4>
-        <Button close className="mr-2" onClick={handleHeaderClick}>
+        <Button close className="mr-2" onClick={handleChannelCreation}>
           <span>+</span>
         </Button>
       </div>

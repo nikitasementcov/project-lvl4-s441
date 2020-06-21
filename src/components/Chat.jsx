@@ -3,6 +3,7 @@ import Channels from './Channels';
 import Messages from './Messages';
 import ChannelDeletionModal from './ChannelDeletionModal';
 import ChannelEditingModal from './ChannelEditingModal';
+import ChannelCreationModal from './ChannelCreationModal';
 
 const Chat = () => (
   <>
@@ -12,6 +13,7 @@ const Chat = () => (
     </div>
     <ChannelDeletionModal />
     <ChannelEditingModal />
+    <ChannelCreationModal />
   </>
 );
 

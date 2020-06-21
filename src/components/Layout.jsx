@@ -6,7 +6,7 @@ export default function Layout({ component: Component }) {
     <>
       <header>
         <nav className="header navbar navbar-expand-lg navbar-light bg-faded border-bottom">
-          <div className="navbar-brand">React Chat</div>
+          <h1 className="navbar-brand mb-0">React Chat</h1>
           <button
             type="button"
             className="navbar-toggler"

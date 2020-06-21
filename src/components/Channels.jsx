@@ -4,7 +4,7 @@ import React from 'react';
 import cn from 'classnames';
 import { useSelector } from 'react-redux';
 import _ from 'lodash';
-import { Row } from 'reactstrap';
+import { Button, Row } from 'reactstrap';
 import TrashIcon from './icons/TrashIcon';
 import EditIcon from './icons/EditIcon';
 import IconButton from './icons/IconButton';
@@ -15,6 +15,7 @@ const Channels = ({
   changeChannel,
   showDeletionModal,
   showEditingModal,
+  showCreationModal,
 }) => {
   const { channels, currentChannelId } = useSelector(state => ({
     channels: state.channels,
@@ -32,6 +33,9 @@ const Channels = ({
   const handleChannelUpdating = (id, name) => e => {
     e.stopPropagation();
     showEditingModal({ id, channelName: name });
+  };
+  const handleHeaderClick = () => {
+    showCreationModal();
   };
 
   const renderChannelIcons = ({ id, name, isActive, removable }) =>
@@ -71,13 +75,19 @@ const Channels = ({
   };
 
   return (
-    <>
-      <div className={cn(className)}>
+    <section className={className}>
+      <div className="d-flex justify-content-between mb-3">
+        <h4 className="mb-0">Channels</h4>
+        <Button close onClick={handleHeaderClick}>
+          <span>+</span>
+        </Button>
+      </div>
+      <div>
         <ul className="list-group mb-4">
           {_.map(channels.byId, renderChannel)}
         </ul>
       </div>
-    </>
+    </section>
   );
 };
 
